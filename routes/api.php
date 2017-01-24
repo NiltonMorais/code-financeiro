@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+Route::post('access_token','Api\AuthController@accessToken');
+Route::post('refresh_token','Api\AuthController@refreshToken');
+Route::post('logout','Api\AuthController@logout')->middleware('auth:api');
