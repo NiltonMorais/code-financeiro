@@ -24,7 +24,7 @@
                             <?php $messageError = $errors->has('password') ? "data-error='{$errors->first('password')}'" : null ?>
                             <input id="password" type="password" class="validate {{$messageError ? 'invalid' : ''}}"
                                    name="password" value="{{ old('password') }}"
-                                   required autofocus>
+                                   required>
                             <label for="password" {!! $messageError !!}>Senha</label>
                         </div>
                     </div>
