@@ -1,0 +1,1 @@
+{"version":3,"sources":["bootstrap.js"],"names":[],"mappings":";;AAAA,QAAQ,iBAAR;AACA,OAAO,GAAP,GAAa,QAAQ,KAAR,CAAb","file":"bootstrap-compiled.js","sourcesContent":["require('materialize-css');\nwindow.Vue = require('vue');\n"]}

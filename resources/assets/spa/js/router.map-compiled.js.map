@@ -1,0 +1,1 @@
+{"version":3,"sources":["router.map.js"],"names":[],"mappings":";;;;;;AAAA;;;;;;kBACc;AACV,cAAU;AACN,cAAM,YADA;AAEN;AAFM;AADA,C","file":"router.map-compiled.js","sourcesContent":["import LoginComponent from './components/Login.vue';\r\nexport default{\r\n    '/login': {\r\n        name: 'auth.login',\r\n        component: LoginComponent\r\n    }\r\n}"]}

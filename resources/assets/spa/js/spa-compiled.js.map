@@ -1,0 +1,1 @@
+{"version":3,"sources":["spa.js"],"names":[],"mappings":";;AAAA,QAAQ,iBAAR;AACA,OAAO,GAAP,GAAa,QAAQ,KAAR,CAAb;AACA,QAAQ,UAAR","file":"spa-compiled.js","sourcesContent":["require('materialize-css');\nwindow.Vue = require('vue');\nrequire('./router');\n\n"]}

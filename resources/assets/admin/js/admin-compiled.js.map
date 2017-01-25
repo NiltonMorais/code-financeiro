@@ -1,0 +1,1 @@
+{"version":3,"sources":["admin.js"],"names":[],"mappings":";;AAAA,QAAQ,aAAR;;AAEA,IAAI,SAAJ,CAAc,YAAd,EAA4B,QAAQ,4BAAR,CAA5B;;AAEA,IAAM,MAAM,IAAI,GAAJ,CAAQ;AAChB,QAAI;AADY,CAAR,CAAZ","file":"admin-compiled.js","sourcesContent":["require('./bootstrap');\n\nVue.component('admin-menu', require('./components/AdminMenu.vue'));\n\nconst app = new Vue({\n    el: '#app'\n});\n"]}
