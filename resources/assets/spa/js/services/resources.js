@@ -5,4 +5,11 @@ export class Jwt{
             'password': password
         });
     }
+    static logout(){
+        return Vue.http.post('logout');
+    }
 }
+
+let User = Vue.resource('user');
+
+export {User};

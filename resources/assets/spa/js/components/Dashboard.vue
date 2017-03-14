@@ -11,6 +11,10 @@
     </div>
 </template>
 <script>
+    import Auth from '../services/auth';
     export default{
+        ready(){
+            console.log(Auth.user());
+        }
     }
 </script>

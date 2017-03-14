@@ -1,0 +1,1 @@
+{"version":3,"sources":["spa.config.js"],"names":[],"mappings":";;AAAA,OAAO,OAAP,GAAiB;AACf,aAAW,QAAQ,GAAR,CAAY;AADR,CAAjB","file":"spa.config-compiled.js","sourcesContent":["module.exports = {\r\n  'api_url': process.env.API_URL\r\n};"]}
