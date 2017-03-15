@@ -14,7 +14,7 @@
     import Auth from "../services/auth";
     export default{
         ready(){
-            setTimout(() => {
+            setTimeout(() => {
                 this.logout();
             },1000);
         },
