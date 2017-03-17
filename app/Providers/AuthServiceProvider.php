@@ -2,7 +2,7 @@
 
 namespace CodeFin\Providers;
 
-use CodeFin\User;
+use CodeFin\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
