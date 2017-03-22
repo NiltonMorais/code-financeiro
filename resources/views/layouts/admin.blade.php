@@ -30,15 +30,27 @@
                     'urlLogout' => env('URL_ADMIN_LOGOUT'),
                     'csrfToken' => csrf_token(),
                     'menus' => [
-                            ['name' => 'Contas a pagar', 'url' => "/teste", 'dropdownId' => 'teste'],
-                            ['name' => 'Contas a receber', 'url' => "/teste1"],
+                            [
+                                    'name' => 'Banco',
+                                    'url' => route('admin.banks.index'),
+                                    'active'=>isRouteActive('admin.banks.index'),
+                                    'dropdownId' => 'banco'
+                            ],
                     ],
                     'menusDropdown' => [
                             [
-                                    'id' => 'teste',
+                                    'id' => 'banco',
                                     'items' => [
-                                            ['name' => "Listar contas", 'url' => '/listar'],
-                                            ['name' => "Criar contas", 'url' => '/criar'],
+                                            [
+                                                    'name' => "Listar",
+                                                    'url' => route('admin.banks.index'),
+                                                    'active'=>isRouteActive('admin.banks.index'),
+                                            ],
+                                            [
+                                                    'name' => "Criar",
+                                                    'url' => route('admin.banks.create'),
+                                                    'active'=>isRouteActive('admin.banks.create'),
+                                            ],
                                     ]
                             ]
                     ],
