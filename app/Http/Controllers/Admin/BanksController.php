@@ -2,11 +2,13 @@
 
 namespace CodeFin\Http\Controllers\Admin;
 
+use CodeFin\Events\BankCreatedEvent;
 use CodeFin\Http\Controllers\Controller;
 use CodeFin\Http\Controllers\Response;
 use CodeFin\Http\Requests;
 use CodeFin\Http\Requests\BankCreateRequest;
 use CodeFin\Http\Requests\BankUpdateRequest;
+use CodeFin\Models\Bank;
 use CodeFin\Repositories\Interfaces\BankRepository;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -61,7 +63,6 @@ class BanksController extends Controller
     public function store(BankCreateRequest $request)
     {
         $data = $request->all();
-        $data['logo'] = md5(time()).".jpeg";
         $bank = $this->repository->create($data);
 
         if ($request->wantsJson()) {
@@ -103,19 +104,18 @@ class BanksController extends Controller
      */
     public function update(BankUpdateRequest $request, $id)
     {
-            $bank = $this->repository->update($request->all(), $id);
+        $bank = $this->repository->update($request->all(), $id);
 
 
+        if ($request->wantsJson()) {
+            $response = [
+                'message' => 'Bank updated.',
+                'data' => $bank->toArray(),
+            ];
+            return response()->json($response);
+        }
 
-            if ($request->wantsJson()) {
-                $response = [
-                    'message' => 'Bank updated.',
-                    'data' => $bank->toArray(),
-                ];
-                return response()->json($response);
-            }
-
-            return redirect()->route('admin.banks.index');
+        return redirect()->route('admin.banks.index');
     }
 
 
