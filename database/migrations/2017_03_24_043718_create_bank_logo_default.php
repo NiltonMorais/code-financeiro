@@ -30,6 +30,12 @@ class CreateBankLogoDefault extends Migration
      */
     public function down()
     {
-        //
+        $file_name = env("BANK_LOGO_DEFAULT");
+        $filePath = storage_path('/app/public/banks/images/'.$file_name);
+
+        if(File::exists($filePath)){
+            File::delete($filePath);
+            echo "** Imagem $file_name deletada\n";
+        }
     }
 }
