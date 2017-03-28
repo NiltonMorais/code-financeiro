@@ -1,18 +1,11 @@
 {
-  "name": "myapp",
-  "description": "a really cool app",
-  "version": "1.0.0",
-  "engines": {
-    "node": "6.9.4"
-  },
   "private": true,
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch",
     "postinstall": "gulp"
   },
-
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^3.9.1",
     "gulp-env": "^0.4.0",
     "gulp-file": "^0.3.0",
