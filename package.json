@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "prod": "gulp --production",
-    "dev": "gulp watch"
+    "dev": "gulp watch",
+    "start": "npm run prod"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
