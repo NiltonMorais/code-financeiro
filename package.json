@@ -3,7 +3,7 @@
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch",
-    "start": "npm run prod"
+    "postinstall": "gulp"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
