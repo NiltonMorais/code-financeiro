@@ -1,0 +1,31 @@
+{
+  "name": "codefin.heroku",
+  "description": "Arquivo de configuração Heroku",
+  "scripts": {
+  },
+  "env": {
+    "APP_KEY": "base64:gmmJg/k7VWyPFE7tIF62ad6iCp1NVV/+P3FqNQnzyIM=",
+    "APP_DEBUG": "false",
+    "DB_CONNECTION": "postgree",
+    "DB_HOST": "127.0.0.1",
+    "DB_PORT": "3306",
+    "DB_DATABASE": "codefin",
+    "DB_USERNAME": "root",
+    "DB_PASSWORD": "root",
+    "URL_ADMIN_LOGIN": "/admin/login",
+    "URL_ADMIN_LOGOUT": "/admin/login",
+    "JWT_SECRET": "vndSsxjdHPcGCzKOLwuGVassQDtybcYS",
+    "BANK_LOGO_DEFAULT": "default.png",
+    "API_URL": "http://codefinanceiro.heroku.com/api"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-php"
+    }
+  ]
+}
