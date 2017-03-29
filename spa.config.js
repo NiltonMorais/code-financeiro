@@ -1,6 +1,5 @@
 module.exports = {
-  //'api_url': process.env.API_URL,
-  'api_url': 'http://codefinanceiro.heroku.com/api',
+  'api_url': process.env.API_URL,
   'app_path': '/app',
   'login_path': '#!/login'
 };
