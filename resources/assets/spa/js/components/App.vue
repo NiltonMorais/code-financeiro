@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <loading></loading>
         <header v-if="showMenu">
             <menu></menu>
         </header>
@@ -21,15 +22,17 @@
 </template>
 <script>
     import MenuComponent from './Menu.vue';
+    import LoadingComponent from '../../../_default/components/Loading.vue';
     import Auth from '../services/auth';
     export default{
         components: {
-            'menu': MenuComponent
+            'menu': MenuComponent,
+            'loading': LoadingComponent,
         },
         data(){
             return{
                 year: new Date().getFullYear(),
-                user: Auth.user
+                user: Auth.user,
             }
         },
         computed: {
@@ -38,7 +41,6 @@
             }
         }
     }
-
 </script>
 <style type="text/css">
     #app{
@@ -50,4 +52,6 @@
     main{
       flex: 1 0 auto
     }
+
+
 </style>

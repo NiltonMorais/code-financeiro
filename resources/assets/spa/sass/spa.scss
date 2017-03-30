@@ -10,6 +10,10 @@
 // Materialize CSS
 @import "node_modules/materialize-css/sass/materialize";
 
+body{
+  background-color: color('green','lighten-5');
+}
+
 #app{
   display: flex;
   min-height: 100vh;

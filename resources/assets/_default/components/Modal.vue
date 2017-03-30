@@ -21,13 +21,6 @@
                 }
             }
         },
-        data(){
-            return {
-                modal: {
-                    id: ''
-                }
-            };
-        },
         ready(){
             let id = this.modal.id;
             $(document).ready(() => {

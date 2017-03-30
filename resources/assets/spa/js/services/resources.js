@@ -14,5 +14,6 @@ export class Jwt{
 }
 
 let User = Vue.resource('user');
+let BankAccount = Vue.resource('bank_accounts');
 
-export {User};
+export {User, BankAccount};
