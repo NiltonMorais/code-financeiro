@@ -8,8 +8,6 @@ use CodeFin\Http\Requests;
 use CodeFin\Http\Requests\BankAccountCreateRequest;
 use CodeFin\Http\Requests\BankAccountUpdateRequest;
 use CodeFin\Repositories\Interfaces\BankAccountRepository;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 
 
 class BankAccountsController extends Controller
@@ -34,7 +32,7 @@ class BankAccountsController extends Controller
      */
     public function index()
     {
-        return $this->repository->paginate(4);
+        return $this->repository->paginate();
     }
 
     /**
@@ -90,6 +88,6 @@ class BankAccountsController extends Controller
     public function destroy($id)
     {
         $this->repository->delete($id);
-        return response()->json([],204);
+        return response()->json([], 204);
     }
 }

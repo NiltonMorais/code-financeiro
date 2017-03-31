@@ -7,13 +7,27 @@
                 </span>
             </div>
             <div class="card-panel z-depth-5">
+                <form name="form" method="GET" @submit="filter()">
+                    <div class="filter-group">
+                        <button class="btn waves-effect" @click.prevent="filter()">
+                            <i class="material-icons">search</i>
+                        </button>
+                        <div class="filter-wrapper">
+                            <input type="text" v-model="search" placeholder="Buscar.."/>
+                        </div>
+                    </div>
+                </form>
                 <table class="bordered striped hightlight responsive-table">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Agência</th>
-                        <th>C/C</th>
+                        <th v-for="(key,o) in table.headers" :width="o.width">
+                            <a href="#" @click.prevent="sortBy(key)">
+                                {{o.label}}
+                                <i class="material-icons left" v-if="order.key==key">
+                                    {{order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}
+                                </i>
+                            </a>
+                        </th>
                         <th>Ações</th>
                     </tr>
                     </thead>
@@ -30,7 +44,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <pagination :current-page.sync="pagination.current_page" :per-page="pagination.per_page" :total-records="pagination.total"></pagination>
+                <pagination :current-page.sync="pagination.current_page" :per-page="pagination.per_page"
+                            :total-records="pagination.total"></pagination>
             </div>
 
             <div class="fixed-action-btn">
@@ -77,6 +92,31 @@
                     current_page: 0,
                     per_page: 0,
                     total: 0
+                },
+                search: '',
+                order: {
+                    key: 'id',
+                    sort: 'asc'
+                },
+                table: {
+                    headers: {
+                        id: {
+                            label: '#',
+                            width: '10%'
+                        },
+                        name: {
+                            label: 'Nome',
+                            width: '45%'
+                        },
+                        agency: {
+                            label: 'Agência',
+                            width: '15%'
+                        },
+                        account: {
+                            label: 'C/C',
+                            width: '15%'
+                        }
+                    }
                 }
             }
         },
@@ -97,13 +137,24 @@
             },
             getBankAccounts(){
                 BankAccount.query({
-                    page: this.pagination.current_page + 1
+                    page: this.pagination.current_page + 1,
+                    orderBy: this.order.key,
+                    sortedBy: this.order.sort,
+                    search: this.search
                 }).then((response) => {
                     this.bankAccounts = response.data.data;
                     let pagination = response.data.meta.pagination;
                     pagination.current_page--;
                     this.pagination = pagination;
                 });
+            },
+            sortBy(key){
+                this.order.key = key;
+                this.order.sort = this.order.sort == 'desc' ? 'asc' : 'desc';
+                this.getBankAccounts();
+            },
+            filter(){
+                this.getBankAccounts();
             }
         },
         events: {
@@ -112,5 +163,6 @@
             }
         }
     }
+
 
 </script>

@@ -27,3 +27,15 @@ main{
 #sidenav-overlay {
   z-index: 996 !important;
 }
+
+.filter-group{
+  .btn{
+    float: right;
+    height: 3rem;
+    line-height: 3rem;
+  }
+  .filter-wrapper{
+    overflow: hidden;
+    padding-right: 10px;
+  }
+}
