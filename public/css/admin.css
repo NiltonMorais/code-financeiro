@@ -10692,6 +10692,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
+.bank-logo {
+  width: 22px;
+  height: 22px;
+}
+
 #app {
   display: -webkit-box;
   display: flex;
@@ -10708,11 +10713,6 @@ main {
 
 #sidenav-overlay {
   z-index: 996 !important;
-}
-
-.bank-logo {
-  width: 22px;
-  height: 22px;
 }
 
 /*# sourceMappingURL=admin.css.map */

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <!--<div class="container">-->
         <div class="row">
 
                 <page-title>
@@ -29,6 +29,19 @@
                         <td>{{o.agency}}</td>
                         <td>{{o.account}}</td>
                         <td>
+                            <div class="row valign-wrapper">
+                                <div class="col s2">
+                                    <img :src="o.bank.data.logo" class="bank-logo">
+                                </div>
+                                <div class="col s10">
+                                    <span class="left">{{o.bank.data.name}}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <i class="material-icons green-text" v-if="o.default">check</i>
+                        </td>
+                        <td>
                             <a v-link="{name: 'bank-account.update', params: {id: o.id} }">Editar</a>
                             <a href="#" @click.prevent="openModalDelete(o)">Excluir</a>
                         </td>
@@ -45,7 +58,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    <!--</div>  container -->
     <modal :modal="modal">
         <div slot="content" v-if="bankAccountToDelete">
             <h4>Mensagem de confirmação</h4>
@@ -96,20 +109,22 @@
                 table: {
                     headers: {
                         id: {
-                            label: '#',
-                            width: '10%'
+                            label: '#', width: '7%'
                         },
                         name: {
-                            label: 'Nome',
-                            width: '45%'
+                            label: 'Nome', width: '30%'
                         },
                         agency: {
-                            label: 'Agência',
-                            width: '15%'
+                            label: 'Agência',  width: '13%'
                         },
                         account: {
-                            label: 'C/C',
-                            width: '15%'
+                            label: 'C/C', width: '13%'
+                        },
+                        'banks:bank_id|banks.name': {
+                            label: 'Banco', width: '17%'
+                        },
+                        'default': {
+                            label: 'Padrão', width: '5%'
                         }
                     }
                 }
@@ -123,6 +138,9 @@
                 BankAccount.delete({id: this.bankAccountToDelete.id}).then((response) => {
                     this.bankAccounts.$remove(this.bankAccountToDelete);
                     this.bankAccountToDelete = null;
+                    if(this.bankAccounts.length === 0 && this.pagination.current_page > 0){
+                        this.pagination.current_page--;
+                    }
                     Materialize.toast('Conta bancária excluída com sucesso',4000);
                 });
             },
@@ -135,7 +153,8 @@
                     page: this.pagination.current_page + 1,
                     orderBy: this.order.key,
                     sortedBy: this.order.sort,
-                    search: this.search
+                    search: this.search,
+                    include: 'bank'
                 }).then((response) => {
                     this.bankAccounts = response.data.data;
                     let pagination = response.data.meta.pagination;
@@ -149,6 +168,7 @@
                 this.getBankAccounts();
             },
             filter(){
+                this.pagination.current_page = 0;
                 this.getBankAccounts();
             }
         },

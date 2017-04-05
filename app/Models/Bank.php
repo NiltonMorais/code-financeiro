@@ -24,9 +24,9 @@ class Bank extends Model implements Transformable
 
     public function getLogoPathAttribute()
     {
-        $logoDir = $this->getLogosDirAttribute();
+        $folder = $this->getLogosDirAttribute();
         $logo = $this->attributes['logo'];
-        return "storage/$logoDir/$logo";
+        return "storage/$folder/$logo";
     }
 
 }

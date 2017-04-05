@@ -75,6 +75,6 @@ class BankRepositoryEloquent extends BaseRepository implements BankRepository
 
     public function presenter()
     {
-        return $this->presenter(BankPresenter::class);
+        return BankPresenter::class;
     }
 }

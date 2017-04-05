@@ -10,6 +10,8 @@
 // Materialize CSS
 @import "node_modules/materialize-css/sass/materialize";
 
+@import "../../_default/sass/default";
+
 body{
   background-color: color('grey','lighten-4');
 }

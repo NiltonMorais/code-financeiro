@@ -10692,6 +10692,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   }
 }
 
+.bank-logo {
+  width: 22px;
+  height: 22px;
+}
+
 body {
   background-color: #f5f5f5;
 }
