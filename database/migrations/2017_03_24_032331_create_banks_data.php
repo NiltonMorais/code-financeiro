@@ -1,10 +1,12 @@
 <?php
 
+use CodeFin\Models\Bank;
 use CodeFin\Repositories\Interfaces\BankRepository;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreateBanksData extends Migration
 {
@@ -18,7 +20,7 @@ class CreateBanksData extends Migration
         /** @var BankRepository $repository */
         $repository = app(BankRepository::class);
 
-        foreach($this->getData() as $bankArray){
+        foreach ($this->getData() as $bankArray) {
             $repository->create($bankArray);
         }
 
@@ -33,16 +35,17 @@ class CreateBanksData extends Migration
     {
         /** @var BankRepository $repository */
         $repository = app(BankRepository::class);
+        $repository->skipPresenter(true);
 
-        $filePath = storage_path('/app/public/banks/images/');
+        $count = count($this->getData());
 
-        $banks = $repository->all();
+        foreach (range(1,$count) as $id) {
+            $bank = $repository->find($id);
+            $path = Bank::LOGOS_DIR . '/' . $bank->logo;
 
-        foreach($banks as $bank){
-            if(File::exists($filePath.$bank->logo)){
-                File::delete($filePath.$bank->logo);
-                echo "** Imagem do '$bank->name' deletada: ".$bank->logo."\n";
-            }
+            Storage::disk('public')->delete($path);
+            echo "** Imagem do '$bank->name' deletada: " . $bank->logo . "\n";
+
             $bank->delete();
         }
     }

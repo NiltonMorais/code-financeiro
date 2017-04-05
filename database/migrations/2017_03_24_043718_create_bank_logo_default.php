@@ -1,8 +1,10 @@
 <?php
 
+use CodeFin\Models\Bank;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Storage;
 
 class CreateBankLogoDefault extends Migration
 {
@@ -18,9 +20,9 @@ class CreateBankLogoDefault extends Migration
             storage_path('app/files/banks/logos/'.$file_name),
             $file_name
         );
-        $destFile = \CodeFin\Models\Bank::LOGOS_DIR;
+        $destFile = Bank::LOGOS_DIR;
 
-        \Illuminate\Support\Facades\Storage::disk('public')->putFileAs($destFile,$logo,$file_name);
+        Storage::disk('public')->putFileAs($destFile,$logo,$file_name);
     }
 
     /**
@@ -31,11 +33,8 @@ class CreateBankLogoDefault extends Migration
     public function down()
     {
         $file_name = env("BANK_LOGO_DEFAULT");
-        $filePath = storage_path('/app/public/banks/images/'.$file_name);
-
-        if(File::exists($filePath)){
-            File::delete($filePath);
-            echo "** Imagem $file_name deletada\n";
-        }
+        $filePath = Bank::LOGOS_DIR.'/'.$file_name;
+        Storage::disk('public')->delete($filePath);
+        echo "** Imagem $file_name deletada\n";
     }
 }
