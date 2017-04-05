@@ -25,10 +25,13 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <label class="active">Banco</label>
-                        <select v-model="bankAccount.bank_id" id="bank_id" class="browser-default">
+                        <!--<select v-model="bankAccount.bank_id" id="bank_id" class="browser-default">
                             <option value="" disabled selected>Escolha um banco</option>
                             <option v-for="o in banks" :value="o.id">{{o.name}}</option>
-                        </select>
+                        </select>-->
+                        <input type="text" id="bank-id" placeholder="Buscar banco"
+                            autocomplete="off" data-activates="bank-id-dropdown" data-belloworigin="true"/>
+                        <ul id="bank-id-dropdown" class="dropdown-content ac-dropdown"></ul>
                     </div>
                 </div>
                 <div class="row">
