@@ -19,6 +19,9 @@
                     bank_id: '',
                     'default': false
                 },
+                bank: {
+                    name: ''
+                },
                 banks: []
             }
         },
@@ -43,6 +46,7 @@
             getBankAccount(id){
                 BankAccount.get({id: id, include: 'bank'}).then((response) => {
                     this.bankAccount = response.data.data;
+                    this.bank = response.data.data.bank.data;
                 });
             },
             initAutocomplete(){

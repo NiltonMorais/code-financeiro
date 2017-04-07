@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9cb69303c717fd0c52c7a0ae9f6223b",
+    "content-hash": "b85f8b79010c03192899008c37d33185",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -405,6 +405,60 @@
                 "tokenizer"
             ],
             "time": "2016-12-07T09:37:55+00:00"
+        },
+        {
+            "name": "kalnoy/nestedset",
+            "version": "v4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lazychaser/laravel-nestedset.git",
+                "reference": "c7584ba0daa059f1f339f7d163f3042fd7d1d65d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/c7584ba0daa059f1f339f7d163f3042fd7d1d65d",
+                "reference": "c7584ba0daa059f1f339f7d163f3042fd7d1d65d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.2.*|5.3.x",
+                "illuminate/events": "5.2.*|5.3.x",
+                "illuminate/support": "5.2.*|5.3.x",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v4.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kalnoy\\Nestedset\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kalnoy",
+                    "email": "lazychaser@gmail.com"
+                }
+            ],
+            "description": "Nested Set Model for Laravel 4-5",
+            "keywords": [
+                "database",
+                "hierarchy",
+                "laravel",
+                "nested sets",
+                "nsm"
+            ],
+            "time": "2016-12-19T08:36:51+00:00"
         },
         {
             "name": "laravel/framework",
