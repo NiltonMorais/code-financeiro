@@ -11,6 +11,7 @@
 @import "node_modules/materialize-css/sass/materialize";
 
 @import "../../_default/sass/default";
+@import "../../_default/sass/select2-materialize";
 
 body{
   background-color: color('grey','lighten-4');
@@ -41,3 +42,25 @@ main{
     padding-right: 10px;
   }
 }
+
+.category-tree{
+  @extend .collection;
+  border: none;
+  margin: 0;
+  overflow: visible;
+
+    .category-child{
+      @extend .collection-item;
+      padding-left: 50px;
+    }
+
+    .category-symbol{
+      line-height: 36px;
+      height: 36px;
+      i{
+        line-height: inherit;
+        height: inherit;
+      }
+    }
+}
+

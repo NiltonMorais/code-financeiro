@@ -24392,13 +24392,6 @@
 	            }
 	        }
 	    },
-	    data: function data() {
-	        return {
-	            modal: {
-	                id: ''
-	            }
-	        };
-	    },
 	    ready: function ready() {
 	        var id = this.modal.id;
 	        $(document).ready(function () {

@@ -16,31 +16,41 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
 {
     public function create(array $attributes)
     {
+        Category::$enableTenant = false;
         if(isset($attributes['parent_id'])){
             $skipPresenter = $this->skipPresenter;
             $this->skipPresenter(true);
             $parent = $this->find($attributes['parent_id']);
             $this->skipPresenter = $skipPresenter;
             $child = $parent->children()->create($attributes);
-            return $this->parserResult($child);
+            $result = $this->parserResult($child);
+        }else{
+            $result = parent::create($attributes);
         }
 
-        return parent::create($attributes);
+        Category::$enableTenant = true;
+        return $result;
     }
 
     public function update(array $attributes, $id)
     {
+        Category::$enableTenant = false;
         if(isset($attributes['parent_id'])){
             $skipPresenter = $this->skipPresenter;
             $this->skipPresenter(true);
             $child = $this->find($id);
             $child->parent_id = $attributes['parent_id'];
+            $child->fill($attributes);
             $child->save();
             $this->skipPresenter = $skipPresenter;
-            return $this->parserResult($child);
+            $result = $this->parserResult($child);
+        }else{
+            $result = parent::update($attributes, $id);
+            $result->makeRoot()->save();
         }
 
-        return parent::update($attributes, $id);
+        Category::$enableTenant = true;
+        return $result;
     }
 
     /**

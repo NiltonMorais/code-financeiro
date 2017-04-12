@@ -30,6 +30,7 @@
     "webpack-merge": "^0.14.1"
   },
   "devDependencies": {
-    "lodash": "^4.11.2"
+    "lodash": "^4.11.2",
+    "select2": "^4.0.3"
   }
 }

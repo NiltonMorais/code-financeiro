@@ -22,8 +22,10 @@ class CategoryTransformer extends TransformerAbstract
     public function transform(Category $model)
     {
         return [
-            'id'         => (int) $model->id,
-            'name'         =>  $model->name,
+            'id' => (int)$model->id,
+            'name' => $model->name,
+            'parent_id' => $model->parent_id,
+            'depth' => $model->depth,
 
             /* place your other model properties here */
 
@@ -34,8 +36,7 @@ class CategoryTransformer extends TransformerAbstract
 
     public function includeChildren(Category $model)
     {
-        if($model->children){
-            return $this->collection($model->children, new CategoryTransformer());
-        }
+        $children = $model->children()->withDepth()->get();
+        return $this->collection($children, new CategoryTransformer());
     }
 }
