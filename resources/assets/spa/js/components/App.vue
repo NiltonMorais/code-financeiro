@@ -23,7 +23,7 @@
 <script>
     import MenuComponent from './Menu.vue';
     import LoadingComponent from '../../../_default/components/Loading.vue';
-    import Auth from '../services/auth';
+    import store from '../store/store';
     export default{
         components: {
             'menu': MenuComponent,
@@ -31,13 +31,15 @@
         },
         data(){
             return{
-                year: new Date().getFullYear(),
-                user: Auth.user,
+                year: new Date().getFullYear()
             }
         },
         computed: {
+            isAuth(){
+                return store.state.auth.check;
+            },
             showMenu(){
-                return this.user.check && this.$route.name != 'auth.login';
+                return this.isAuth && this.$route.name != 'auth.login';
             }
         }
     }

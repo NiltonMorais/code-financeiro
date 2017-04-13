@@ -14,8 +14,8 @@
                         <th v-for="(key,o) in table.headers" :width="o.width">
                             <a href="#" @click.prevent="sortBy(key)">
                                 {{o.label}}
-                                <i class="material-icons left" v-if="order.key==key">
-                                    {{order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}
+                                <i class="material-icons left" v-if="searchOptions.order.key == key">
+                                    {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}
                                 </i>
                             </a>
                         </th>
@@ -48,8 +48,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <pagination :current-page.sync="pagination.current_page" :per-page="pagination.per_page"
-                            :total-records="pagination.total"></pagination>
+                <pagination :current-page.sync="searchOptions.pagination.current_page" :per-page="searchOptions.pagination.per_page"
+                            :total-records="searchOptions.pagination.total"></pagination>
             </div>
 
             <div class="fixed-action-btn">
@@ -60,13 +60,13 @@
         </div>
     <!--</div>  container -->
     <modal :modal="modal">
-        <div slot="content" v-if="bankAccountToDelete">
+        <div slot="content" v-if="bankAccountDelete">
             <h4>Mensagem de confirmação</h4>
             <p><strong>Deseja excluir esta conta bancária?</strong></p>
             <div class="divider"></div>
-            <p>Nome: <strong>{{bankAccountToDelete.name}}</strong></p>
-            <p>Agência: <strong>{{bankAccountToDelete.agency}}</strong></p>
-            <p>C/C: <strong>{{bankAccountToDelete.account}}</strong></p>
+            <p>Nome: <strong>{{bankAccountDelete.name}}</strong></p>
+            <p>Agência: <strong>{{bankAccountDelete.agency}}</strong></p>
+            <p>C/C: <strong>{{bankAccountDelete.account}}</strong></p>
             <div class="divider"></div>
         </div>
         <div slot="footer">
@@ -77,11 +77,12 @@
     </modal>
 </template>
 <script>
-    import {BankAccount} from '../../services/resources';
+    import store from '../../store/store';
     import ModalComponent from '../../../../_default/components/Modal.vue';
     import PaginationComponent from '../../../../_default/components/Pagination.vue';
     import PageTitleComponent from '../../../../_default/components/PageTitle.vue';
     import SearchComponent from '../../../../_default/components/Search.vue';
+    import SearchOptions from '../../services/search-options';
     export default{
         components: {
             'modal': ModalComponent,
@@ -91,20 +92,8 @@
         },
         data(){
             return{
-                bankAccounts: [],
-                bankAccountToDelete: null,
                 modal: {
                     id: "modal-delete"
-                },
-                pagination: {
-                    current_page: 0,
-                    per_page: 0,
-                    total: 0
-                },
-                search: '',
-                order: {
-                    key: 'id',
-                    sort: 'asc'
                 },
                 table: {
                     headers: {
@@ -130,51 +119,48 @@
                 }
             }
         },
+        computed: {
+            bankAccounts(){
+                return store.state.bankAccount.bankAccounts;
+            },
+            bankAccountDelete(){
+                return store.state.bankAccount.bankAccountDelete;
+            },
+            searchOptions(){
+                return store.state.bankAccount.searchOptions;
+            },
+            search: {
+                get(){
+                    return store.state.bankAccount.searchOptions.search;
+                },
+                set(value){
+                    store.commit('bankAccount/setFilter',value);
+                }
+            }
+        },
         created(){
-            this.getBankAccounts();
+            store.dispatch('bankAccount/query');
         },
         methods: {
             destroy(){
-                BankAccount.delete({id: this.bankAccountToDelete.id}).then((response) => {
-                    this.bankAccounts.$remove(this.bankAccountToDelete);
-                    this.bankAccountToDelete = null;
-                    if(this.bankAccounts.length === 0 && this.pagination.current_page > 0){
-                        this.pagination.current_page--;
-                    }
-                    Materialize.toast('Conta bancária excluída com sucesso',4000);
+                store.dispatch('bankAccount/delete').then((response) => {
+                    Materialize.toast('Conta bancária excluída com sucesso',5000);
                 });
             },
             openModalDelete(bankAccount){
-                this.bankAccountToDelete = bankAccount;
+                store.commit('bankAccount/setDelete',bankAccount);
                 $('#modal-delete').modal('open');
             },
-            getBankAccounts(){
-                BankAccount.query({
-                    page: this.pagination.current_page + 1,
-                    orderBy: this.order.key,
-                    sortedBy: this.order.sort,
-                    search: this.search,
-                    include: 'bank'
-                }).then((response) => {
-                    this.bankAccounts = response.data.data;
-                    let pagination = response.data.meta.pagination;
-                    pagination.current_page--;
-                    this.pagination = pagination;
-                });
-            },
             sortBy(key){
-                this.order.key = key;
-                this.order.sort = this.order.sort == 'desc' ? 'asc' : 'desc';
-                this.getBankAccounts();
+                store.dispatch('bankAccount/queryWithSortBy',key);
             },
             filter(){
-                this.pagination.current_page = 0;
-                this.getBankAccounts();
+                store.dispatch('bankAccount/queryWithFilter');
             }
         },
         events: {
             'pagination::changed'(page){
-                this.getBankAccounts();
+                store.dispatch('bankAccount/queryWithPagination',page);
             }
         }
     }

@@ -22,7 +22,7 @@ $factory->define(\CodeFin\Models\User::class, function (Faker\Generator $faker) 
     ];
 });
 
-$factory->state(\CodeFin\Models\User::class, 'admin', function(Faker\Generator $faker){
+$factory->state(\CodeFin\Models\User::class, 'admin', function (Faker\Generator $faker) {
     return [
         'role' => \CodeFin\Models\User::ROLE_ADMIN
     ];
@@ -33,8 +33,8 @@ $factory->define(\CodeFin\Models\BankAccount::class, function (Faker\Generator $
 
     return [
         'name' => $faker->city,
-        'agency' => rand(10000,60000).'-'.rand(0,9),
-        'account' => rand(70000,260000).'-'.rand(0,9),
+        'agency' => rand(10000, 60000) . '-' . rand(0, 9),
+        'account' => rand(70000, 260000) . '-' . rand(0, 9),
     ];
 });
 
@@ -44,7 +44,13 @@ $factory->define(\CodeFin\Models\Client::class, function (Faker\Generator $faker
     ];
 });
 
-$factory->define(\CodeFin\Models\Category::class, function (Faker\Generator $faker) {
+$factory->define(\CodeFin\Models\CategoryExpense::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name
+    ];
+});
+
+$factory->define(\CodeFin\Models\CategoryRevenue::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name
     ];

@@ -8,9 +8,9 @@ export default {
     },
     setObject(key, value){
         window.localStorage[key] = JSON.stringify(value);
-        return this.getObjetct(key);
+        return this.getObject(key);
     },
-    getObjetct(key){
+    getObject(key){
         return JSON.parse(window.localStorage[key] || null);
     },
     remove(key){

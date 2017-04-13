@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeFin\Repositories;
+namespace CodeFin\Repositories\Traits;
 
 use CodeFin\Repositories\Interfaces\ClientRepository;
 

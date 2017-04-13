@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'cors','as'=>'api.'],function(){
     Route::resource('banks', 'Api\BanksController',['only'=>['index']]);
     Route::resource('bank_accounts', 'Api\BankAccountsController',['except'=>['create','edit']]);
-    Route::resource('categories', 'Api\CategoriesController',['except'=>['create','edit']]);
+    Route::resource('category_revenues', 'Api\CategoryRevenuesController',['except'=>['create','edit']]);
+    Route::resource('category_expenses', 'Api\CategoryExpensesController',['except'=>['create','edit']]);
 
     Route::post('access_token','Api\AuthController@accessToken')->name('access_token');
     Route::post('refresh_token','Api\AuthController@refreshToken')->name('refresh_token');

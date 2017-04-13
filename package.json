@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "lodash": "^4.11.2",
-    "select2": "^4.0.3"
+    "select2": "^4.0.3",
+    "vuex": "^2.1.3"
   }
 }

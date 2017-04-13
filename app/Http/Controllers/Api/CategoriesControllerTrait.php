@@ -3,30 +3,11 @@
 namespace CodeFin\Http\Controllers\Api;
 
 use CodeFin\Criteria\FindRootCategoriesCriteria;
-use CodeFin\Criteria\WithDepthCategoriesCriteria;
-use CodeFin\Http\Controllers\Controller;
-use CodeFin\Http\Controllers\Response;
-use CodeFin\Http\Requests;
 use CodeFin\Http\Requests\CategoryRequest;
-use CodeFin\Repositories\Interfaces\CategoryRepository;
 
 
-class CategoriesController extends Controller
+trait CategoriesControllerTrait
 {
-
-    /**
-     * @var CategoryRepository
-     */
-    protected $repository;
-
-
-    public function __construct(CategoryRepository $repository)
-    {
-        $this->repository = $repository;
-        $this->repository->pushCriteria(new WithDepthCategoriesCriteria());
-    }
-
-
     /**
      * Display a listing of the resource.
      *
