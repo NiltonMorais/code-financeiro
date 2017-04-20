@@ -24387,15 +24387,18 @@
 	            type: Object,
 	            default: function _default() {
 	                return {
-	                    id: ''
+	                    id: '',
+	                    options: {}
 	                };
 	            }
 	        }
 	    },
 	    ready: function ready() {
+	        var _this = this;
+
 	        var id = this.modal.id;
 	        $(document).ready(function () {
-	            $('#' + id).modal();
+	            $('#' + id).modal(_this.modal.options);
 	        });
 	    }
 	};
