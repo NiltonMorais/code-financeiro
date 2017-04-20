@@ -27,7 +27,7 @@
                         <td>{{o.id}}</td>
                         <td>{{o.date_due | dateFormat}}</td>
                         <td>{{o.name}}</td>
-                        <td>{{o.value}}</td>
+                        <td>{{o.value | numberFormat true}}</td>
                         <td>
                             <a href="#" @click.prevent="openModalEdit(index)">Editar</a>
                             <a href="#" @click.prevent="openModalDelete(o)">Excluir</a>
