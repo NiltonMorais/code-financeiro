@@ -8,6 +8,9 @@
             namespace(){
                 return 'billPay';
             },
+            categoryNamespace(){
+                return 'categoryExpense';
+            },
             title(){
                 return 'Novo pagamento';
             }

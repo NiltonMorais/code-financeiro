@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'cors','as'=>'api.'],function(){
     Route::resource('banks', 'Api\BanksController',['only'=>['index']]);
+    Route::get('bank_accounts/lists', 'Api\BankAccountsController@lists')->name('bank_accounts.lists');
     Route::resource('bank_accounts', 'Api\BankAccountsController',['except'=>['create','edit']]);
     Route::resource('category_revenues', 'Api\CategoryRevenuesController',['except'=>['create','edit']]);
     Route::resource('category_expenses', 'Api\CategoryExpensesController',['except'=>['create','edit']]);

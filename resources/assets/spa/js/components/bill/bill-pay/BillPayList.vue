@@ -25,7 +25,7 @@
                     <tbody>
                     <tr v-for="(index,o) in bills">
                         <td>{{o.id}}</td>
-                        <td>{{o.date_due}}</td>
+                        <td>{{o.date_due | dateFormat}}</td>
                         <td>{{o.name}}</td>
                         <td>{{o.value}}</td>
                         <td>
@@ -133,6 +133,8 @@
         },
         created(){
             store.dispatch('billPay/query');
+            store.dispatch('bankAccount/lists');
+            store.dispatch('categoryExpense/query');
         },
         methods: {
             destroy(){

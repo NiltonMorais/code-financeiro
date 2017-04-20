@@ -25907,7 +25907,9 @@
 
 	var User = Vue.resource('user');
 	var Bank = Vue.resource('banks');
-	var BankAccount = Vue.resource('bank_accounts{/id}');
+	var BankAccount = Vue.resource('bank_accounts{/id}', {}, {
+	    lists: { method: 'GET', url: 'bank_accounts/lists' }
+	});
 	var CategoryRevenue = Vue.resource('category_revenues{/id}');
 	var CategoryExpense = Vue.resource('category_expenses{/id}');
 	var BillPay = Vue.resource('bill_pays{/id}');
@@ -25972,7 +25974,7 @@
 
 	var _bankAccount2 = _interopRequireDefault(_bankAccount);
 
-	var _bank = __webpack_require__(86);
+	var _bank = __webpack_require__(88);
 
 	var _bank2 = _interopRequireDefault(_bank);
 
@@ -26104,10 +26106,15 @@
 
 	var _searchOptions2 = _interopRequireDefault(_searchOptions);
 
+	var _lodash = __webpack_require__(86);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var state = {
 	    bankAccounts: [],
+	    lists: [],
 	    bankAccountDelete: null,
 	    searchOptions: new _searchOptions2.default('bank')
 	};
@@ -26115,6 +26122,9 @@
 	var mutations = {
 	    set: function set(state, bankAccounts) {
 	        state.bankAccounts = bankAccounts;
+	    },
+	    setLists: function setLists(state, lists) {
+	        state.lists = lists;
 	    },
 	    setDelete: function setDelete(state, bankAccount) {
 	        state.bankAccountDelete = bankAccount;
@@ -26139,6 +26149,11 @@
 	};
 
 	var actions = {
+	    lists: function lists(context) {
+	        return _resources.BankAccount.lists().then(function (response) {
+	            context.commit('setLists', response.data);
+	        });
+	    },
 	    query: function query(context) {
 	        var searchOptions = context.state.searchOptions;
 	        return _resources.BankAccount.query(searchOptions.createOptions()).then(function (response) {
@@ -26179,9 +26194,31 @@
 	    }
 	};
 
+	var getters = {
+	    filterBankAccountByName: function filterBankAccountByName(state) {
+	        return function (name) {
+	            var bankAccounts = _lodash2.default.filter(state.lists, function (o) {
+	                return _lodash2.default.includes(o.name.toLowerCase(), name.toLowerCase());
+	            });
+	            return bankAccounts;
+	        };
+	    },
+	    mapBankAccounts: function mapBankAccounts(state, getters) {
+	        return function (name) {
+	            var bankAccounts = getters.filterBankAccountByName(name);
+	            return bankAccountss.map(function (o) {
+	                return { id: o.id, text: o.name + ' - ' + o.account };
+	            });
+	        };
+	    }
+	};
+
 	var _module = {
 	    namespaced: true,
-	    state: state, mutations: mutations, actions: actions
+	    state: state,
+	    mutations: mutations,
+	    actions: actions,
+	    getters: getters
 	};
 
 	exports.default = _module;
@@ -26253,74 +26290,6 @@
 
 /***/ },
 /* 86 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _resources = __webpack_require__(80);
-
-	var _lodash = __webpack_require__(87);
-
-	var _lodash2 = _interopRequireDefault(_lodash);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var state = {
-	    banks: []
-	};
-
-	var mutations = {
-	    set: function set(state, banks) {
-	        state.banks = banks;
-	    }
-	};
-
-	var actions = {
-	    query: function query(context) {
-	        return _resources.Bank.query().then(function (response) {
-	            context.commit('set', response.data.data);
-	        });
-	    }
-	};
-
-	var getters = {
-	    filterBankByName: function filterBankByName(state) {
-	        return function (name) {
-	            var banks = _lodash2.default.filter(state.banks, function (o) {
-	                return _lodash2.default.includes(o.name.toLowerCase(), name.toLowerCase());
-	            });
-	            return banks;
-	        };
-	    },
-	    mapBanks: function mapBanks(state, getters) {
-	        return function (name) {
-	            var banks = getters.filterBankByName(name);
-	            return banks.map(function (o) {
-	                return { id: o.id, text: o.name };
-	            });
-	        };
-	    },
-	    banksLength: function banksLength(state) {
-	        return state.banks.length;
-	    }
-	};
-
-	var _module = {
-	    namespaced: true,
-	    state: state,
-	    mutations: mutations,
-	    actions: actions,
-	    getters: getters
-	};
-
-	exports.default = _module;
-
-/***/ },
-/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -42473,10 +42442,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(88)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87)(module), (function() { return this; }())))
 
 /***/ },
-/* 88 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -42490,6 +42459,71 @@
 		return module;
 	}
 
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _resources = __webpack_require__(80);
+
+	var _lodash = __webpack_require__(86);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var state = {
+	    banks: []
+	};
+
+	var mutations = {
+	    set: function set(state, banks) {
+	        state.banks = banks;
+	    }
+	};
+
+	var actions = {
+	    query: function query(context) {
+	        return _resources.Bank.query().then(function (response) {
+	            context.commit('set', response.data.data);
+	        });
+	    }
+	};
+
+	var getters = {
+	    filterBankByName: function filterBankByName(state) {
+	        return function (name) {
+	            var banks = _lodash2.default.filter(state.banks, function (o) {
+	                return _lodash2.default.includes(o.name.toLowerCase(), name.toLowerCase());
+	            });
+	            return banks;
+	        };
+	    },
+	    mapBanks: function mapBanks(state, getters) {
+	        return function (name) {
+	            var banks = getters.filterBankByName(name);
+	            return banks.map(function (o) {
+	                return { id: o.id, text: o.name };
+	            });
+	        };
+	    }
+	};
+
+	var _module = {
+	    namespaced: true,
+	    state: state,
+	    mutations: mutations,
+	    actions: actions,
+	    getters: getters
+	};
+
+	exports.default = _module;
 
 /***/ },
 /* 89 */
@@ -47292,7 +47326,7 @@
 
 	__webpack_require__(132);
 
-	var _lodash = __webpack_require__(87);
+	var _lodash = __webpack_require__(86);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -53915,6 +53949,7 @@
 	    },
 	    created: function created() {
 	        _store2.default.dispatch('billPay/query');
+	        _store2.default.dispatch('bankAccount/lists');
 	    },
 
 	    methods: {
@@ -54058,14 +54093,53 @@
 	                name: '',
 	                date_due: '',
 	                value: '',
-	                done: false
+	                done: false,
+	                bank_account_id: 0
 	            }
 	        };
 	    },
 
+	    computed: {
+	        bankAccounts: function bankAccounts() {
+	            return _store2.default.state.bankAccount.lists;
+	        }
+	    },
+	    watch: {
+	        bankAccounts: function bankAccounts(_bankAccounts) {
+	            if (_bankAccounts.length > 0) {
+	                this.initAutocomplete();
+	            }
+	        }
+	    },
 	    methods: {
 	        doneId: function doneId() {
 	            return 'done-' + this._uid;
+	        },
+	        bankAccountTextId: function bankAccountTextId() {
+	            return 'bank-account-text-' + this._uid;
+	        },
+	        bankAccountDropdownId: function bankAccountDropdownId() {
+	            return 'bank-account-dropdown-' + this._uid;
+	        },
+	        initAutocomplete: function initAutocomplete() {
+	            var self = this;
+	            $('#' + this.bankAccountTextId()).materialize_autocomplete({
+	                limit: 10,
+	                multiple: {
+	                    enable: false
+	                },
+	                dropdown: {
+	                    el: '#' + this.bankAccountDropdownId()
+	                },
+	                getData: function getData(value, callback) {
+	                    var mapBankAccounts = _store2.default.getters['bankAccount/mapBankAccounts'];
+	                    var bankAccounts = mapBankAccounts(value);
+	                    callback(value, bankAccounts);
+	                },
+	                onSelect: function onSelect(item) {
+	                    self.bill.bank_account_id = item.id;
+	                }
+	            });
 	        },
 	        submit: function submit() {
 	            var _this = this;
@@ -54091,7 +54165,8 @@
 	                name: '',
 	                date_due: '',
 	                value: '',
-	                done: false
+	                done: false,
+	                bank_account_id: 0
 	            };
 	        }
 	    }
@@ -54101,7 +54176,7 @@
 /* 161 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\r\n    <form name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\r\n        <modal :modal=\"modalOptions\">\r\n            <div slot=\"content\">\r\n                <page-title>\r\n                    <h5>{{title()}}</h5>\r\n                </page-title>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Vencimento</label>\r\n                        <input type=\"text\" v-model=\"bill.date_due\" placeholder=\"Informe a data\"/>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Valor</label>\r\n                        <input type=\"text\" v-model=\"bill.value\" placeholder=\"Informe o valor\"/>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Nome</label>\r\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\"/>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" id=\"doneId()\"/>\r\n                        <label for=\"doneId()\">Pago?</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div slot=\"footer\">\r\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">\r\n                    Ok\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\">\r\n                    Cancelar\r\n                </button>\r\n            </div>\r\n        </modal>\r\n    </form>\r\n</div>";
+	module.exports = "<div>\r\n    <form name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\r\n        <modal :modal=\"modalOptions\">\r\n            <div slot=\"content\">\r\n                <page-title>\r\n                    <h5>{{title()}}</h5>\r\n                </page-title>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <label class=\"active\">Conta bancária:</label>\r\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\"\r\n                               autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\" :value=\"bill.bank_account_id\"/>\r\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Vencimento</label>\r\n                        <input type=\"text\" v-model=\"bill.date_due\" placeholder=\"Informe a data\"/>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Valor</label>\r\n                        <input type=\"text\" v-model=\"bill.value\" placeholder=\"Informe o valor\"/>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Nome</label>\r\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\"/>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" id=\"doneId()\"/>\r\n                        <label for=\"doneId()\">Pago?</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div slot=\"footer\">\r\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">\r\n                    Ok\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\">\r\n                    Cancelar\r\n                </button>\r\n            </div>\r\n        </modal>\r\n    </form>\r\n</div>";
 
 /***/ },
 /* 162 */

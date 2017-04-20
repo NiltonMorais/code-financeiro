@@ -31,9 +31,6 @@ const getters = {
             return banks.map((o) => {
                 return {id: o.id, text: o.name};
             });
-    },
-    banksLength(state){
-        return state.banks.length;
     }
 };
 

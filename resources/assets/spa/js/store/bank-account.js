@@ -1,8 +1,10 @@
 import {BankAccount} from '../services/resources';
 import SearchOptions from '../services/search-options';
+import _ from 'lodash';
 
 const state = {
     bankAccounts: [],
+    lists: [],
     bankAccountDelete: null,
     searchOptions: new SearchOptions('bank')
 };
@@ -10,6 +12,9 @@ const state = {
 const mutations = {
     set(state, bankAccounts){
         state.bankAccounts = bankAccounts;
+    },
+    setLists(state,lists){
+        state.lists = lists;
     },
     setDelete(state, bankAccount){
         state.bankAccountDelete = bankAccount;
@@ -34,6 +39,11 @@ const mutations = {
 };
 
 const actions = {
+    lists(context){
+        return BankAccount.lists().then(response => {
+            context.commit('setLists',response.data);
+        })
+    },
     query(context){
         let searchOptions = context.state.searchOptions;
         return BankAccount.query(searchOptions.createOptions()).then((response) => {
@@ -74,9 +84,27 @@ const actions = {
     }
 };
 
+const getters = {
+    filterBankAccountByName: (state) => (name) => {
+        let bankAccounts = _.filter(state.lists, (o) => {
+            return _.includes(o.name.toLowerCase(), name.toLowerCase());
+        });
+        return bankAccounts;
+    },
+    mapBankAccounts: (state, getters) => (name) => {
+        let bankAccounts = getters.filterBankAccountByName(name);
+        return bankAccounts.map((o) => {
+            return {id: o.id, text: `${o.name} - ${o.account}`};
+        });
+    }
+};
+
 const module = {
     namespaced: true,
-    state, mutations, actions
+    state,
+    mutations,
+    actions,
+    getters
 };
 
 export default module;

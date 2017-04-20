@@ -19,6 +19,9 @@
             namespace(){
                 return 'billPay';
             },
+            categoryNamespace(){
+                return 'categoryExpense';
+            },
             title(){
                 return 'Editar pagamento';
             },

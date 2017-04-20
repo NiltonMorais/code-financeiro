@@ -6,9 +6,23 @@
                     <h5>{{title()}}</h5>
                 </page-title>
                 <div class="row">
+                    <div class="input-field col s12">
+                        <label class="active">Conta bancária:</label>
+                        <input type="text" :id="bankAccountTextId()" placeholder="Buscar conta bancária"
+                               autocomplete="off" :data-activates="bankAccountDropdownId()" data-belloworigin="true"/>
+                        <ul :id="bankAccountDropdownId()" class="dropdown-content ac-dropdown"></ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label class="active">Categoria de Despesa</label>
+                        <select-material :options="parentOptions" :selected.sync="bill.category_id"></select-material>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s6">
                         <label class="active">Vencimento</label>
-                        <input type="text" v-model="bill.date_due" placeholder="Informe a data"/>
+                        <input type="text" v-model="bill.date_due | dateFormat" placeholder="Informe a data"/>
                     </div>
                     <div class="input-field col s6">
                         <label class="active">Valor</label>
