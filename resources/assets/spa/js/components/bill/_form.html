@@ -21,17 +21,21 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <label class="active">Vencimento</label>
-                        <input type="text" v-model="bill.date_due | dateFormat" placeholder="Informe a data"/>
+                        <input type="text" v-model="bill.date_due | dateFormat" placeholder="Informe a data"
+                               class="validate" name="date_due" v-validate data-vv-rules="required|date_format_custom"
+                               :class="{'invalid': errors.has('date_due')}" data-vv-as="vencimento"/>
+                        <label class="active" :data-error="errors.first('date_due')">Vencimento</label>
                     </div>
                     <div class="input-field col s6">
-                        <label class="active">Valor</label>
-                        <input type="text" v-model="bill.value | numberFormat" placeholder="Informe o valor"/>
+                        <input type="text" v-model="bill.value | numberFormat" placeholder="Informe o valor"
+                               class="validate" name="value" v-validate data-vv-rules="required|number_format:1.00"
+                               :class="{'invalid': errors.has('value')}" data-vv-as="valor"/>
+                        <label class="active" :data-error="errors.first('value')">Valor</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input type="text" v-model="bill.name" placeholder="Informe o nome" id="name" name="name" class="validate"
+                        <input type="text" v-model="bill.name" placeholder="Informe o nome" name="name" class="validate"
                                v-validate data-vv-rules="required" :class="{'invalid': errors.has('name')}"
                                 data-vv-as="nome" />
                         <label class="active" :data-error="errors.first('name')">Nome</label>
