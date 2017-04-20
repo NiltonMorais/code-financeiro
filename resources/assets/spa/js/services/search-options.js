@@ -17,7 +17,9 @@ export default class{
         return this._pagination;
     }
     set pagination(value){
-        value.current_page--;
+        if(value.current_page > 0) {
+            value.current_page--;
+        }
         this._pagination = value;
     }
 
