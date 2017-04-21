@@ -2,11 +2,12 @@ import SearchOptions from '../services/search-options';
 
 export default () => {
 
+    const include = 'category,bankAccount';
     const state = {
         bills: [],
         billDelete: null,
         resource: null,
-        searchOptions: new SearchOptions()
+        searchOptions: new SearchOptions(include)
     };
 
     const mutations = {
@@ -73,14 +74,14 @@ export default () => {
             });
         },
         save(context, bill){
-            return context.state.resource.save({}, bill).then((response) => {
+            return context.state.resource.save({}, bill.toJSON()).then((response) => {
                 context.dispatch('query');
                 return response;
             });
         },
         edit(context, {index,bill}){
-            return context.state.resource.update({id: bill.id}, bill).then((response) => {
-                context.commit('update',{index, bill});
+            return context.state.resource.update({id: bill.id, include: include}, bill.toJSON()).then((response) => {
+                context.commit('update',{index, bill: response.data.data});
                 return response;
             });
         }
@@ -90,7 +91,7 @@ export default () => {
         billByIndex: (state) => (index) => {
             return state.bills[index];
         }
-    }
+    };
 
     const module = {
         namespaced: true,

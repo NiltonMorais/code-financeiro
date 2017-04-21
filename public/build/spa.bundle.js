@@ -45859,8 +45859,13 @@
 	        return function (name) {
 	            var bankAccounts = getters.filterBankAccountByName(name);
 	            return bankAccounts.map(function (o) {
-	                return { id: o.id, text: o.name + ' - ' + o.account };
+	                return { id: o.id, text: getters.textAutocomplete(o) };
 	            });
+	        };
+	    },
+	    textAutocomplete: function textAutocomplete(state) {
+	        return function (bankAccount) {
+	            return bankAccount.name + ' - ' + bankAccount.account;
 	        };
 	    }
 	};
@@ -62401,11 +62406,12 @@
 
 	exports.default = function () {
 
+	    var include = 'category,bankAccount';
 	    var state = {
 	        bills: [],
 	        billDelete: null,
 	        resource: null,
-	        searchOptions: new _searchOptions2.default()
+	        searchOptions: new _searchOptions2.default(include)
 	    };
 
 	    var mutations = {
@@ -62475,7 +62481,7 @@
 	            });
 	        },
 	        save: function save(context, bill) {
-	            return context.state.resource.save({}, bill).then(function (response) {
+	            return context.state.resource.save({}, bill.toJSON()).then(function (response) {
 	                context.dispatch('query');
 	                return response;
 	            });
@@ -62484,8 +62490,8 @@
 	            var index = _ref2.index,
 	                bill = _ref2.bill;
 
-	            return context.state.resource.update({ id: bill.id }, bill).then(function (response) {
-	                context.commit('update', { index: index, bill: bill });
+	            return context.state.resource.update({ id: bill.id, include: include }, bill.toJSON()).then(function (response) {
+	                context.commit('update', { index: index, bill: response.data.data });
 	                return response;
 	            });
 	        }
@@ -67599,16 +67605,18 @@
 	            }
 	        }
 	    },
+	    data: function data() {
+	        return {
+	            val: null
+	        };
+	    },
 	    ready: function ready() {
 	        var self = this;
 	        $(this.$el).select2(this.options).on('change', function () {
-	            if (parseInt(this.value, 10) !== 0) {
-	                self.selected = this.value;
-	            } else {
-	                self.selected = null;
-	            }
+	            self.selected = self.getSelectedValue(this.value);
+	            self.val = self.selected;
 	        });
-	        $(this.$el).val(this.selected !== null ? this.selected : 0).trigger('change');
+	        $(this.$el).val(this.getValue(this.selected)).trigger('change');
 	    },
 
 	    watch: {
@@ -67618,8 +67626,16 @@
 	        },
 	        'selected': function selected(_selected) {
 	            if (_selected != $(this.$el).val()) {
-	                $(this.$el).val(_selected !== null ? _selected : 0).trigger('change');
+	                $(this.$el).val(this.getValue(_selected)).trigger('change');
 	            }
+	        }
+	    },
+	    methods: {
+	        getSelectedValue: function getSelectedValue(value) {
+	            return parseInt(value, 10) !== 0 ? value : null;
+	        },
+	        getValue: function getValue(value) {
+	            return value !== null ? value : 0;
 	        }
 	    }
 	};
@@ -73461,7 +73477,7 @@
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(280)
+	__vue_template__ = __webpack_require__(284)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73519,7 +73535,7 @@
 
 	var _BillPayCreate2 = _interopRequireDefault(_BillPayCreate);
 
-	var _BillPayUpdate = __webpack_require__(278);
+	var _BillPayUpdate = __webpack_require__(281);
 
 	var _BillPayUpdate2 = _interopRequireDefault(_BillPayUpdate);
 
@@ -73626,12 +73642,13 @@
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(275)
+	__webpack_require__(275)
+	__vue_script__ = __webpack_require__(277)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(277)
+	__vue_template__ = __webpack_require__(280)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73659,13 +73676,53 @@
 /* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(276);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(68)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js!./../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6031222f&scoped=true!./_style.css", function() {
+				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js!./../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-6031222f&scoped=true!./_style.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(67)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".modal[_v-6031222f]{\r\n    max-height: 100%;\r\n    top: 5% !important;\r\n}\r\n.row[_v-6031222f]{\r\n    margin-bottom: 20px;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(276);
+	var _billMixin = __webpack_require__(278);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
@@ -73673,6 +73730,10 @@
 
 	exports.default = {
 	    mixins: [_billMixin2.default],
+	    ready: function ready() {
+	        this.initSelect2();
+	    },
+
 	    methods: {
 	        namespace: function namespace() {
 	            return 'billPay';
@@ -73687,7 +73748,7 @@
 	};
 
 /***/ },
-/* 276 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73700,10 +73761,6 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _PageTitle = __webpack_require__(237);
-
-	var _PageTitle2 = _interopRequireDefault(_PageTitle);
-
 	var _SelectMaterial = __webpack_require__(262);
 
 	var _SelectMaterial2 = _interopRequireDefault(_SelectMaterial);
@@ -73712,11 +73769,14 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
+	var _billPay = __webpack_require__(279);
+
+	var _billPay2 = _interopRequireDefault(_billPay);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = {
 	    components: {
-	        'page-title': _PageTitle2.default,
 	        'modal': _Modal2.default,
 	        'select-material': _SelectMaterial2.default
 	    },
@@ -73733,14 +73793,9 @@
 	    },
 	    data: function data() {
 	        return {
-	            bill: {
-	                id: 0,
-	                name: '',
-	                date_due: '',
-	                value: 0,
-	                done: false,
-	                bank_account_id: 0,
-	                category_id: 0
+	            bill: new _billPay2.default(),
+	            bankAccount: {
+	                text: ''
 	            }
 	        };
 	    },
@@ -73777,11 +73832,57 @@
 	        doneId: function doneId() {
 	            return 'done-' + this._uid;
 	        },
+	        repeatId: function repeatId() {
+	            return 'repeat-' + this._uid;
+	        },
+	        formId: function formId() {
+	            return 'form-bill-' + this._uid;
+	        },
+	        bankAccountHiddenId: function bankAccountHiddenId() {
+	            return 'bank-account-hidden-' + this._uid;
+	        },
 	        bankAccountTextId: function bankAccountTextId() {
 	            return 'bank-account-text-' + this._uid;
 	        },
 	        bankAccountDropdownId: function bankAccountDropdownId() {
 	            return 'bank-account-dropdown-' + this._uid;
+	        },
+	        blurBankAccount: function blurBankAccount($event) {
+	            var el = $($event.target);
+	            var text = this.bankAccount.text;
+	            if (el.val() != text) {
+	                el.val(text);
+	            }
+	            this.validateBankAccount();
+	        },
+	        blurRepeatNumber: function blurRepeatNumber($event) {
+	            var el = $($event.target);
+	            if (parseInt(el.val(), 10) < 0) {
+	                el.val(0);
+	            }
+	        },
+	        validateCategory: function validateCategory() {
+	            var valid = this.$validator.validate('category_id', this.bill.category_id);
+	            var parent = $('#' + this.formId()).find('[name="category_id"]').parent();
+	            var label = parent.find('label');
+	            var spanSelect2 = parent.find('.select2-selection.select2-selection--single');
+	            if (valid) {
+	                label.removeClass('label-error');
+	                spanSelect2.removeClass('select2-invalid');
+	            } else {
+	                label.removeClass('label-error').addClass('label-error');
+	                spanSelect2.removeClass('select2-invalid').addClass('select2-invalid');
+	            }
+	        },
+	        validateBankAccount: function validateBankAccount() {
+	            this.$validator.validate('bank_account_id', this.bill.bank_account_id);
+	        },
+	        initSelect2: function initSelect2() {
+	            var select2 = $('#' + this.formId()).find('[name="category_id"]');
+	            var self = this;
+	            select2.on('select2:close', function () {
+	                self.validateCategory();
+	            });
 	        },
 	        initAutocomplete: function initAutocomplete() {
 	            var self = this;
@@ -73789,6 +73890,9 @@
 	                limit: 10,
 	                multiple: {
 	                    enable: false
+	                },
+	                hidden: {
+	                    el: '#' + this.bankAccountHiddenId()
 	                },
 	                dropdown: {
 	                    el: '#' + this.bankAccountDropdownId()
@@ -73800,59 +73904,133 @@
 	                },
 	                onSelect: function onSelect(item) {
 	                    self.bill.bank_account_id = item.id;
+	                    self.bankAccount.text = item.text;
+	                    self.validateBankAccount();
 	                }
 	            });
+	            $('#' + this.bankAccountTextId()).parent().find('label').insertAfter('#' + this.bankAccountTextId());
 	        },
 	        submit: function submit() {
 	            var _this = this;
 
-	            if (this.bill.id !== 0) {
-	                _store2.default.dispatch(this.namespace() + '/edit', {
-	                    bill: this.bill,
-	                    index: this.index
-	                }).then(function () {
-	                    Materialize.toast('Conta atualizada com sucesso!', 5000);
-	                    _this.resetScope();
-	                });
-	            } else {
-	                _store2.default.dispatch(this.namespace() + '/save', this.bill).then(function () {
-	                    Materialize.toast('Conta criada com sucesso!', 5000);
-	                    _this.resetScope();
-	                });
-	            }
+	            this.validateCategory();
+	            this.$validator.validateAll().then(function (success) {
+	                if (success) {
+	                    if (_this.bill.id !== 0) {
+	                        _store2.default.dispatch(_this.namespace() + '/edit', {
+	                            bill: _this.bill,
+	                            index: _this.index
+	                        }).then(function () {
+	                            _this.successSave('Conta atualizada com sucesso!');
+	                        });
+	                    } else {
+	                        _store2.default.dispatch(_this.namespace() + '/save', _this.bill).then(function () {
+	                            _this.successSave('Conta criada com sucesso!');
+	                        });
+	                    }
+	                }
+	            });
+	        },
+	        successSave: function successSave(message) {
+	            $('#' + this.modalOptions.id).modal('close');
+	            Materialize.toast(message, 5000);
+	            this.resetScope();
 	        },
 	        resetScope: function resetScope() {
-	            this.bill = {
-	                id: 0,
-	                name: '',
-	                date_due: '',
-	                value: 0,
-	                done: false,
-	                bank_account_id: 0,
-	                category_id: 0
+	            this.errors.clear();
+	            this.fields.reset();
+	            this.bill.init();
+	            this.bankAccount = {
+	                text: ''
 	            };
 	        }
 	    }
 	};
 
 /***/ },
-/* 277 */
+/* 279 */
 /***/ function(module, exports) {
 
-	module.exports = "<div>\r\n    <form name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\r\n        <modal :modal=\"modalOptions\">\r\n            <div slot=\"content\">\r\n                <page-title>\r\n                    <h5>{{title()}}</h5>\r\n                </page-title>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <label class=\"active\">Conta bancária:</label>\r\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\"\r\n                               autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\"/>\r\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <label class=\"active\">Categoria de Despesa</label>\r\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\"></select-material>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\"\r\n                               class=\"validate\" name=\"date_due\" v-validate data-vv-rules=\"required|date_format_custom\"\r\n                               :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\">Vencimento</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\"\r\n                               class=\"validate\" name=\"value\" v-validate data-vv-rules=\"required|number_format:1.00\"\r\n                               :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('value')\">Valor</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\"\r\n                                data-vv-as=\"nome\" />\r\n                        <label class=\"active\" :data-error=\"errors.first('name')\">Nome</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" id=\"doneId()\"/>\r\n                        <label for=\"doneId()\">Pago?</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div slot=\"footer\">\r\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">\r\n                    Ok\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\">\r\n                    Cancelar\r\n                </button>\r\n            </div>\r\n        </modal>\r\n    </form>\r\n</div>";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var _class = function () {
+	    function _class() {
+	        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	        _classCallCheck(this, _class);
+
+	        this.init();
+	        Object.assign(this, data);
+	    }
+
+	    _createClass(_class, [{
+	        key: 'init',
+	        value: function init() {
+	            this.id = 0;
+	            this.name = '';
+	            this.date_due = '';
+	            this.value = 0;
+	            this.done = false;
+	            this.bank_account_id = '';
+	            this.category_id = 0;
+	            this.repeat = false;
+	            this.repeat_type = 1;
+	            this.repeat_number = 0;
+	        }
+	    }, {
+	        key: 'toJSON',
+	        value: function toJSON() {
+	            var date_due = this.date_due instanceof Date ? this.date_due.toISOString().substring(0, 10) : this.date_due;
+	            var o = {
+	                name: this.name,
+	                date_due: date_due,
+	                value: this.value,
+	                done: this.done,
+	                bank_account_id: this.bank_account_id,
+	                category_id: this.category_id
+	            };
+	            if (this.repeat) {
+	                o.repeat = this.repeat;
+	                o.repeat_type = this.repeat_type;
+	                o.repeat_number = this.repeat_number;
+	            }
+	            return o;
+	        }
+	    }]);
+
+	    return _class;
+	}();
+
+	exports.default = _class;
+
+	;
 
 /***/ },
-/* 278 */
+/* 280 */
+/***/ function(module, exports) {
+
+	module.exports = "<div _v-6031222f=\"\">\n    <form id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\" _v-6031222f=\"\">\n        <modal :modal=\"modalOptions\" _v-6031222f=\"\">\n            <div slot=\"content\" _v-6031222f=\"\">\n                <h5 _v-6031222f=\"\">{{title()}}</h5>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s12\" _v-6031222f=\"\">\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-name=\"category_id\" data-vv-value-path=\"val\" name=\"category_id\" _v-6031222f=\"\">\n                        </select-material>\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\" _v-6031222f=\"\">Categoria de Despesa</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\" class=\"validate\" name=\"value\" v-validate=\"\" data-vv-rules=\"required|number_format:1.00\" :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('value')\" _v-6031222f=\"\">Valor</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\" class=\"validate\" name=\"date_due\" v-validate=\"\" data-vv-rules=\"required|date_format_custom\" :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\" _v-6031222f=\"\">Vencimento</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\" _v-6031222f=\"\">\n                        <label :for=\"doneId()\" _v-6031222f=\"\">Pago?</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s6\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\" v-validate=\"\" data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\" data-vv-as=\"nome\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('name')\" _v-6031222f=\"\">Nome</label>\n                    </div>\n                    <div class=\"input-field col s6\" _v-6031222f=\"\">\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\" class=\"validate\" :value=\"bankAccount.text\" autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\" @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\" _v-6031222f=\"\">\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\" :value=\"bill.bank_account_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-as=\"conta_bancaria\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\" _v-6031222f=\"\">Conta bancária:</label>\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\" _v-6031222f=\"\"></ul>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s3\" _v-6031222f=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\" _v-6031222f=\"\">\n                        <label :for=\"repeatId()\" _v-6031222f=\"\">Repetir?</label>\n                    </div>\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\" _v-6031222f=\"\">\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\" _v-6031222f=\"\">\n                            <option value=\"1\" _v-6031222f=\"\">Mensalmente</option>\n                            <option value=\"2\" _v-6031222f=\"\">Anualmente</option>\n                        </select>\n                    </div>\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\" _v-6031222f=\"\">\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\" _v-6031222f=\"\">\n                        <label class=\"active\" _v-6031222f=\"\">Ocorrências</label>\n                    </div>\n                </div>\n            </div>\n            <div slot=\"footer\" _v-6031222f=\"\">\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\" :disabled=\"fields.dirty() &amp;&amp; errors.any()\" _v-6031222f=\"\">\n                    Ok\n                </button>\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\" _v-6031222f=\"\">\n                    Cancelar\n                </button>\n            </div>\n        </modal>\n    </form>\n</div>";
+
+/***/ },
+/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(279)
+	__vue_script__ = __webpack_require__(282)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(277)
+	__vue_template__ = __webpack_require__(283)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73877,7 +74055,7 @@
 	})()}
 
 /***/ },
-/* 279 */
+/* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73886,13 +74064,17 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(276);
+	var _billMixin = __webpack_require__(278);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
 	var _store = __webpack_require__(199);
 
 	var _store2 = _interopRequireDefault(_store);
+
+	var _billPay = __webpack_require__(279);
+
+	var _billPay2 = _interopRequireDefault(_billPay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -73903,9 +74085,6 @@
 	        this.modalOptions.options = {};
 	        this.modalOptions.options.ready = function () {
 	            self.getBill();
-	        };
-	        this.modalOptions.options.complete = function () {
-	            self.resetScope();
 	        };
 	    },
 
@@ -73920,20 +74099,23 @@
 	            return 'Editar pagamento';
 	        },
 	        getBill: function getBill() {
+	            this.resetScope();
 	            var bill = _store2.default.getters[this.namespace() + '/billByIndex'](this.index);
-	            this.bill = {
-	                id: bill.id,
-	                date_due: bill.date_due,
-	                name: bill.name,
-	                value: bill.value,
-	                done: bill.done
-	            };
+	            this.bill = new _billPay2.default(bill);
+	            var text = _store2.default.getters['bankAccount/textAutocomplete'](bill.bankAccount.data);
+	            this.bankAccount.text = text;
 	        }
 	    }
 	};
 
 /***/ },
-/* 280 */
+/* 283 */
+/***/ function(module, exports) {
+
+	module.exports = "<div>\r\n    <form id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\r\n        <modal :modal=\"modalOptions\">\r\n            <div slot=\"content\">\r\n                <h5>{{title()}}</h5>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\"\r\n                                         v-validate data-vv-rules=\"required\" data-vv-name=\"category_id\"\r\n                                         data-vv-value-path=\"val\" name=\"category_id\">\r\n                        </select-material>\r\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\">Categoria de Despesa</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\"\r\n                               class=\"validate\" name=\"value\" v-validate data-vv-rules=\"required|number_format:1.00\"\r\n                               :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('value')\">Valor</label>\r\n                    </div>\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\"\r\n                               class=\"validate\" name=\"date_due\" v-validate data-vv-rules=\"required|date_format_custom\"\r\n                               :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\">Vencimento</label>\r\n                    </div>\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\"/>\r\n                        <label :for=\"doneId()\">Pago?</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\"\r\n                               data-vv-as=\"nome\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('name')\">Nome</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\"\r\n                               class=\"validate\" :value=\"bankAccount.text\"\r\n                               autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\"\r\n                               @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\"/>\r\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\"\r\n                               :value=\"bill.bank_account_id\" v-validate data-vv-rules=\"required\"\r\n                               data-vv-as=\"conta_bancaria\">\r\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\">Conta bancária:</label>\r\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s3\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\"/>\r\n                        <label :for=\"repeatId()\">Repetir?</label>\r\n                    </div>\r\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\">\r\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\">\r\n                            <option value=\"1\">Mensalmente</option>\r\n                            <option value=\"2\">Anualmente</option>\r\n                        </select>\r\n                    </div>\r\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\">\r\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\"/>\r\n                        <label class=\"active\">Ocorrências</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div slot=\"footer\">\r\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\"\r\n                        :disabled=\"fields.dirty() && errors.any()\">\r\n                    Ok\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\">\r\n                    Cancelar\r\n                </button>\r\n            </div>\r\n        </modal>\r\n    </form>\r\n</div>";
+
+/***/ },
+/* 284 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas a pagar</h5>\n            </page-title>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bills\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.date_due | dateFormat}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.value | numberFormat true}}</td>\n                    <td>\n                        <a href=\"#\" @click.prevent=\"openModalEdit(index)\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n    </div>\n<!--</div>  container -->\n\n<div class=\"fixed-action-btn\">\n    <a class=\"btn-floating btn-large\" @click.prevent=\"openModalCreate()\">\n        <i class=\"large material-icons\">add</i>\n    </a>\n</div>\n\n<bill-pay-create :modal-options=\"modalCreate\"></bill-pay-create>\n<bill-pay-update :index=\"indexUpdate\" :modal-options=\"modalEdit\"></bill-pay-update>\n\n<modal :modal=\"modalDelete\">\n    <div slot=\"content\" v-if=\"billPayDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Vencimento: <strong>{{billPayDelete.date_due}}</strong></p>\n        <p>Nome: <strong>{{billPayDelete.name}}</strong></p>\n        <p>Valor: <strong>{{billPayDelete.value}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";

@@ -2,11 +2,14 @@
 
 namespace CodeFin\Http\Controllers\Api;
 
+use CodeFin\Criteria\FindBetweenDateBRCriteria;
+use CodeFin\Criteria\FindByValueBRCriteria;
 use CodeFin\Http\Controllers\Controller;
 use CodeFin\Http\Controllers\Response;
 use CodeFin\Http\Requests;
 use CodeFin\Http\Requests\BillPayRequest;
 use CodeFin\Repositories\Interfaces\BillPayRepository;
+use Illuminate\Http\Request;
 
 
 class BillPaysController extends Controller
@@ -29,9 +32,17 @@ class BillPaysController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->repository->paginate();
+        $searchParam = config('repository.criteria.params.search');
+        $search = $request->get($searchParam);
+        $this->repository
+            ->pushCriteria(new FindBetweenDateBRCriteria($search))
+            ->pushCriteria(new FindByValueBRCriteria($search));
+
+        $billPays = $this->repository->paginate();
+
+        return $billPays;
     }
 
     /**

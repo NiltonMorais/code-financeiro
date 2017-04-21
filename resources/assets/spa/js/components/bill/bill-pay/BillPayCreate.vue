@@ -1,9 +1,10 @@
 <template src="../_form.html"></template>
 <script>
     import billMixin from '../../../mixins/bill-mixin';
+    import validatorOffRemoveMixim from '../../../mixins/validator-off-remove-mixin';
 
     export default{
-        mixins: [billMixin],
+        mixins: [billMixin, validatorOffRemoveMixim],
         ready(){
             this.initSelect2();
         },
@@ -21,3 +22,6 @@
         }
     }
 </script>
+
+<style type="text/css" scoped src="../_style.css">
+</style>

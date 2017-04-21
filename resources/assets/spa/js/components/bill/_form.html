@@ -2,57 +2,73 @@
     <form id="formId()" name="form" method="POST" @submit.prevent="submit">
         <modal :modal="modalOptions">
             <div slot="content">
-                <page-title>
-                    <h5>{{title()}}</h5>
-                </page-title>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input type="text" :id="bankAccountTextId()" placeholder="Buscar conta bancária" class="validate"
-                               autocomplete="off" :data-activates="bankAccountDropdownId()" data-belloworigin="true"
-                                @blur="blurBankAccount" :class="{'invalid': errors.has('bank_account_id')}" />
-                        <input type="hidden" name="bank_account_id" id="bankAccountHiddenId()"
-                               :value="bill.bank_account_id" v-validate data-vv-rules="required" data-vv-as="conta_bancaria">
-                        <label class="active" :data-error="errors.first('bank_account_id')">Conta bancária:</label>
-                        <ul :id="bankAccountDropdownId()" class="dropdown-content ac-dropdown"></ul>
-                    </div>
-                </div>
+                <h5>{{title()}}</h5>
                 <div class="row">
                     <div class="input-field col s12">
                         <select-material :options="parentOptions" :selected.sync="bill.category_id"
-                        v-validate data-vv-rules="required" data-vv-name="category_id" name="category_id">
+                                         v-validate data-vv-rules="required" data-vv-name="category_id"
+                                         data-vv-value-path="val" name="category_id">
                         </select-material>
                         <label class="active" :data-error="errors.first('category_id')">Categoria de Despesa</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s4">
+                        <input type="text" v-model="bill.value | numberFormat" placeholder="Informe o valor"
+                               class="validate" name="value" v-validate data-vv-rules="required|number_format:1.00"
+                               :class="{'invalid': errors.has('value')}" data-vv-as="valor"/>
+                        <label class="active" :data-error="errors.first('value')">Valor</label>
+                    </div>
+                    <div class="input-field col s4">
                         <input type="text" v-model="bill.date_due | dateFormat" placeholder="Informe a data"
                                class="validate" name="date_due" v-validate data-vv-rules="required|date_format_custom"
                                :class="{'invalid': errors.has('date_due')}" data-vv-as="vencimento"/>
                         <label class="active" :data-error="errors.first('date_due')">Vencimento</label>
                     </div>
-                    <div class="input-field col s6">
-                        <input type="text" v-model="bill.value | numberFormat" placeholder="Informe o valor"
-                               class="validate" name="value" v-validate data-vv-rules="required|number_format:1.00"
-                               :class="{'invalid': errors.has('value')}" data-vv-as="valor"/>
-                        <label class="active" :data-error="errors.first('value')">Valor</label>
+                    <div class="input-field col s4">
+                        <input type="checkbox" class="filled-ind" v-model="bill.done" :id="doneId()"/>
+                        <label :for="doneId()">Pago?</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input type="text" v-model="bill.name" placeholder="Informe o nome" name="name" class="validate"
                                v-validate data-vv-rules="required" :class="{'invalid': errors.has('name')}"
-                                data-vv-as="nome" />
+                               data-vv-as="nome"/>
                         <label class="active" :data-error="errors.first('name')">Nome</label>
                     </div>
                     <div class="input-field col s6">
-                        <input type="checkbox" class="filled-ind" v-model="bill.done" id="doneId()"/>
-                        <label for="doneId()">Pago?</label>
+                        <input type="text" :id="bankAccountTextId()" placeholder="Buscar conta bancária"
+                               class="validate" :value="bankAccount.text"
+                               autocomplete="off" :data-activates="bankAccountDropdownId()" data-belloworigin="true"
+                               @blur="blurBankAccount" :class="{'invalid': errors.has('bank_account_id')}"/>
+                        <input type="hidden" name="bank_account_id" id="bankAccountHiddenId()"
+                               :value="bill.bank_account_id" v-validate data-vv-rules="required"
+                               data-vv-as="conta_bancaria">
+                        <label class="active" :data-error="errors.first('bank_account_id')">Conta bancária:</label>
+                        <ul :id="bankAccountDropdownId()" class="dropdown-content ac-dropdown"></ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <input type="checkbox" class="filled-ind" v-model="bill.repeat" :id="repeatId()"/>
+                        <label :for="repeatId()">Repetir?</label>
+                    </div>
+                    <div class="input-field col s5" v-if="bill.repeat">
+                        <select v-model="bill.repeat_type" class="browser-default">
+                            <option value="1">Mensalmente</option>
+                            <option value="2">Anualmente</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s4" v-if="bill.repeat">
+                        <input type="number" v-model="bill.repeat_number" placeholder="Ocorrências" @blur="blurRepeatNumber"/>
+                        <label class="active">Ocorrências</label>
                     </div>
                 </div>
             </div>
             <div slot="footer">
-                <button type="submit" class="btn btn-flat waves-effect green lighten-2 modal-close modal-action">
+                <button type="submit" class="btn btn-flat waves-effect green lighten-2"
+                        :disabled="fields.dirty() && errors.any()">
                     Ok
                 </button>
                 <button type="button" class="btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action">

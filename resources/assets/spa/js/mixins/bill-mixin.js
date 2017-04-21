@@ -1,11 +1,10 @@
 import ModalComponent from '../../../_default/components/Modal.vue';
-import PageTitleComponent from '../../../_default/components/PageTitle.vue';
 import SelectMaterialComponent from '../../../_default/components/SelectMaterial.vue';
 import store from '../store/store';
+import BillPay from '../models/bill-pay';
 
 export default{
     components: {
-        'page-title': PageTitleComponent,
         'modal': ModalComponent,
         'select-material': SelectMaterialComponent
     },
@@ -22,17 +21,9 @@ export default{
     },
     data(){
         return {
-            bill: {
-                id: 0,
-                name: '',
-                date_due: '',
-                value: 0,
-                done: false,
-                bank_account_id: '',
-                category_id: 0
-            },
+            bill: new BillPay(),
             bankAccount: {
-                name: '', text: ''
+                text: ''
             }
         }
     },
@@ -68,6 +59,9 @@ export default{
         doneId(){
             return `done-${this._uid}`;
         },
+        repeatId(){
+            return `repeat-${this._uid}`;
+        },
         formId(){
             return `form-bill-${this._uid}`;
         },
@@ -87,6 +81,12 @@ export default{
                 el.val(text);
             }
             this.validateBankAccount();
+        },
+        blurRepeatNumber($event){
+            let el = $($event.target);
+            if(parseInt(el.val(),10) < 0){
+                el.val(0);
+            }
         },
         validateCategory(){
             let valid = this.$validator.validate('category_id', this.bill.category_id);
@@ -138,31 +138,36 @@ export default{
             $(`#${this.bankAccountTextId()}`).parent().find('label').insertAfter(`#${this.bankAccountTextId()}`);
         },
         submit(){
-            if (this.bill.id !== 0) {
-                store.dispatch(`${this.namespace()}/edit`, {
-                    bill: this.bill,
-                    index: this.index
-                }).then(()=> {
-                    Materialize.toast('Conta atualizada com sucesso!', 5000);
-                    this.resetScope();
-                });
-            } else {
-                store.dispatch(`${this.namespace()}/save`, this.bill).then(()=> {
-                    Materialize.toast('Conta criada com sucesso!', 5000);
-                    this.resetScope();
-                })
-            }
+            this.validateCategory();
+            this.$validator.validateAll().then(success => {
+                if(success){
+                    if (this.bill.id !== 0) {
+                        store.dispatch(`${this.namespace()}/edit`, {
+                            bill: this.bill,
+                            index: this.index
+                        }).then(()=> {
+                            this.successSave('Conta atualizada com sucesso!');
+                        });
+                    } else {
+                        store.dispatch(`${this.namespace()}/save`, this.bill).then(()=> {
+                            this.successSave('Conta criada com sucesso!');
+                        })
+                    }
+                }
+            });
+        },
+        successSave(message){
+            $(`#${this.modalOptions.id}`).modal('close');
+            Materialize.toast(message, 5000);
+            this.resetScope();
         },
         resetScope(){
-            this.bill = {
-                id: 0,
-                name: '',
-                date_due: '',
-                value: 0,
-                done: false,
-                bank_account_id: '',
-                category_id: 0
-            }
+            this.errors.clear();
+            this.fields.reset();
+            this.bill.init();
+            this.bankAccount = {
+                text: ''
+            };
         }
     }
 }
