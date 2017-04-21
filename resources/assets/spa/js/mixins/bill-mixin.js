@@ -28,8 +28,11 @@ export default{
                 date_due: '',
                 value: 0,
                 done: false,
-                bank_account_id: 0,
+                bank_account_id: '',
                 category_id: 0
+            },
+            bankAccount: {
+                name: '', text: ''
             }
         }
     },
@@ -65,11 +68,48 @@ export default{
         doneId(){
             return `done-${this._uid}`;
         },
+        formId(){
+            return `form-bill-${this._uid}`;
+        },
+        bankAccountHiddenId(){
+            return `bank-account-hidden-${this._uid}`;
+        },
         bankAccountTextId(){
             return `bank-account-text-${this._uid}`;
         },
         bankAccountDropdownId(){
             return `bank-account-dropdown-${this._uid}`;
+        },
+        blurBankAccount($event){
+            let el = $($event.target);
+            let text = this.bankAccount.text;
+            if(el.val() != text){
+                el.val(text);
+            }
+            this.validateBankAccount();
+        },
+        validateCategory(){
+            let valid = this.$validator.validate('category_id', this.bill.category_id);
+            let parent = $(`#${this.formId()}`).find('[name="category_id"]').parent();
+            let label = parent.find('label');
+            let spanSelect2 = parent.find('.select2-selection.select2-selection--single');
+            if(valid){
+               label.removeClass('label-error');
+               spanSelect2.removeClass('select2-invalid');
+            }else{
+                label.removeClass('label-error').addClass('label-error');
+                spanSelect2.removeClass('select2-invalid').addClass('select2-invalid');
+            }
+        },
+        validateBankAccount(){
+            this.$validator.validate('bank_account_id', this.bill.bank_account_id);
+        },
+        initSelect2(){
+            let select2 = $(`#${this.formId()}`).find('[name="category_id"]');
+            let self = this;
+            select2.on('select2:close',() => {
+                self.validateCategory();
+            });
         },
         initAutocomplete(){
             let self = this;
@@ -77,6 +117,9 @@ export default{
                     limit: 10,
                     multiple: {
                         enable: false
+                    },
+                    hidden: {
+                        el: `#${this.bankAccountHiddenId()}`
                     },
                     dropdown: {
                         el: `#${this.bankAccountDropdownId()}`
@@ -88,8 +131,11 @@ export default{
                     },
                     onSelect(item){
                         self.bill.bank_account_id = item.id;
+                        self.bankAccount.text = item.text;
+                        self.validateBankAccount();
                     }
                 });
+            $(`#${this.bankAccountTextId()}`).parent().find('label').insertAfter(`#${this.bankAccountTextId()}`);
         },
         submit(){
             if (this.bill.id !== 0) {
@@ -114,7 +160,7 @@ export default{
                 date_due: '',
                 value: 0,
                 done: false,
-                bank_account_id: 0,
+                bank_account_id: '',
                 category_id: 0
             }
         }

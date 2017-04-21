@@ -64,3 +64,23 @@ main{
     }
 }
 
+.label-error{
+  width: 100%;
+  &:after{
+    content: attr(data-error);
+    color: $input-error-color;
+    opacity: 1;
+    display: block;
+    position: absolute;
+    top: 55px;
+    transition: .2s opacity ease-out, .2s color ease-out;
+  }
+}
+.select2-invalid{
+  border-bottom: $input-invalid-border !important;
+  box-shadow: 0 1px 0 0 $input-error-color;
+}
+
+.ac-appender{
+  display: none;
+}

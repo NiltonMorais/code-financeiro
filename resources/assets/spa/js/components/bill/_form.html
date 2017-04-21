@@ -1,5 +1,5 @@
 <div>
-    <form name="form" method="POST" @submit.prevent="submit">
+    <form id="formId()" name="form" method="POST" @submit.prevent="submit">
         <modal :modal="modalOptions">
             <div slot="content">
                 <page-title>
@@ -7,16 +7,21 @@
                 </page-title>
                 <div class="row">
                     <div class="input-field col s12">
-                        <label class="active">Conta bancária:</label>
-                        <input type="text" :id="bankAccountTextId()" placeholder="Buscar conta bancária"
-                               autocomplete="off" :data-activates="bankAccountDropdownId()" data-belloworigin="true"/>
+                        <input type="text" :id="bankAccountTextId()" placeholder="Buscar conta bancária" class="validate"
+                               autocomplete="off" :data-activates="bankAccountDropdownId()" data-belloworigin="true"
+                                @blur="blurBankAccount" :class="{'invalid': errors.has('bank_account_id')}" />
+                        <input type="hidden" name="bank_account_id" id="bankAccountHiddenId()"
+                               :value="bill.bank_account_id" v-validate data-vv-rules="required" data-vv-as="conta_bancaria">
+                        <label class="active" :data-error="errors.first('bank_account_id')">Conta bancária:</label>
                         <ul :id="bankAccountDropdownId()" class="dropdown-content ac-dropdown"></ul>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <label class="active">Categoria de Despesa</label>
-                        <select-material :options="parentOptions" :selected.sync="bill.category_id"></select-material>
+                        <select-material :options="parentOptions" :selected.sync="bill.category_id"
+                        v-validate data-vv-rules="required" data-vv-name="category_id" name="category_id">
+                        </select-material>
+                        <label class="active" :data-error="errors.first('category_id')">Categoria de Despesa</label>
                     </div>
                 </div>
                 <div class="row">

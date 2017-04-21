@@ -11458,4 +11458,28 @@ main {
   height: inherit;
 }
 
+.label-error {
+  width: 100%;
+}
+
+.label-error:after {
+  content: attr(data-error);
+  color: #F44336;
+  opacity: 1;
+  display: block;
+  position: absolute;
+  top: 55px;
+  -webkit-transition: .2s opacity ease-out, .2s color ease-out;
+  transition: .2s opacity ease-out, .2s color ease-out;
+}
+
+.select2-invalid {
+  border-bottom: 1px solid #F44336 !important;
+  box-shadow: 0 1px 0 0 #F44336;
+}
+
+.ac-appender {
+  display: none;
+}
+
 /*# sourceMappingURL=spa.css.map */
