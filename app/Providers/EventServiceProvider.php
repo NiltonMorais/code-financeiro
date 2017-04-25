@@ -3,6 +3,8 @@
 namespace CodeFin\Providers;
 
 use CodeFin\Events\BankStoredEvent;
+use CodeFin\Events\BillStoredEvent;
+use CodeFin\Listeners\BankAccountUpdateBalanceListener;
 use Prettus\Repository\Events\RepositoryEntityCreated;
 use CodeFin\Listeners\BankLogoUploadListener;
 use CodeFin\Listeners\BankAccountSetDefaultListener;
@@ -19,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         BankStoredEvent::class => [
             BankLogoUploadListener::class
+        ],
+        BillStoredEvent::class => [
+            BankAccountUpdateBalanceListener::class
         ],
         RepositoryEntityCreated::class => [
             BankAccountSetDefaultListener::class

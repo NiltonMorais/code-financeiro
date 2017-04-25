@@ -16,10 +16,10 @@
         },
         methods: {
             namespace(){
-                return 'billPay';
+                return 'billReceive';
             },
             categoryNamespace(){
-                return 'categoryExpense';
+                return 'categoryRevenue';
             },
             title(){
                 return 'Editar pagamento';

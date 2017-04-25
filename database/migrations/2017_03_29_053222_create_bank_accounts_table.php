@@ -19,6 +19,7 @@ class CreateBankAccountsTable extends Migration
 			$table->string('agency')->nullable();
 			$table->string('account')->nullable();
 			$table->boolean('default')->default(0);
+			$table->float('balance')->default(0);
 
 			$table->integer('bank_id')->unsigned();
 			$table->foreign('bank_id')->references('id')->on('banks');

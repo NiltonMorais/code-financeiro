@@ -2,31 +2,31 @@
 
 namespace CodeFin\Transformers;
 
+use CodeFin\Models\AbstractBill;
 use League\Fractal\TransformerAbstract;
-use CodeFin\Models\BillPay;
 
 /**
  * Class BillPayTransformer
  * @package namespace CodeFin\Transformers;
  */
-class BillPayTransformer extends TransformerAbstract
+class BillTransformer extends TransformerAbstract
 {
-    protected $availableIncludes = ['category','bankAccount'];
+    protected $availableIncludes = ['category', 'bankAccount'];
 
     /**
      * Transform the \BillPay entity
-     * @param \BillPay $model
+     * @param AbstractBill $model
      *
      * @return array
      */
-    public function transform(BillPay $model)
+    public function transform(AbstractBill $model)
     {
         return [
             'id' => (int)$model->id,
             'date_due' => $model->date_due,
             'name' => $model->name,
-            'value' => (float)$model->value,
-            'done' => (boolean)$model->done,
+            'value' => $model->value,
+            'done' => $model->done,
             'category_id' => (int)$model->category_id,
             'bank_account_id' => (int)$model->bank_account_id,
 
@@ -37,14 +37,14 @@ class BillPayTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeCategory(BillPay $model)
+    public function includeCategory(AbstractBill $model)
     {
         $transformer = new CategoryTransformer();
         $transformer->setDefaultIncludes([]);
         return $this->item($model->category, $transformer);
     }
 
-    public function includeBankAccount(BillPay $model)
+    public function includeBankAccount(AbstractBill $model)
     {
         return $this->item($model->bankAccount, new BankAccountTransformer());
     }

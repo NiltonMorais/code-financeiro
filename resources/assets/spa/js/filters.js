@@ -34,3 +34,7 @@ Vue.filter('dateFormat', {
         return date.isValid() ? date.toDate() : value;
     }
 });
+
+Vue.filter('monthYear', (value) => {
+    return moment(`${value}-01`).format('MM/YYYY');
+})

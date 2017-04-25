@@ -53,12 +53,14 @@
                     {name: 'Contas', dropdownId: 'bills-dropdown'},
                     {name: 'Conta Bancária', routeName: 'bank-account.list'},
                     {name: 'Plano de contas', routeName: 'plan-account.list'},
+                    {name: 'Fluxo de caixa', routeName: 'cash-flow.list'},
                 ],
                 menusDropdown: [
                     {
                         id: 'bills-dropdown',
                         items: [
                             {name: "Contas a pagar", routeName: 'bill-pay.list'},
+                            {name: "Contas a receber", routeName: 'bill-receive.list'},
                         ]
                     },
                 ]

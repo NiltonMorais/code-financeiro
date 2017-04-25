@@ -6,10 +6,10 @@ use Prettus\Repository\Contracts\RepositoryCriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface BankAccountRepository
+ * Interface BillReceiveRepository
  * @package namespace CodeFin\Repositories\Interfaces;
  */
-interface BankAccountRepository extends RepositoryInterface, RepositoryCriteriaInterface
+interface BillReceiveRepository extends RepositoryInterface, RepositoryCriteriaInterface
 {
-    public function addBalance($id, $value);
+    //
 }

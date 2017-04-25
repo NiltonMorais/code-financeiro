@@ -1,7 +1,7 @@
 import ModalComponent from '../../../_default/components/Modal.vue';
 import SelectMaterialComponent from '../../../_default/components/SelectMaterial.vue';
 import store from '../store/store';
-import BillPay from '../models/bill-pay';
+import Bill from '../models/bill';
 
 export default{
     components: {
@@ -21,7 +21,7 @@ export default{
     },
     data(){
         return {
-            bill: new BillPay(),
+            bill: new Bill(),
             bankAccount: {
                 text: ''
             }

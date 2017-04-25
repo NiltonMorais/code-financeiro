@@ -8,20 +8,21 @@ use CodeFin\Http\Controllers\Controller;
 use CodeFin\Http\Controllers\Response;
 use CodeFin\Http\Requests;
 use CodeFin\Http\Requests\BillPayRequest;
-use CodeFin\Repositories\Interfaces\BillPayRepository;
+use CodeFin\Http\Requests\BillReceiveRequest;
+use CodeFin\Repositories\Interfaces\BillReceiveRepository;
 use Illuminate\Http\Request;
 
 
-class BillPaysController extends Controller
+class BillReceivesController extends Controller
 {
 
     /**
-     * @var BillPayRepository
+     * @var BillReceiveRepository
      */
     protected $repository;
 
 
-    public function __construct(BillPayRepository $repository)
+    public function __construct(BillReceiveRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -48,11 +49,11 @@ class BillPaysController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  BillPayRequest $request
+     * @param  BillReceiveRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(BillPayRequest $request)
+    public function store(BillReceiveRequest $request)
     {
         $bankAccount = $this->repository->create($request->all());
         return response()->json($bankAccount, 201);
@@ -81,10 +82,10 @@ class BillPaysController extends Controller
      *
      * @return Response
      */
-    public function update(BillPayRequest $request, $id)
+    public function update(BillReceiveRequest $request, $id)
     {
-        $data = $this->repository->update($request->all(), $id);
-        return response()->json($data, 200);
+        $bankAccount = $this->repository->update($request->all(), $id);
+        return response()->json($bankAccount, 200);
     }
 
 

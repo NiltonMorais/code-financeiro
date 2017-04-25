@@ -1,9 +1,9 @@
 <?php
 
-use CodeFin\Repositories\Interfaces\BillPayRepository;
+use CodeFin\Repositories\Interfaces\BillReceiveRepository;
 use Illuminate\Database\Seeder;
 
-class BillPaysTableSeeder extends Seeder
+class BillReceivesTableSeeder extends Seeder
 {
     use \CodeFin\Repositories\Traits\GetClientsTrait;
 
@@ -16,9 +16,9 @@ class BillPaysTableSeeder extends Seeder
     {
         $clients = $this->getClients();
 
-        $repository = app(BillPayRepository::class);
+        $repository = app(BillReceiveRepository::class);
 
-        factory(\CodeFin\Models\BillPay::class, 200)
+        factory(\CodeFin\Models\BillReceive::class, 200)
             ->make()
             ->each(function ($model) use ($clients, $repository) {
                 $client = $clients->random();

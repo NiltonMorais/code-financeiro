@@ -1,0 +1,87 @@
+<!--<div class="container">-->
+<div class="row">
+
+    <page-title>
+        <h5>Fluxo de caixa</h5>
+    </page-title>
+
+    <div class="card-panel z-depth-5">
+        <div v-if="hasCashFlows">
+            <table class="bordered striped hightlight responsive-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th v-if="!hasFirstMonthYear">
+                        {{firstMonthYear | monthYear}}
+                    </th>
+                    <th v-for="o in monthsList">
+                        {{o.month_year | monthYear}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>Recebimentos</strong></td>
+                    <td v-if="!hasFirstMonthYear">
+                        0
+                    </td>
+                    <td v-for="o in monthsList">
+                        {{o.revenues.total}}
+                    </td>
+                </tr>
+                <tr v-for="o in categoriesMonths.revenues.data">
+                    <td>{{o.name}}</td>
+                    <td v-if="!hasFirstMonthYear"></td>
+                    <td v-for="v in monthsList">
+                        {{categoryTotal(o,v.month_year).total}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Pagamentos</strong></td>
+                    <td v-if="!hasFirstMonthYear">
+                        0
+                    </td>
+                    <td v-for="o in monthsList">
+                        {{o.expenses.total}}
+                    </td>
+                </tr>
+                <tr v-for="o in categoriesMonths.expenses.data">
+                    <td>{{o.name}}</td>
+                    <td v-if="!hasFirstMonthYear"></td>
+                    <td v-for="v in monthsList">
+                        {{categoryTotal(o,v.month_year).total}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Geração de caixa</strong></td>
+                    <td v-if="!hasFirstMonthYear">
+                        0
+                    </td>
+                    <td v-for="o in monthsList">
+                        {{o.revenues.total - o.expenses.total}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Saldo mês anterior</strong></td>
+                    <td>{{balanceBeforeFirstMonth}}</td>
+                    <td>{{firstBalance}}</td>
+                    <td>{{secondBalance}}</td>
+                    <td v-for="(key,o) in monthsListBalancePrevious">
+                        {{balance(key)}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Saldo final</strong></td>
+                    <td>{{firstBalance}}</td>
+                    <td>{{secondBalance}}</td>
+                    <td v-for="(key,o) in monthsListBalanceFinal">
+                        {{balance(key)}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--</div>  container -->

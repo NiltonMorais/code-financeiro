@@ -2,18 +2,19 @@
 
 namespace CodeFin\Repositories;
 
-use CodeFin\Models\BillPay;
+use CodeFin\Models\BillReceive;
 use CodeFin\Presenters\BillPresenter;
-use CodeFin\Repositories\Interfaces\BillPayRepository;
+use CodeFin\Repositories\Interfaces\BillReceiveRepository;
 use CodeFin\Repositories\Traits\BillRepositoryTrait;
+use CodeFin\Validators\BillReceiveValidator;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
- * Class BillPayRepositoryEloquent
+ * Class BillReceiveRepositoryEloquent
  * @package namespace CodeFin\Repositories;
  */
-class BillPayRepositoryEloquent extends BaseRepository implements BillPayRepository
+class BillReceiveRepositoryEloquent extends BaseRepository implements BillReceiveRepository
 {
     use BillRepositoryTrait;
 
@@ -28,8 +29,9 @@ class BillPayRepositoryEloquent extends BaseRepository implements BillPayReposit
      */
     public function model()
     {
-        return BillPay::class;
+        return BillReceive::class;
     }
+
 
     /**
      * Boot up the repository, pushing criteria
