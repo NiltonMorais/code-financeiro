@@ -33,6 +33,7 @@
     "lodash": "^4.11.2",
     "moment": "^2.17.1",
     "numeral": "^2.0.4",
+    "papaparse": "^4.1.4",
     "select2": "^4.0.3",
     "vee-validate": "^1.0.0-beta.10",
     "vuex": "^2.1.3"

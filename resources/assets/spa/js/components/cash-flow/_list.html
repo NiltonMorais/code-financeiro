@@ -10,76 +10,83 @@
             <table class="bordered hightlight responsive-table">
                 <thead>
                 <tr class="green lighten-3">
-                    <th></th>
-                    <th v-if="!hasFirstMonthYear">
+                    <th class="text-csv"></th>
+                    <th v-if="!hasFirstMonthYear"  class="text-csv">
                         {{firstMonthYear | monthYear}}
                     </th>
-                    <th v-for="o in monthsList" :class="{'green lighten-2': isCurrentMonthYear(o.month_year)}">
+                    <th v-for="o in monthsList"  class="text-csv" :class="{'green lighten-2': isCurrentMonthYear(o.month_year)}">
                         {{o.month_year | monthYear}}
                     </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="grey lighten-3">
-                    <td><strong>Recebimentos</strong></td>
-                    <td v-if="!hasFirstMonthYear">
+                    <td><strong class="text-csv">Recebimentos</strong></td>
+                    <td v-if="!hasFirstMonthYear" class="text-csv">
                         0
                     </td>
-                    <td v-for="o in monthsList">
+                    <td v-for="o in monthsList" class="text-csv">
                         {{o.revenues.total}}
                     </td>
                 </tr>
                 <tr v-for="o in categoriesMonths.revenues.data">
-                    <td>{{o.name}}</td>
-                    <td v-if="!hasFirstMonthYear"></td>
-                    <td v-for="v in monthsList">
+                    <td class="text-csv">{{o.name}}</td>
+                    <td v-if="!hasFirstMonthYear" class="text-csv"></td>
+                    <td v-for="v in monthsList" class="text-csv">
                         {{categoryTotal(o,v.month_year).total}}
                     </td>
                 </tr>
                 <tr class="grey lighten-3">
-                    <td><strong>Pagamentos</strong></td>
-                    <td v-if="!hasFirstMonthYear">
+                    <td><strong class="text-csv">Pagamentos</strong></td>
+                    <td v-if="!hasFirstMonthYear" class="text-csv">
                         0
                     </td>
-                    <td v-for="o in monthsList">
+                    <td v-for="o in monthsList" class="text-csv">
                         {{o.expenses.total}}
                     </td>
                 </tr>
                 <tr v-for="o in categoriesMonths.expenses.data">
-                    <td>{{o.name}}</td>
-                    <td v-if="!hasFirstMonthYear"></td>
-                    <td v-for="v in monthsList">
+                    <td class="text-csv">{{o.name}}</td>
+                    <td v-if="!hasFirstMonthYear" class="text-csv"></td>
+                    <td v-for="v in monthsList" class="text-csv">
                         {{categoryTotal(o,v.month_year).total}}
                     </td>
                 </tr>
                 <tr class="grey lighten-4">
-                    <td><strong>Geração de caixa</strong></td>
-                    <td v-if="!hasFirstMonthYear">
+                    <td><strong class="text-csv">Geração de caixa</strong></td>
+                    <td v-if="!hasFirstMonthYear" class="text-csv">
                         0
                     </td>
-                    <td v-for="o in monthsList">
+                    <td v-for="o in monthsList" class="text-csv">
                         {{o.revenues.total - o.expenses.total}}
                     </td>
                 </tr>
                 <tr class="grey lighten-4">
-                    <td><strong>Saldo mês anterior</strong></td>
-                    <td>{{balanceBeforeFirstMonth}}</td>
-                    <td>{{firstBalance}}</td>
-                    <td>{{secondBalance}}</td>
-                    <td v-for="(key,o) in monthsListBalancePrevious">
+                    <td><strong class="text-csv">Saldo mês anterior</strong></td>
+                    <td class="text-csv">{{balanceBeforeFirstMonth}}</td>
+                    <td class="text-csv">{{firstBalance}}</td>
+                    <td class="text-csv">{{secondBalance}}</td>
+                    <td v-for="(key,o) in monthsListBalancePrevious" class="text-csv">
                         {{balance(key)}}
                     </td>
                 </tr>
                 <tr class="green lighten-3">
-                    <td><strong>Saldo final</strong></td>
-                    <td>{{firstBalance}}</td>
-                    <td>{{secondBalance}}</td>
-                    <td v-for="(key,o) in monthsListBalanceFinal">
+                    <td><strong class="text-csv">Saldo final</strong></td>
+                    <td class="text-csv">{{firstBalance}}</td>
+                    <td class="text-csv">{{secondBalance}}</td>
+                    <td v-for="(key,o) in monthsListBalanceFinal" class="text-csv">
                         {{balance(key)}}
                     </td>
                 </tr>
                 </tbody>
             </table>
+
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large" @click="downloadCsv" title="Download">
+                    <i class="large material-icons">file_download</i>
+                </a>
+            </div>
+
         </div>
     </div>
 
