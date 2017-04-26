@@ -47,11 +47,19 @@
             balance(index){
                 return store.getters['cashFlow/balance'](index);
             },
-             categoryTotal(category, monthYear){
+            categoryTotal(category, monthYear){
                 return store.getters['cashFlow/categoryTotal'](category, monthYear);
-             }
+            },
+            isCurrentMonthYear(monthYear){
+                return this.$options.filters.monthYear(new Date) ==
+                    this.$options.filters.monthYear(monthYear);
+            }
         }
     }
-
-
 </script>
+
+<style type="text/css" scoped>
+    th, tr{
+        border-radius: 0px;
+    }
+</style>

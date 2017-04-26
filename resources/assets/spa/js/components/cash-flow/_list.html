@@ -7,20 +7,20 @@
 
     <div class="card-panel z-depth-5">
         <div v-if="hasCashFlows">
-            <table class="bordered striped hightlight responsive-table">
+            <table class="bordered hightlight responsive-table">
                 <thead>
-                <tr>
+                <tr class="green lighten-3">
                     <th></th>
                     <th v-if="!hasFirstMonthYear">
                         {{firstMonthYear | monthYear}}
                     </th>
-                    <th v-for="o in monthsList">
+                    <th v-for="o in monthsList" :class="{'green lighten-2': isCurrentMonthYear(o.month_year)}">
                         {{o.month_year | monthYear}}
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr class="grey lighten-3">
                     <td><strong>Recebimentos</strong></td>
                     <td v-if="!hasFirstMonthYear">
                         0
@@ -36,7 +36,7 @@
                         {{categoryTotal(o,v.month_year).total}}
                     </td>
                 </tr>
-                <tr>
+                <tr class="grey lighten-3">
                     <td><strong>Pagamentos</strong></td>
                     <td v-if="!hasFirstMonthYear">
                         0
@@ -52,7 +52,7 @@
                         {{categoryTotal(o,v.month_year).total}}
                     </td>
                 </tr>
-                <tr>
+                <tr class="grey lighten-4">
                     <td><strong>Geração de caixa</strong></td>
                     <td v-if="!hasFirstMonthYear">
                         0
@@ -61,7 +61,7 @@
                         {{o.revenues.total - o.expenses.total}}
                     </td>
                 </tr>
-                <tr>
+                <tr class="grey lighten-4">
                     <td><strong>Saldo mês anterior</strong></td>
                     <td>{{balanceBeforeFirstMonth}}</td>
                     <td>{{firstBalance}}</td>
@@ -70,7 +70,7 @@
                         {{balance(key)}}
                     </td>
                 </tr>
-                <tr>
+                <tr class="green lighten-3">
                     <td><strong>Saldo final</strong></td>
                     <td>{{firstBalance}}</td>
                     <td>{{secondBalance}}</td>
