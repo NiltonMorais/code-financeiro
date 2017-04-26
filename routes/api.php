@@ -21,6 +21,7 @@ Route::group(['middleware' => 'cors','as'=>'api.'],function(){
     Route::resource('category_expenses', 'Api\CategoryExpensesController',['except'=>['create','edit']]);
     Route::resource('bill_pays', 'Api\BillPaysController',['except'=>['create','edit']]);
     Route::resource('bill_receives', 'Api\BillReceivesController',['except'=>['create','edit']]);
+    Route::get('statements', 'Api\StatementsController@index');
     Route::get('cash_flows', 'Api\CashFlowsController@index');
 
     Route::post('access_token','Api\AuthController@accessToken')->name('access_token');

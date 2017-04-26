@@ -62,7 +62,7 @@
 	__webpack_require__(78);
 	__webpack_require__(192);
 	__webpack_require__(195);
-	__webpack_require__(208);
+	__webpack_require__(209);
 
 /***/ },
 /* 1 */,
@@ -45571,6 +45571,7 @@
 	var BillPay = Vue.resource('bill_pays{/id}');
 	var BillReceive = Vue.resource('bill_receives{/id}');
 	var CashFlow = Vue.resource('cash_flows');
+	var Statement = Vue.resource('statements');
 
 	exports.User = User;
 	exports.BankAccount = BankAccount;
@@ -45580,6 +45581,7 @@
 	exports.BillPay = BillPay;
 	exports.BillReceive = BillReceive;
 	exports.CashFlow = CashFlow;
+	exports.Statement = Statement;
 
 /***/ },
 /* 198 */
@@ -45642,13 +45644,17 @@
 
 	var _cashFlow2 = _interopRequireDefault(_cashFlow);
 
-	var _category = __webpack_require__(206);
+	var _statement = __webpack_require__(206);
+
+	var _statement2 = _interopRequireDefault(_statement);
+
+	var _category = __webpack_require__(207);
 
 	var _category2 = _interopRequireDefault(_category);
 
 	var _resources = __webpack_require__(197);
 
-	var _bill = __webpack_require__(207);
+	var _bill = __webpack_require__(208);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -45674,7 +45680,8 @@
 	        categoryExpense: categoryExpense,
 	        billPay: billPay,
 	        billReceive: billReceive,
-	        cashFlow: _cashFlow2.default
+	        cashFlow: _cashFlow2.default,
+	        statement: _statement2.default
 	    }
 	});
 
@@ -62325,6 +62332,91 @@
 
 	var _resources = __webpack_require__(197);
 
+	var _searchOptions = __webpack_require__(202);
+
+	var _searchOptions2 = _interopRequireDefault(_searchOptions);
+
+	var _moment = __webpack_require__(79);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var state = {
+	    statements: [],
+	    statementData: {
+	        count: 0,
+	        revenues: { total: 0 }, expenses: { total: 0 }
+	    },
+	    searchOptions: new _searchOptions2.default('bankAccount')
+	};
+
+	var mutations = {
+	    set: function set(state, statements) {
+	        state.statements = statements;
+	    },
+	    setStatementData: function setStatementData(state, statementData) {
+	        state.statementData = statementData;
+	    },
+	    setOrder: function setOrder(state, key) {
+	        state.searchOptions.order.key = key;
+	        var sort = state.searchOptions.order.sort;
+	        state.searchOptions.order.sort = sort == 'desc' ? 'asc' : 'desc';
+	    },
+	    setPagination: function setPagination(state, pagination) {
+	        state.searchOptions.pagination = pagination;
+	    },
+	    setCurrentPage: function setCurrentPage(state, currentPage) {
+	        state.searchOptions.pagination.current_page = currentPage;
+	    },
+	    setFilter: function setFilter(state, filter) {
+	        state.searchOptions.search = filter;
+	    }
+	};
+
+	var actions = {
+	    query: function query(context) {
+	        var searchOptions = context.state.searchOptions;
+	        return _resources.Statement.query(searchOptions.createOptions()).then(function (response) {
+	            context.commit('set', response.data.data.statements.data);
+	            context.commit('setPagination', response.data.data.statements.meta.pagination);
+	            context.commit('setStatementData', response.data.data.statement_data);
+	        });
+	    },
+	    queryWithSortBy: function queryWithSortBy(context, key) {
+	        context.commit('setOrder', key);
+	        context.dispatch('query');
+	    },
+	    queryWithPagination: function queryWithPagination(context, currentPage) {
+	        context.commit('setCurrentPage', currentPage);
+	        context.dispatch('query');
+	    },
+	    queryWithFilter: function queryWithFilter(context) {
+	        context.dispatch('query');
+	    }
+	};
+
+	var _module = {
+	    namespaced: true,
+	    state: state,
+	    mutations: mutations,
+	    actions: actions
+	};
+
+	exports.default = _module;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _resources = __webpack_require__(197);
+
 	var formatCategories = function formatCategories(categories) {
 	    var categoryCollection = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 	    var _iteratorNormalCompletion = true;
@@ -62536,7 +62628,7 @@
 	};
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62663,20 +62755,20 @@
 	};
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _App = __webpack_require__(209);
+	var _App = __webpack_require__(210);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _vueRouter = __webpack_require__(222);
+	var _vueRouter = __webpack_require__(223);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	var _router = __webpack_require__(223);
+	var _router = __webpack_require__(224);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -62707,18 +62799,18 @@
 	}, 'body');
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(210)
-	__vue_script__ = __webpack_require__(212)
+	__webpack_require__(211)
+	__vue_script__ = __webpack_require__(213)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\App.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(221)
+	__vue_template__ = __webpack_require__(222)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -62743,13 +62835,13 @@
 	})()}
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(211);
+	var content = __webpack_require__(212);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -62769,7 +62861,7 @@
 	}
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -62783,7 +62875,7 @@
 
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62792,11 +62884,11 @@
 	    value: true
 	});
 
-	var _Menu = __webpack_require__(213);
+	var _Menu = __webpack_require__(214);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _Loading = __webpack_require__(216);
+	var _Loading = __webpack_require__(217);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -62828,17 +62920,17 @@
 	};
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(214)
+	__vue_script__ = __webpack_require__(215)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Menu.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(215)
+	__vue_template__ = __webpack_require__(216)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -62863,7 +62955,7 @@
 	})()}
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -62881,7 +62973,7 @@
 	exports.default = {
 	    data: function data() {
 	        return {
-	            menus: [{ name: 'Contas', dropdownId: 'bills-dropdown' }, { name: 'Conta Bancária', routeName: 'bank-account.list' }, { name: 'Plano de contas', routeName: 'plan-account.list' }, { name: 'Fluxo de caixa', routeName: 'cash-flow.list' }],
+	            menus: [{ name: 'Contas', dropdownId: 'bills-dropdown' }, { name: 'Conta Bancária', routeName: 'bank-account.list' }, { name: 'Plano de contas', routeName: 'plan-account.list' }, { name: 'Fluxo de caixa', routeName: 'cash-flow.list' }, { name: 'Extrato', routeName: 'statement.list' }],
 	            menusDropdown: [{
 	                id: 'bills-dropdown',
 	                items: [{ name: "Contas a pagar", routeName: 'bill-pay.list' }, { name: "Contas a receber", routeName: 'bill-receive.list' }]
@@ -62901,24 +62993,24 @@
 	};
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"navbar-fixed\">\n    <ul :id=\"o.id\" class=\"dropdown-content\" v-for=\"o in menusDropdown\">\n        <li v-for=\"item in o.items\">\n            <a v-link=\"{name: item.routeName}\">{{item.name}}</a>\n        </li>\n    </ul>\n    <ul id=\"dropdown-logout\" class='dropdown-content'>\n        <li>\n            <a v-link=\"{name: 'auth.logout'}\">Sair</a>\n        </li>\n\n    </ul>\n    <nav>\n        <div class=\"nav-wrapper\">\n            <div class=\"row\">\n                <div class=\"col s12\">\n                    <a href=\"#\" class=\"brand-logo\">Code Financeiro</a>\n                    <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\">\n                        <i class=\"material-icons\">menu</i>\n                    </a>\n                    <ul class=\"right hide-on-med-and-down\">\n                        <li v-for=\"o in menus\">\n                            <a v-if=\"o.dropdownId\" class=\"dropdown-button\" href=\"!#\" :data-activates=\"o.dropdownId\">\n                                {{o.name}} <i class=\"material-icons right\">arrow_drop_down</i>\n                            </a>\n                            <a v-else v-link=\"{name: o.routeName}\">{{o.name}}</a>\n                        </li>\n                        <li>\n                            <a class=\"dropdown-button\" href=\"!#\" data-activates=\"dropdown-logout\">\n                                {{name}} <i class=\"material-icons right\">arrow_drop_down</i>\n                            </a>\n                        </li>\n                    </ul>\n                    <ul id=\"nav-mobile\" class=\"side-nav\">\n                        <li v-for=\"o in menus\">\n                            <a v-link=\"{name: o.routeName}\">{{o.name}}</a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n    </nav>\n</div>\n";
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(217)
-	__vue_script__ = __webpack_require__(219)
+	__webpack_require__(218)
+	__vue_script__ = __webpack_require__(220)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\Loading.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(220)
+	__vue_template__ = __webpack_require__(221)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -62943,13 +63035,13 @@
 	})()}
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(218);
+	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -62969,7 +63061,7 @@
 	}
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -62983,7 +63075,7 @@
 
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -63010,19 +63102,19 @@
 	};
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"spinner-fixed\" v-if=\"loading\">\n    <div class=\"progress spinner\">\n        <div class=\"indeterminate\"></div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div id=\"app\">\n    <loading></loading>\n    <header v-if=\"showMenu\">\n        <menu></menu>\n    </header>\n\n    <main>\n        <router-view></router-view>\n    </main>\n\n    <footer class=\"page-footer\">\n        <div class=\"footer-copyright\">\n            <div class=\"container\">\n                © {{year}} <a class=\"grey-text text-lighten-4\" href=\"http://code.education\">Code Education</a>\n            </div>\n        </div>\n    </footer>\n\n\n</div>\n";
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -65736,7 +65828,7 @@
 	}));
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65745,45 +65837,49 @@
 	    value: true
 	});
 
-	var _Login = __webpack_require__(224);
+	var _Login = __webpack_require__(225);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _Logout = __webpack_require__(227);
+	var _Logout = __webpack_require__(228);
 
 	var _Logout2 = _interopRequireDefault(_Logout);
 
-	var _Dashboard = __webpack_require__(230);
+	var _Dashboard = __webpack_require__(231);
 
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-	var _BankAccountList = __webpack_require__(233);
+	var _BankAccountList = __webpack_require__(234);
 
 	var _BankAccountList2 = _interopRequireDefault(_BankAccountList);
 
-	var _BankAccountCreate = __webpack_require__(247);
+	var _BankAccountCreate = __webpack_require__(248);
 
 	var _BankAccountCreate2 = _interopRequireDefault(_BankAccountCreate);
 
-	var _BankAccountUpdate = __webpack_require__(251);
+	var _BankAccountUpdate = __webpack_require__(252);
 
 	var _BankAccountUpdate2 = _interopRequireDefault(_BankAccountUpdate);
 
-	var _PlanAccount = __webpack_require__(253);
+	var _PlanAccount = __webpack_require__(254);
 
 	var _PlanAccount2 = _interopRequireDefault(_PlanAccount);
 
-	var _BillPayList = __webpack_require__(273);
+	var _BillPayList = __webpack_require__(274);
 
 	var _BillPayList2 = _interopRequireDefault(_BillPayList);
 
-	var _BillReceiveList = __webpack_require__(287);
+	var _BillReceiveList = __webpack_require__(288);
 
 	var _BillReceiveList2 = _interopRequireDefault(_BillReceiveList);
 
-	var _CashFlowList = __webpack_require__(297);
+	var _CashFlowList = __webpack_require__(298);
 
 	var _CashFlowList2 = _interopRequireDefault(_CashFlowList);
+
+	var _StatementList = __webpack_require__(304);
+
+	var _StatementList2 = _interopRequireDefault(_StatementList);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65840,21 +65936,26 @@
 	        name: 'bill-receive.list',
 	        component: _BillReceiveList2.default,
 	        auth: true
+	    },
+	    '/statement': {
+	        name: 'statement.list',
+	        component: _StatementList2.default,
+	        auth: true
 	    }
 	};
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(225)
+	__vue_script__ = __webpack_require__(226)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Login.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(226)
+	__vue_template__ = __webpack_require__(227)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -65879,7 +65980,7 @@
 	})()}
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -65929,23 +66030,23 @@
 	};
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"card-panel col s8 offset-s2 z-depth-2\">\n            <h3 class=\"center\">Code Financeiro</h3>\n\n            <div class=\"row\" v-if=\"error.error\">\n                <div class=\"col s12\">\n                    <div class=\"card-panel red\">\n                        <span class=\"white-text\">{{error.message}}</span>\n                    </div>\n                </div>\n            </div>\n\n            <form method=\"POST\" @submit.prevent=\"login()\">\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <input id=\"email\" type=\"email\" class=\"validate\" name=\"email\" v-model=\"user.email\" required\n                               autofocus>\n                        <label for=\"email\" class=\"active\">E-Mail</label>\n                    </div>\n                </div>\n\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <input id=\"password\" type=\"password\" class=\"validate\" name=\"password\"\n                               v-model=\"user.password\" required>\n                        <label for=\"password\" class=\"active\">Senha</label>\n                    </div>\n                </div>\n\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <button type=\"submit\" class=\"btn\">Login</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(228)
+	__vue_script__ = __webpack_require__(229)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Logout.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(229)
+	__vue_template__ = __webpack_require__(230)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -65970,7 +66071,7 @@
 	})()}
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -66007,23 +66108,23 @@
 	};
 
 /***/ },
-/* 229 */
+/* 230 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"card-panel col s8 offset-s2 z-depth-2\">\n            <h5 class=\"center\">Efetuando logout...</h5>\n            <div class=\"progress\">\n                <div class=\"indeterminate\"></div>\n            </div>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 230 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(231)
+	__vue_script__ = __webpack_require__(232)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Dashboard.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(232)
+	__vue_template__ = __webpack_require__(233)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -66048,7 +66149,7 @@
 	})()}
 
 /***/ },
-/* 231 */
+/* 232 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -66059,23 +66160,23 @@
 	exports.default = {};
 
 /***/ },
-/* 232 */
+/* 233 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-8 col-md-offset-2\">\n            <div class=\"panel-heading\">Meu Dashboard</div>\n            <div class=\"panel-body\">\n                Meu conteúdo\n            </div>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 233 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(234)
+	__vue_script__ = __webpack_require__(235)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bank-account\\BankAccountList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(246)
+	__vue_template__ = __webpack_require__(247)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -66100,7 +66201,7 @@
 	})()}
 
 /***/ },
-/* 234 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -66117,15 +66218,15 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _Pagination = __webpack_require__(235);
+	var _Pagination = __webpack_require__(236);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(243);
+	var _Search = __webpack_require__(244);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
@@ -66221,17 +66322,17 @@
 	};
 
 /***/ },
-/* 235 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(236)
+	__vue_script__ = __webpack_require__(237)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\Pagination.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(237)
+	__vue_template__ = __webpack_require__(238)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -66256,7 +66357,7 @@
 	})()}
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -66308,24 +66409,24 @@
 	};
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<ul class=\"pagination\">\n    <li :class=\"{'disabled': currentPage == 0}\">\n        <a @click.prevent=\"previousPage\" href=\"#\">\n            <i class=\"material-icons\">chevron_left</i>\n        </a>\n    </li>\n    <li v-for=\"o in pages\" class=\"waves-effect\" :class=\"{'active': currentPage == o}\">\n        <a @click.prevent=\"setCurrentPage(o)\" href=\"#\">{{o + 1}}</a>\n    </li>\n    <li :class=\"{'disabled': currentPage == pages - 1}\">\n        <a @click.prevent=\"nextPage\" href=\"#\">\n            <i class=\"material-icons\">chevron_right</i>\n        </a>\n    </li>\n</ul>\n";
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(239)
-	__vue_script__ = __webpack_require__(241)
+	__webpack_require__(240)
+	__vue_script__ = __webpack_require__(242)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\PageTitle.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(242)
+	__vue_template__ = __webpack_require__(243)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -66350,13 +66451,13 @@
 	})()}
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(240);
+	var content = __webpack_require__(241);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -66376,7 +66477,7 @@
 	}
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -66390,7 +66491,7 @@
 
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -66401,23 +66502,23 @@
 	exports.default = {};
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"card-panel indigo lighten-1\" _v-65496c1f=\"\">\n    <span class=\"white-text\" _v-65496c1f=\"\">\n        <slot _v-65496c1f=\"\"></slot>\n    </span>\n</div>\n";
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(244)
+	__vue_script__ = __webpack_require__(245)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\Search.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(245)
+	__vue_template__ = __webpack_require__(246)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -66442,7 +66543,7 @@
 	})()}
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -66465,29 +66566,29 @@
 	};
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<form name=\"form\" method=\"GET\" @submit=\"submit()\">\n    <div class=\"filter-group\">\n        <button class=\"btn waves-effect\" @click.prevent=\"submit\">\n            <i class=\"material-icons\">search</i>\n        </button>\n        <div class=\"filter-wrapper\">\n            <input type=\"text\" v-model=\"model\" placeholder=\"Buscar..\"/>\n        </div>\n    </div>\n</form>\n";
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas bancárias</h5>\n            </page-title>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bankAccounts\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.agency}}</td>\n                    <td>{{o.account}}</td>\n                    <td>\n                        <div class=\"row valign-wrapper\">\n                            <div class=\"col s2\">\n                                <img :src=\"o.bank.data.logo\" class=\"bank-logo\">\n                            </div>\n                            <div class=\"col s10\">\n                                <span class=\"left\">{{o.bank.data.name}}</span>\n                            </div>\n                        </div>\n                    </td>\n                    <td>\n                        <i class=\"material-icons green-text\" v-if=\"o.default\">check</i>\n                    </td>\n                    <td>\n                        <a v-link=\"{name: 'bank-account.update', params: {id: o.id} }\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n\n        <div class=\"fixed-action-btn\">\n            <a class=\"btn-floating btn-large\" v-link=\"{name: 'bank-account.create'}\">\n                <i class=\"large material-icons\">add</i>\n            </a>\n        </div>\n    </div>\n<!--</div>  container -->\n<modal :modal=\"modal\">\n    <div slot=\"content\" v-if=\"bankAccountDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta bancária?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Nome: <strong>{{bankAccountDelete.name}}</strong></p>\n        <p>Agência: <strong>{{bankAccountDelete.agency}}</strong></p>\n        <p>C/C: <strong>{{bankAccountDelete.account}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(248)
+	__vue_script__ = __webpack_require__(249)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bank-account\\BankAccountCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(250)
+	__vue_template__ = __webpack_require__(251)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -66512,7 +66613,7 @@
 	})()}
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -66525,11 +66626,11 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	__webpack_require__(249);
+	__webpack_require__(250);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -66607,7 +66708,7 @@
 	};
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
@@ -67075,23 +67176,23 @@
 
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col s6\">\r\n            <page-title>\r\n                <h5>{{title}}</h5>\r\n            </page-title>\r\n        </div>\r\n        <div class=\"col s6\">\r\n            <page-title class=\"valign-wrapper\">\r\n                <div class=\"valign\">\r\n                    <a class=\"waves-effect waves-light btn\" v-link=\"{name: 'bank-account.list'}\">\r\n                        <i class=\"material-icons\">arrow_back</i>\r\n                    </a>\r\n                </div>\r\n            </page-title>\r\n        </div>\r\n        <div class=\"card-panel z-depth-5\">\r\n            <form name=\"form\" method=\"GET\" @submit.prevent=\"submit()\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <label class=\"active\">Nome</label>\r\n                        <input type=\"text\" v-model=\"bankAccount.name\" placeholder=\"Digite o nome\"/>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <label class=\"active\">Banco</label>\r\n                        <!--<select v-model=\"bankAccount.bank_id\" id=\"bank_id\" class=\"browser-default\">\r\n                            <option value=\"\" disabled selected>Escolha um banco</option>\r\n                            <option v-for=\"o in banks\" :value=\"o.id\">{{o.name}}</option>\r\n                        </select>-->\r\n                        <input type=\"text\" id=\"bank-id\" placeholder=\"Buscar banco\"\r\n                            autocomplete=\"off\" data-activates=\"bank-id-dropdown\" data-belloworigin=\"true\" :value=\"bank.name\"/>\r\n                        <ul id=\"bank-id-dropdown\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Agência</label>\r\n                        <input type=\"text\" v-model=\"bankAccount.agency\" placeholder=\"Digite a agência\"/>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <label class=\"active\">Conta corrente</label>\r\n                        <input type=\"text\" v-model=\"bankAccount.account\" placeholder=\"Digite a conta\"/>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bankAccount.default\" id=\"account_id\"/>\r\n                        <label for=\"account_id\">Padrão?</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"fixed-action-btn\">\r\n                    <button type=\"submit\" class=\"btn-floating btn-large\">\r\n                        <i class=\"large material-icons\">save</i>\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(252)
+	__vue_script__ = __webpack_require__(253)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bank-account\\BankAccountUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(250)
+	__vue_template__ = __webpack_require__(251)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -67116,7 +67217,7 @@
 	})()}
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67127,11 +67228,11 @@
 
 	var _resources = __webpack_require__(197);
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	__webpack_require__(249);
+	__webpack_require__(250);
 
 	var _lodash = __webpack_require__(203);
 
@@ -67224,17 +67325,17 @@
 	};
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(254)
+	__vue_script__ = __webpack_require__(255)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\PlanAccount.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(272)
+	__vue_template__ = __webpack_require__(273)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -67259,7 +67360,7 @@
 	})()}
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67268,15 +67369,15 @@
 	    value: true
 	});
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _CategoryRevenue = __webpack_require__(255);
+	var _CategoryRevenue = __webpack_require__(256);
 
 	var _CategoryRevenue2 = _interopRequireDefault(_CategoryRevenue);
 
-	var _CategoryExpense = __webpack_require__(269);
+	var _CategoryExpense = __webpack_require__(270);
 
 	var _CategoryExpense2 = _interopRequireDefault(_CategoryExpense);
 
@@ -67300,17 +67401,17 @@
 	};
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(256)
+	__vue_script__ = __webpack_require__(257)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategoryRevenue.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(268)
+	__vue_template__ = __webpack_require__(269)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -67335,7 +67436,7 @@
 	})()}
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67344,7 +67445,7 @@
 	    value: true
 	});
 
-	var _categoryMixin = __webpack_require__(257);
+	var _categoryMixin = __webpack_require__(258);
 
 	var _categoryMixin2 = _interopRequireDefault(_categoryMixin);
 
@@ -67365,7 +67466,7 @@
 	};
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67374,11 +67475,11 @@
 	    value: true
 	});
 
-	var _CategoryTree = __webpack_require__(258);
+	var _CategoryTree = __webpack_require__(259);
 
 	var _CategoryTree2 = _interopRequireDefault(_CategoryTree);
 
-	var _CategorySave = __webpack_require__(261);
+	var _CategorySave = __webpack_require__(262);
 
 	var _CategorySave2 = _interopRequireDefault(_CategorySave);
 
@@ -67510,17 +67611,17 @@
 	};
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(259)
+	__vue_script__ = __webpack_require__(260)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategoryTree.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(260)
+	__vue_template__ = __webpack_require__(261)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -67545,7 +67646,7 @@
 	})()}
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -67616,23 +67717,23 @@
 	};
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<ul class=\"category-tree\">\n    <li class=\"category-child\" v-for=\"(index, o) in categories\">\n        <div class=\"valign-wrapper\">\n            <a :data-activates=\"dropdownId(o)\" href=\"#\" class=\"category-symbol\" :id=\"categorySymbolId(o)\"\n               :class=\"{'grey-text': !o.children.data.length > 0}\">\n                <i class=\"material-icons\">{{ categoryIcon(o) }}</i>\n            </a>\n            <ul :id=\"dropdownId(o)\" class=\"dropdown-content\">\n                <li>\n                    <a href=\"#\" @click.prevent=\"categoryNew(o)\">Adicionar</a>\n                </li>\n                <li>\n                    <a href=\"#\" @click.prevent=\"categoryEdit(o)\">Editar</a>\n                </li>\n                <li>\n                    <a href=\"#\" @click.prevent=\"categoryDelete(o)\">Excluir</a>\n                </li>\n            </ul>\n            <span class=\"valign\">{{{ categoryText(o) }}}</span>\n        </div>\n        <category-tree :categories=\"o.children.data\" :parent=\"o\"></category-tree>\n    </li>\n</ul>\n";
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(262)
+	__vue_script__ = __webpack_require__(263)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategorySave.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(267)
+	__vue_template__ = __webpack_require__(268)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -67657,7 +67758,7 @@
 	})()}
 
 /***/ },
-/* 262 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67670,7 +67771,7 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _SelectMaterial = __webpack_require__(263);
+	var _SelectMaterial = __webpack_require__(264);
 
 	var _SelectMaterial2 = _interopRequireDefault(_SelectMaterial);
 
@@ -67712,17 +67813,17 @@
 	};
 
 /***/ },
-/* 263 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(264)
+	__vue_script__ = __webpack_require__(265)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\SelectMaterial.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(266)
+	__vue_template__ = __webpack_require__(267)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -67747,7 +67848,7 @@
 	})()}
 
 /***/ },
-/* 264 */
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67756,7 +67857,7 @@
 	    value: true
 	});
 
-	__webpack_require__(265);
+	__webpack_require__(266);
 
 	exports.default = {
 	    props: {
@@ -67806,7 +67907,7 @@
 	};
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -73537,35 +73638,35 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<select></select>\n";
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n    <form name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\n        <modal :modal=\"modalOptions\">\n            <div slot=\"content\">\n                <h4>\n                    <slot name=\"title\"></slot>\n                <h4>\n                    <div class=\"row\">\n                        <div class=\"input-field col s12\">\n                            <label class=\"active\">Nome</label>\n                            <input type=\"text\" v-model=\"category.name\" placeholder=\"Digite o nome\"/>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"input-field col s12\">\n                            <label class=\"active\">Categoria pai</label>\n                            <select-material :options=\"parentOptions\" :selected.sync=\"category.parent_id\"></select-material>\n                        </div>\n                    </div>\n            </div>\n            <div slot=\"footer\">\n                <slot name=\"footer\"></slot>\n            </div>\n        </modal>\n    </form>\n</div>\n";
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n    <category-tree :categories=\"categories\"></category-tree>\n\n    <category-save :modal-options=\"modalOptionsSave\" :category.sync=\"categorySave\" :parent-options=\"parentOptions\"\n                   @save-category=\"saveCategory\">\n        <span slot=\"title\">{{title}}</span>\n        <div slot=\"footer\">\n            <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">Ok\n            </button>\n            <a class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</a>\n        </div>\n    </category-save>\n\n    <modal :modal=\"modalOptionsDelete\">\n        <div slot=\"content\" v-if=\"categoryDelete\">\n            <h4>Mensagem de confirmação</h4>\n            <p><strong>Deseja excluir esta categoria?</strong></p>\n            <div class=\"divider\"></div>\n            <p>Nome: <strong>{{categoryDelete.name}}</strong></p>\n            <div class=\"divider\"></div>\n        </div>\n        <div slot=\"footer\">\n            <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click='destroy()'>\n                Ok\n            </button>\n            <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n        </div>\n    </modal>\n</div>\n";
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(270)
+	__vue_script__ = __webpack_require__(271)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategoryExpense.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(271)
+	__vue_template__ = __webpack_require__(272)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73590,7 +73691,7 @@
 	})()}
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73599,7 +73700,7 @@
 	    value: true
 	});
 
-	var _categoryMixin = __webpack_require__(257);
+	var _categoryMixin = __webpack_require__(258);
 
 	var _categoryMixin2 = _interopRequireDefault(_categoryMixin);
 
@@ -73620,29 +73721,29 @@
 	};
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n    <category-tree :categories=\"categories\"></category-tree>\n\n    <category-save :modal-options=\"modalOptionsSave\" :category.sync=\"categorySave\" :parent-options=\"parentOptions\"\n                   @save-category=\"saveCategory\">\n        <span slot=\"title\">{{title}}</span>\n        <div slot=\"footer\">\n            <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">Ok\n            </button>\n            <a class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</a>\n        </div>\n    </category-save>\n\n    <modal :modal=\"modalOptionsDelete\">\n        <div slot=\"content\" v-if=\"categoryDelete\">\n            <h4>Mensagem de confirmação</h4>\n            <p><strong>Deseja excluir esta categoria?</strong></p>\n            <div class=\"divider\"></div>\n            <p>Nome: <strong>{{categoryDelete.name}}</strong></p>\n            <div class=\"divider\"></div>\n        </div>\n        <div slot=\"footer\">\n            <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click='destroy()'>\n                Ok\n            </button>\n            <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n        </div>\n    </modal>\n</div>\n";
 
 /***/ },
-/* 272 */
+/* 273 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"row\">\n\n    <page-title>\n        <h5>Plano de contas</h5>\n    </page-title>\n\n    <div class=\"card-panel z-depth-5\">\n        <h5>Categorias de Receitas</h5>\n        <category-revenue v-ref:revenue></category-revenue>\n        <h5>Categorias de Despesas</h5>\n        <category-expense v-ref:expense></category-expense>\n    </div>\n\n    <div class=\"fixed-action-btn\">\n        <a class=\"btn-floating btn-large\">\n            <i class=\"large material-icons\">add</i>\n        </a>\n        <ul>\n            <li>\n                <a class=\"btn-floating green\" href=\"#\" @click.prevent=\"newRevenue\" title=\"Nova categoria de receita\">\n                    <i class=\"material-icons\">attach_money</i>\n                </a>\n            </li>\n            <li>\n                <a class=\"btn-floating red\" href=\"#\" @click.prevent=\"newExpense\" title=\"Nova categoria de despesa\">\n                    <i class=\"material-icons\">money_off</i>\n                </a>\n            </li>\n        </ul>\n    </div>\n</div>\n";
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(274)
+	__vue_script__ = __webpack_require__(275)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(286)
+	__vue_template__ = __webpack_require__(287)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73667,7 +73768,7 @@
 	})()}
 
 /***/ },
-/* 274 */
+/* 275 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73684,23 +73785,23 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _Pagination = __webpack_require__(235);
+	var _Pagination = __webpack_require__(236);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(243);
+	var _Search = __webpack_require__(244);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
-	var _BillPayCreate = __webpack_require__(275);
+	var _BillPayCreate = __webpack_require__(276);
 
 	var _BillPayCreate2 = _interopRequireDefault(_BillPayCreate);
 
-	var _BillPayUpdate = __webpack_require__(283);
+	var _BillPayUpdate = __webpack_require__(284);
 
 	var _BillPayUpdate2 = _interopRequireDefault(_BillPayUpdate);
 
@@ -73802,18 +73903,18 @@
 	};
 
 /***/ },
-/* 275 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(276)
-	__vue_script__ = __webpack_require__(278)
+	__webpack_require__(277)
+	__vue_script__ = __webpack_require__(279)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(282)
+	__vue_template__ = __webpack_require__(283)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73838,13 +73939,13 @@
 	})()}
 
 /***/ },
-/* 276 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(277);
+	var content = __webpack_require__(278);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -73864,7 +73965,7 @@
 	}
 
 /***/ },
-/* 277 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -73878,7 +73979,7 @@
 
 
 /***/ },
-/* 278 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73887,11 +73988,11 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(279);
+	var _billMixin = __webpack_require__(280);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(281);
+	var _validatorOffRemoveMixin = __webpack_require__(282);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
@@ -73917,7 +74018,7 @@
 	};
 
 /***/ },
-/* 279 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73930,7 +74031,7 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _SelectMaterial = __webpack_require__(263);
+	var _SelectMaterial = __webpack_require__(264);
 
 	var _SelectMaterial2 = _interopRequireDefault(_SelectMaterial);
 
@@ -73938,7 +74039,7 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _bill = __webpack_require__(280);
+	var _bill = __webpack_require__(281);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -74117,7 +74218,7 @@
 	};
 
 /***/ },
-/* 280 */
+/* 281 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -74183,7 +74284,7 @@
 	;
 
 /***/ },
-/* 281 */
+/* 282 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -74198,23 +74299,23 @@
 	};
 
 /***/ },
-/* 282 */
+/* 283 */
 /***/ function(module, exports) {
 
 	module.exports = "<div _v-6031222f=\"\">\n    <form id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\" _v-6031222f=\"\">\n        <modal :modal=\"modalOptions\" _v-6031222f=\"\">\n            <div slot=\"content\" _v-6031222f=\"\">\n                <h5 _v-6031222f=\"\">{{title()}}</h5>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s12\" _v-6031222f=\"\">\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-name=\"category_id\" data-vv-value-path=\"val\" name=\"category_id\" _v-6031222f=\"\">\n                        </select-material>\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\" _v-6031222f=\"\">Categoria de Despesa</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\" class=\"validate\" name=\"value\" v-validate=\"\" data-vv-rules=\"required|number_format:1.00\" :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('value')\" _v-6031222f=\"\">Valor</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\" class=\"validate\" name=\"date_due\" v-validate=\"\" data-vv-rules=\"required|date_format_custom\" :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\" _v-6031222f=\"\">Vencimento</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\" _v-6031222f=\"\">\n                        <label :for=\"doneId()\" _v-6031222f=\"\">Pago?</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s6\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\" v-validate=\"\" data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\" data-vv-as=\"nome\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('name')\" _v-6031222f=\"\">Nome</label>\n                    </div>\n                    <div class=\"input-field col s6\" _v-6031222f=\"\">\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\" class=\"validate\" :value=\"bankAccount.text\" autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\" @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\" _v-6031222f=\"\">\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\" :value=\"bill.bank_account_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-as=\"conta_bancaria\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\" _v-6031222f=\"\">Conta bancária:</label>\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\" _v-6031222f=\"\"></ul>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s3\" _v-6031222f=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\" _v-6031222f=\"\">\n                        <label :for=\"repeatId()\" _v-6031222f=\"\">Repetir?</label>\n                    </div>\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\" _v-6031222f=\"\">\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\" _v-6031222f=\"\">\n                            <option value=\"1\" _v-6031222f=\"\">Mensalmente</option>\n                            <option value=\"2\" _v-6031222f=\"\">Anualmente</option>\n                        </select>\n                    </div>\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\" _v-6031222f=\"\">\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\" _v-6031222f=\"\">\n                        <label class=\"active\" _v-6031222f=\"\">Ocorrências</label>\n                    </div>\n                </div>\n            </div>\n            <div slot=\"footer\" _v-6031222f=\"\">\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\" :disabled=\"fields.dirty() &amp;&amp; errors.any()\" _v-6031222f=\"\">\n                    Ok\n                </button>\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\" _v-6031222f=\"\">\n                    Cancelar\n                </button>\n            </div>\n        </modal>\n    </form>\n</div>";
 
 /***/ },
-/* 283 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(284)
+	__vue_script__ = __webpack_require__(285)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(285)
+	__vue_template__ = __webpack_require__(286)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74239,7 +74340,7 @@
 	})()}
 
 /***/ },
-/* 284 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74248,11 +74349,11 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(279);
+	var _billMixin = __webpack_require__(280);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(281);
+	var _validatorOffRemoveMixin = __webpack_require__(282);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
@@ -74260,7 +74361,7 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _bill = __webpack_require__(280);
+	var _bill = __webpack_require__(281);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -74297,29 +74398,29 @@
 	};
 
 /***/ },
-/* 285 */
+/* 286 */
 /***/ function(module, exports) {
 
 	module.exports = "<div>\r\n    <form id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\r\n        <modal :modal=\"modalOptions\">\r\n            <div slot=\"content\">\r\n                <h5>{{title()}}</h5>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\"\r\n                                         v-validate data-vv-rules=\"required\" data-vv-name=\"category_id\"\r\n                                         data-vv-value-path=\"val\" name=\"category_id\">\r\n                        </select-material>\r\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\">Categoria de Despesa</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\"\r\n                               class=\"validate\" name=\"value\" v-validate data-vv-rules=\"required|number_format:1.00\"\r\n                               :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('value')\">Valor</label>\r\n                    </div>\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\"\r\n                               class=\"validate\" name=\"date_due\" v-validate data-vv-rules=\"required|date_format_custom\"\r\n                               :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\">Vencimento</label>\r\n                    </div>\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\"/>\r\n                        <label :for=\"doneId()\">Pago?</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\"\r\n                               data-vv-as=\"nome\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('name')\">Nome</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\"\r\n                               class=\"validate\" :value=\"bankAccount.text\"\r\n                               autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\"\r\n                               @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\"/>\r\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\"\r\n                               :value=\"bill.bank_account_id\" v-validate data-vv-rules=\"required\"\r\n                               data-vv-as=\"conta_bancaria\">\r\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\">Conta bancária:</label>\r\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s3\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\"/>\r\n                        <label :for=\"repeatId()\">Repetir?</label>\r\n                    </div>\r\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\">\r\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\">\r\n                            <option value=\"1\">Mensalmente</option>\r\n                            <option value=\"2\">Anualmente</option>\r\n                        </select>\r\n                    </div>\r\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\">\r\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\"/>\r\n                        <label class=\"active\">Ocorrências</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div slot=\"footer\">\r\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\"\r\n                        :disabled=\"fields.dirty() && errors.any()\">\r\n                    Ok\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\">\r\n                    Cancelar\r\n                </button>\r\n            </div>\r\n        </modal>\r\n    </form>\r\n</div>";
 
 /***/ },
-/* 286 */
+/* 287 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas a pagar</h5>\n            </page-title>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bills\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.date_due | dateFormat}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.value | numberFormat true}}</td>\n                    <td>\n                        <a href=\"#\" @click.prevent=\"openModalEdit(index)\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n    </div>\n<!--</div>  container -->\n\n<div class=\"fixed-action-btn\">\n    <a class=\"btn-floating btn-large\" @click.prevent=\"openModalCreate()\">\n        <i class=\"large material-icons\">add</i>\n    </a>\n</div>\n\n<bill-pay-create :modal-options=\"modalCreate\"></bill-pay-create>\n<bill-pay-update :index=\"indexUpdate\" :modal-options=\"modalEdit\"></bill-pay-update>\n\n<modal :modal=\"modalDelete\">\n    <div slot=\"content\" v-if=\"billPayDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Vencimento: <strong>{{billPayDelete.date_due}}</strong></p>\n        <p>Nome: <strong>{{billPayDelete.name}}</strong></p>\n        <p>Valor: <strong>{{billPayDelete.value}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";
 
 /***/ },
-/* 287 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(288)
+	__vue_script__ = __webpack_require__(289)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-receive\\BillReceiveList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(296)
+	__vue_template__ = __webpack_require__(297)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74344,7 +74445,7 @@
 	})()}
 
 /***/ },
-/* 288 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74361,23 +74462,23 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _Pagination = __webpack_require__(235);
+	var _Pagination = __webpack_require__(236);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(243);
+	var _Search = __webpack_require__(244);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
-	var _BillReceiveCreate = __webpack_require__(289);
+	var _BillReceiveCreate = __webpack_require__(290);
 
 	var _BillReceiveCreate2 = _interopRequireDefault(_BillReceiveCreate);
 
-	var _BillReceiveUpdate = __webpack_require__(294);
+	var _BillReceiveUpdate = __webpack_require__(295);
 
 	var _BillReceiveUpdate2 = _interopRequireDefault(_BillReceiveUpdate);
 
@@ -74479,18 +74580,18 @@
 	};
 
 /***/ },
-/* 289 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(290)
-	__vue_script__ = __webpack_require__(292)
+	__webpack_require__(291)
+	__vue_script__ = __webpack_require__(293)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-receive\\BillReceiveCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(293)
+	__vue_template__ = __webpack_require__(294)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74515,13 +74616,13 @@
 	})()}
 
 /***/ },
-/* 290 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(291);
+	var content = __webpack_require__(292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -74541,7 +74642,7 @@
 	}
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -74555,7 +74656,7 @@
 
 
 /***/ },
-/* 292 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74564,11 +74665,11 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(279);
+	var _billMixin = __webpack_require__(280);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(281);
+	var _validatorOffRemoveMixin = __webpack_require__(282);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
@@ -74594,23 +74695,23 @@
 	};
 
 /***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports) {
 
 	module.exports = "<div _v-454c6225=\"\">\n    <form id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\" _v-454c6225=\"\">\n        <modal :modal=\"modalOptions\" _v-454c6225=\"\">\n            <div slot=\"content\" _v-454c6225=\"\">\n                <h5 _v-454c6225=\"\">{{title()}}</h5>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s12\" _v-454c6225=\"\">\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-name=\"category_id\" data-vv-value-path=\"val\" name=\"category_id\" _v-454c6225=\"\">\n                        </select-material>\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\" _v-454c6225=\"\">Categoria de Despesa</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s4\" _v-454c6225=\"\">\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\" class=\"validate\" name=\"value\" v-validate=\"\" data-vv-rules=\"required|number_format:1.00\" :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('value')\" _v-454c6225=\"\">Valor</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-454c6225=\"\">\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\" class=\"validate\" name=\"date_due\" v-validate=\"\" data-vv-rules=\"required|date_format_custom\" :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\" _v-454c6225=\"\">Vencimento</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-454c6225=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\" _v-454c6225=\"\">\n                        <label :for=\"doneId()\" _v-454c6225=\"\">Pago?</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s6\" _v-454c6225=\"\">\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\" v-validate=\"\" data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\" data-vv-as=\"nome\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('name')\" _v-454c6225=\"\">Nome</label>\n                    </div>\n                    <div class=\"input-field col s6\" _v-454c6225=\"\">\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\" class=\"validate\" :value=\"bankAccount.text\" autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\" @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\" _v-454c6225=\"\">\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\" :value=\"bill.bank_account_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-as=\"conta_bancaria\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\" _v-454c6225=\"\">Conta bancária:</label>\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\" _v-454c6225=\"\"></ul>\n                    </div>\n                </div>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s3\" _v-454c6225=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\" _v-454c6225=\"\">\n                        <label :for=\"repeatId()\" _v-454c6225=\"\">Repetir?</label>\n                    </div>\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\" _v-454c6225=\"\">\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\" _v-454c6225=\"\">\n                            <option value=\"1\" _v-454c6225=\"\">Mensalmente</option>\n                            <option value=\"2\" _v-454c6225=\"\">Anualmente</option>\n                        </select>\n                    </div>\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\" _v-454c6225=\"\">\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\" _v-454c6225=\"\">\n                        <label class=\"active\" _v-454c6225=\"\">Ocorrências</label>\n                    </div>\n                </div>\n            </div>\n            <div slot=\"footer\" _v-454c6225=\"\">\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\" :disabled=\"fields.dirty() &amp;&amp; errors.any()\" _v-454c6225=\"\">\n                    Ok\n                </button>\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\" _v-454c6225=\"\">\n                    Cancelar\n                </button>\n            </div>\n        </modal>\n    </form>\n</div>";
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(295)
+	__vue_script__ = __webpack_require__(296)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-receive\\BillReceiveUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(285)
+	__vue_template__ = __webpack_require__(286)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74635,7 +74736,7 @@
 	})()}
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74644,11 +74745,11 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(279);
+	var _billMixin = __webpack_require__(280);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(281);
+	var _validatorOffRemoveMixin = __webpack_require__(282);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
@@ -74656,7 +74757,7 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _bill = __webpack_require__(280);
+	var _bill = __webpack_require__(281);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -74693,23 +74794,24 @@
 	};
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas a receber</h5>\n            </page-title>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bills\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.date_due | dateFormat}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.value | numberFormat true}}</td>\n                    <td>\n                        <a href=\"#\" @click.prevent=\"openModalEdit(index)\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n    </div>\n<!--</div>  container -->\n\n<div class=\"fixed-action-btn\">\n    <a class=\"btn-floating btn-large\" @click.prevent=\"openModalCreate()\">\n        <i class=\"large material-icons\">add</i>\n    </a>\n</div>\n\n<bill-receive-create :modal-options=\"modalCreate\"></bill-receive-create>\n<bill-receive-update :index=\"indexUpdate\" :modal-options=\"modalEdit\"></bill-receive-update>\n\n<modal :modal=\"modalDelete\">\n    <div slot=\"content\" v-if=\"billPayDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Vencimento: <strong>{{billPayDelete.date_due}}</strong></p>\n        <p>Nome: <strong>{{billPayDelete.name}}</strong></p>\n        <p>Valor: <strong>{{billPayDelete.value}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(298)
+	__webpack_require__(299)
+	__vue_script__ = __webpack_require__(301)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\cash-flow\\CashFlowList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(299)
+	__vue_template__ = __webpack_require__(303)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74734,7 +74836,47 @@
 	})()}
 
 /***/ },
-/* 298 */
+/* 299 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(300);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(68)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../../node_modules/css-loader/index.js!./../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-46a877ac&scoped=true!./../../../../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./CashFlowList.vue", function() {
+				var newContent = require("!!./../../../../../../node_modules/css-loader/index.js!./../../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=_v-46a877ac&scoped=true!./../../../../../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./CashFlowList.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 300 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(67)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nth[_v-46a877ac], tr[_v-46a877ac]{\n    border-radius: 0px;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74747,9 +74889,13 @@
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _PageTitle = __webpack_require__(238);
+	var _PageTitle = __webpack_require__(239);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
+
+	var _papaparse = __webpack_require__(302);
+
+	var _papaparse2 = _interopRequireDefault(_papaparse);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74797,15 +74943,1665 @@
 	        },
 	        categoryTotal: function categoryTotal(category, monthYear) {
 	            return _store2.default.getters['cashFlow/categoryTotal'](category, monthYear);
+	        },
+	        isCurrentMonthYear: function isCurrentMonthYear(monthYear) {
+	            return this.$options.filters.monthYear(new Date()) == this.$options.filters.monthYear(monthYear);
+	        },
+	        downloadCsv: function downloadCsv() {
+	            var anchor = $('<a/>');
+	            anchor.css('display', 'none');
+	            anchor.attr('download', 'fluxo-de-caixa.csv').attr('target', '_blank').attr('href', 'data:text/csv;charset=UTF-8,' + encodeURIComponent(this.getCsv()));
+	            anchor.html('Download CSV');
+	            $('body').append(anchor);
+	            anchor[0].click();
+	            anchor.remove();
+	        },
+	        getCsv: function getCsv() {
+	            var csvResult = [];
+	            csvResult.push([]);
+	            $('table thead .text-csv').each(function (key, item) {
+	                csvResult[0].push($(item).text().trim());
+	            });
+	            $('table tbody tr').each(function (key, tr) {
+	                csvResult.push([]);
+	                $(tr).find('.text-csv').each(function (k, element) {
+	                    csvResult[csvResult.length - 1].push($(element).text().trim());
+	                });
+	            });
+
+	            return _papaparse2.default.unparse(csvResult);
 	        }
 	    }
 	};
 
 /***/ },
-/* 299 */
+/* 302 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+		Papa Parse
+		v4.1.4
+		https://github.com/mholt/PapaParse
+	*/
+	(function(root, factory)
+	{
+		if (true)
+		{
+			// AMD. Register as an anonymous module.
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		}
+		else if (typeof module === 'object' && module.exports)
+		{
+			// Node. Does not work with strict CommonJS, but
+			// only CommonJS-like environments that support module.exports,
+			// like Node.
+			module.exports = factory();
+		}
+		else
+		{
+			// Browser globals (root is window)
+			root.Papa = factory();
+		}
+	}(this, function()
+	{
+		'use strict';
+
+		var global = (function () {
+			// alternative method, similar to `Function('return this')()`
+			// but without using `eval` (which is disabled when
+			// using Content Security Policy).
+
+			if (typeof self !== 'undefined') { return self; }
+			if (typeof window !== 'undefined') { return window; }
+			if (typeof global !== 'undefined') { return global; }
+
+	        // When running tests none of the above have been defined
+	        return {};
+		})();
+
+
+		var IS_WORKER = !global.document && !!global.postMessage,
+			IS_PAPA_WORKER = IS_WORKER && /(\?|&)papaworker(=|&|$)/.test(global.location.search),
+			LOADED_SYNC = false, AUTO_SCRIPT_PATH;
+		var workers = {}, workerIdCounter = 0;
+
+		var Papa = {};
+
+		Papa.parse = CsvToJson;
+		Papa.unparse = JsonToCsv;
+
+		Papa.RECORD_SEP = String.fromCharCode(30);
+		Papa.UNIT_SEP = String.fromCharCode(31);
+		Papa.BYTE_ORDER_MARK = '\ufeff';
+		Papa.BAD_DELIMITERS = ['\r', '\n', '"', Papa.BYTE_ORDER_MARK];
+		Papa.WORKERS_SUPPORTED = !IS_WORKER && !!global.Worker;
+		Papa.SCRIPT_PATH = null;	// Must be set by your code if you use workers and this lib is loaded asynchronously
+
+		// Configurable chunk sizes for local and remote files, respectively
+		Papa.LocalChunkSize = 1024 * 1024 * 10;	// 10 MB
+		Papa.RemoteChunkSize = 1024 * 1024 * 5;	// 5 MB
+		Papa.DefaultDelimiter = ',';			// Used if not specified and detection fails
+
+		// Exposed for testing and development only
+		Papa.Parser = Parser;
+		Papa.ParserHandle = ParserHandle;
+		Papa.NetworkStreamer = NetworkStreamer;
+		Papa.FileStreamer = FileStreamer;
+		Papa.StringStreamer = StringStreamer;
+
+		if (global.jQuery)
+		{
+			var $ = global.jQuery;
+			$.fn.parse = function(options)
+			{
+				var config = options.config || {};
+				var queue = [];
+
+				this.each(function(idx)
+				{
+					var supported = $(this).prop('tagName').toUpperCase() === 'INPUT'
+									&& $(this).attr('type').toLowerCase() === 'file'
+									&& global.FileReader;
+
+					if (!supported || !this.files || this.files.length === 0)
+						return true;	// continue to next input element
+
+					for (var i = 0; i < this.files.length; i++)
+					{
+						queue.push({
+							file: this.files[i],
+							inputElem: this,
+							instanceConfig: $.extend({}, config)
+						});
+					}
+				});
+
+				parseNextFile();	// begin parsing
+				return this;		// maintains chainability
+
+
+				function parseNextFile()
+				{
+					if (queue.length === 0)
+					{
+						if (isFunction(options.complete))
+							options.complete();
+						return;
+					}
+
+					var f = queue[0];
+
+					if (isFunction(options.before))
+					{
+						var returned = options.before(f.file, f.inputElem);
+
+						if (typeof returned === 'object')
+						{
+							if (returned.action === 'abort')
+							{
+								error('AbortError', f.file, f.inputElem, returned.reason);
+								return;	// Aborts all queued files immediately
+							}
+							else if (returned.action === 'skip')
+							{
+								fileComplete();	// parse the next file in the queue, if any
+								return;
+							}
+							else if (typeof returned.config === 'object')
+								f.instanceConfig = $.extend(f.instanceConfig, returned.config);
+						}
+						else if (returned === 'skip')
+						{
+							fileComplete();	// parse the next file in the queue, if any
+							return;
+						}
+					}
+
+					// Wrap up the user's complete callback, if any, so that ours also gets executed
+					var userCompleteFunc = f.instanceConfig.complete;
+					f.instanceConfig.complete = function(results)
+					{
+						if (isFunction(userCompleteFunc))
+							userCompleteFunc(results, f.file, f.inputElem);
+						fileComplete();
+					};
+
+					Papa.parse(f.file, f.instanceConfig);
+				}
+
+				function error(name, file, elem, reason)
+				{
+					if (isFunction(options.error))
+						options.error({name: name}, file, elem, reason);
+				}
+
+				function fileComplete()
+				{
+					queue.splice(0, 1);
+					parseNextFile();
+				}
+			}
+		}
+
+
+		if (IS_PAPA_WORKER)
+		{
+			global.onmessage = workerThreadReceivedMessage;
+		}
+		else if (Papa.WORKERS_SUPPORTED)
+		{
+			AUTO_SCRIPT_PATH = getScriptPath();
+
+			// Check if the script was loaded synchronously
+			if (!document.body)
+			{
+				// Body doesn't exist yet, must be synchronous
+				LOADED_SYNC = true;
+			}
+			else
+			{
+				document.addEventListener('DOMContentLoaded', function () {
+					LOADED_SYNC = true;
+				}, true);
+			}
+		}
+
+
+
+
+		function CsvToJson(_input, _config)
+		{
+			_config = _config || {};
+			_config.dynamicTyping = _config.dynamicTyping || false;
+
+			if (_config.worker && Papa.WORKERS_SUPPORTED)
+			{
+				var w = newWorker();
+
+				w.userStep = _config.step;
+				w.userChunk = _config.chunk;
+				w.userComplete = _config.complete;
+				w.userError = _config.error;
+
+				_config.step = isFunction(_config.step);
+				_config.chunk = isFunction(_config.chunk);
+				_config.complete = isFunction(_config.complete);
+				_config.error = isFunction(_config.error);
+				delete _config.worker;	// prevent infinite loop
+
+				w.postMessage({
+					input: _input,
+					config: _config,
+					workerId: w.id
+				});
+
+				return;
+			}
+
+			var streamer = null;
+			if (typeof _input === 'string')
+			{
+				if (_config.download)
+					streamer = new NetworkStreamer(_config);
+				else
+					streamer = new StringStreamer(_config);
+			}
+			else if ((global.File && _input instanceof File) || _input instanceof Object)	// ...Safari. (see issue #106)
+				streamer = new FileStreamer(_config);
+
+			return streamer.stream(_input);
+		}
+
+
+
+
+
+
+		function JsonToCsv(_input, _config)
+		{
+			var _output = '';
+			var _fields = [];
+
+			// Default configuration
+
+			/** whether to surround every datum with quotes */
+			var _quotes = false;
+
+			/** whether to write headers */
+			var _writeHeader = true;
+
+			/** delimiting character */
+			var _delimiter = ',';
+
+			/** newline character(s) */
+			var _newline = '\r\n';
+
+			/** quote character */
+			var _quoteChar = '"';
+
+			unpackConfig();
+
+			var quoteCharRegex = new RegExp(_quoteChar, 'g');
+
+			if (typeof _input === 'string')
+				_input = JSON.parse(_input);
+
+			if (_input instanceof Array)
+			{
+				if (!_input.length || _input[0] instanceof Array)
+					return serialize(null, _input);
+				else if (typeof _input[0] === 'object')
+					return serialize(objectKeys(_input[0]), _input);
+			}
+			else if (typeof _input === 'object')
+			{
+				if (typeof _input.data === 'string')
+					_input.data = JSON.parse(_input.data);
+
+				if (_input.data instanceof Array)
+				{
+					if (!_input.fields)
+						_input.fields =  _input.meta && _input.meta.fields;
+
+					if (!_input.fields)
+						_input.fields =  _input.data[0] instanceof Array
+										? _input.fields
+										: objectKeys(_input.data[0]);
+
+					if (!(_input.data[0] instanceof Array) && typeof _input.data[0] !== 'object')
+						_input.data = [_input.data];	// handles input like [1,2,3] or ['asdf']
+				}
+
+				return serialize(_input.fields || [], _input.data || []);
+			}
+
+			// Default (any valid paths should return before this)
+			throw 'exception: Unable to serialize unrecognized input';
+
+
+			function unpackConfig()
+			{
+				if (typeof _config !== 'object')
+					return;
+
+				if (typeof _config.delimiter === 'string'
+					&& _config.delimiter.length === 1
+					&& Papa.BAD_DELIMITERS.indexOf(_config.delimiter) === -1)
+				{
+					_delimiter = _config.delimiter;
+				}
+
+				if (typeof _config.quotes === 'boolean'
+					|| _config.quotes instanceof Array)
+					_quotes = _config.quotes;
+
+				if (typeof _config.newline === 'string')
+					_newline = _config.newline;
+
+				if (typeof _config.quoteChar === 'string')
+					_quoteChar = _config.quoteChar;
+
+				if (typeof _config.header === 'boolean')
+					_writeHeader = _config.header;
+			}
+
+
+			/** Turns an object's keys into an array */
+			function objectKeys(obj)
+			{
+				if (typeof obj !== 'object')
+					return [];
+				var keys = [];
+				for (var key in obj)
+					keys.push(key);
+				return keys;
+			}
+
+			/** The double for loop that iterates the data and writes out a CSV string including header row */
+			function serialize(fields, data)
+			{
+				var csv = '';
+
+				if (typeof fields === 'string')
+					fields = JSON.parse(fields);
+				if (typeof data === 'string')
+					data = JSON.parse(data);
+
+				var hasHeader = fields instanceof Array && fields.length > 0;
+				var dataKeyedByField = !(data[0] instanceof Array);
+
+				// If there a header row, write it first
+				if (hasHeader && _writeHeader)
+				{
+					for (var i = 0; i < fields.length; i++)
+					{
+						if (i > 0)
+							csv += _delimiter;
+						csv += safe(fields[i], i);
+					}
+					if (data.length > 0)
+						csv += _newline;
+				}
+
+				// Then write out the data
+				for (var row = 0; row < data.length; row++)
+				{
+					var maxCol = hasHeader ? fields.length : data[row].length;
+
+					for (var col = 0; col < maxCol; col++)
+					{
+						if (col > 0)
+							csv += _delimiter;
+						var colIdx = hasHeader && dataKeyedByField ? fields[col] : col;
+						csv += safe(data[row][colIdx], col);
+					}
+
+					if (row < data.length - 1)
+						csv += _newline;
+				}
+
+				return csv;
+			}
+
+			/** Encloses a value around quotes if needed (makes a value safe for CSV insertion) */
+			function safe(str, col)
+			{
+				if (typeof str === 'undefined' || str === null)
+					return '';
+
+				str = str.toString().replace(quoteCharRegex, _quoteChar+_quoteChar);
+
+				var needsQuotes = (typeof _quotes === 'boolean' && _quotes)
+								|| (_quotes instanceof Array && _quotes[col])
+								|| hasAny(str, Papa.BAD_DELIMITERS)
+								|| str.indexOf(_delimiter) > -1
+								|| str.charAt(0) === ' '
+								|| str.charAt(str.length - 1) === ' ';
+
+				return needsQuotes ? _quoteChar + str + _quoteChar : str;
+			}
+
+			function hasAny(str, substrings)
+			{
+				for (var i = 0; i < substrings.length; i++)
+					if (str.indexOf(substrings[i]) > -1)
+						return true;
+				return false;
+			}
+		}
+
+		/** ChunkStreamer is the base prototype for various streamer implementations. */
+		function ChunkStreamer(config)
+		{
+			this._handle = null;
+			this._paused = false;
+			this._finished = false;
+			this._input = null;
+			this._baseIndex = 0;
+			this._partialLine = '';
+			this._rowCount = 0;
+			this._start = 0;
+			this._nextChunk = null;
+			this.isFirstChunk = true;
+			this._completeResults = {
+				data: [],
+				errors: [],
+				meta: {}
+			};
+			replaceConfig.call(this, config);
+
+			this.parseChunk = function(chunk)
+			{
+				// First chunk pre-processing
+				if (this.isFirstChunk && isFunction(this._config.beforeFirstChunk))
+				{
+					var modifiedChunk = this._config.beforeFirstChunk(chunk);
+					if (modifiedChunk !== undefined)
+						chunk = modifiedChunk;
+				}
+				this.isFirstChunk = false;
+
+				// Rejoin the line we likely just split in two by chunking the file
+				var aggregate = this._partialLine + chunk;
+				this._partialLine = '';
+
+				var results = this._handle.parse(aggregate, this._baseIndex, !this._finished);
+
+				if (this._handle.paused() || this._handle.aborted())
+					return;
+
+				var lastIndex = results.meta.cursor;
+
+				if (!this._finished)
+				{
+					this._partialLine = aggregate.substring(lastIndex - this._baseIndex);
+					this._baseIndex = lastIndex;
+				}
+
+				if (results && results.data)
+					this._rowCount += results.data.length;
+
+				var finishedIncludingPreview = this._finished || (this._config.preview && this._rowCount >= this._config.preview);
+
+				if (IS_PAPA_WORKER)
+				{
+					global.postMessage({
+						results: results,
+						workerId: Papa.WORKER_ID,
+						finished: finishedIncludingPreview
+					});
+				}
+				else if (isFunction(this._config.chunk))
+				{
+					this._config.chunk(results, this._handle);
+					if (this._paused)
+						return;
+					results = undefined;
+					this._completeResults = undefined;
+				}
+
+				if (!this._config.step && !this._config.chunk) {
+					this._completeResults.data = this._completeResults.data.concat(results.data);
+					this._completeResults.errors = this._completeResults.errors.concat(results.errors);
+					this._completeResults.meta = results.meta;
+				}
+
+				if (finishedIncludingPreview && isFunction(this._config.complete) && (!results || !results.meta.aborted))
+					this._config.complete(this._completeResults, this._input);
+
+				if (!finishedIncludingPreview && (!results || !results.meta.paused))
+					this._nextChunk();
+
+				return results;
+			};
+
+			this._sendError = function(error)
+			{
+				if (isFunction(this._config.error))
+					this._config.error(error);
+				else if (IS_PAPA_WORKER && this._config.error)
+				{
+					global.postMessage({
+						workerId: Papa.WORKER_ID,
+						error: error,
+						finished: false
+					});
+				}
+			};
+
+			function replaceConfig(config)
+			{
+				// Deep-copy the config so we can edit it
+				var configCopy = copy(config);
+				configCopy.chunkSize = parseInt(configCopy.chunkSize);	// parseInt VERY important so we don't concatenate strings!
+				if (!config.step && !config.chunk)
+					configCopy.chunkSize = null;  // disable Range header if not streaming; bad values break IIS - see issue #196
+				this._handle = new ParserHandle(configCopy);
+				this._handle.streamer = this;
+				this._config = configCopy;	// persist the copy to the caller
+			}
+		}
+
+
+		function NetworkStreamer(config)
+		{
+			config = config || {};
+			if (!config.chunkSize)
+				config.chunkSize = Papa.RemoteChunkSize;
+			ChunkStreamer.call(this, config);
+
+			var xhr;
+
+			if (IS_WORKER)
+			{
+				this._nextChunk = function()
+				{
+					this._readChunk();
+					this._chunkLoaded();
+				};
+			}
+			else
+			{
+				this._nextChunk = function()
+				{
+					this._readChunk();
+				};
+			}
+
+			this.stream = function(url)
+			{
+				this._input = url;
+				this._nextChunk();	// Starts streaming
+			};
+
+			this._readChunk = function()
+			{
+				if (this._finished)
+				{
+					this._chunkLoaded();
+					return;
+				}
+
+				xhr = new XMLHttpRequest();
+
+				if (this._config.withCredentials)
+				{
+					xhr.withCredentials = this._config.withCredentials;
+				}
+
+				if (!IS_WORKER)
+				{
+					xhr.onload = bindFunction(this._chunkLoaded, this);
+					xhr.onerror = bindFunction(this._chunkError, this);
+				}
+
+				xhr.open('GET', this._input, !IS_WORKER);
+
+				if (this._config.chunkSize)
+				{
+					var end = this._start + this._config.chunkSize - 1;	// minus one because byte range is inclusive
+					xhr.setRequestHeader('Range', 'bytes='+this._start+'-'+end);
+					xhr.setRequestHeader('If-None-Match', 'webkit-no-cache'); // https://bugs.webkit.org/show_bug.cgi?id=82672
+				}
+
+				try {
+					xhr.send();
+				}
+				catch (err) {
+					this._chunkError(err.message);
+				}
+
+				if (IS_WORKER && xhr.status === 0)
+					this._chunkError();
+				else
+					this._start += this._config.chunkSize;
+			}
+
+			this._chunkLoaded = function()
+			{
+				if (xhr.readyState != 4)
+					return;
+
+				if (xhr.status < 200 || xhr.status >= 400)
+				{
+					this._chunkError();
+					return;
+				}
+
+				this._finished = !this._config.chunkSize || this._start > getFileSize(xhr);
+				this.parseChunk(xhr.responseText);
+			}
+
+			this._chunkError = function(errorMessage)
+			{
+				var errorText = xhr.statusText || errorMessage;
+				this._sendError(errorText);
+			}
+
+			function getFileSize(xhr)
+			{
+				var contentRange = xhr.getResponseHeader('Content-Range');
+				if (contentRange === null) { // no content range, then finish!
+	        			return -1;
+	            		}
+				return parseInt(contentRange.substr(contentRange.lastIndexOf('/') + 1));
+			}
+		}
+		NetworkStreamer.prototype = Object.create(ChunkStreamer.prototype);
+		NetworkStreamer.prototype.constructor = NetworkStreamer;
+
+
+		function FileStreamer(config)
+		{
+			config = config || {};
+			if (!config.chunkSize)
+				config.chunkSize = Papa.LocalChunkSize;
+			ChunkStreamer.call(this, config);
+
+			var reader, slice;
+
+			// FileReader is better than FileReaderSync (even in worker) - see http://stackoverflow.com/q/24708649/1048862
+			// But Firefox is a pill, too - see issue #76: https://github.com/mholt/PapaParse/issues/76
+			var usingAsyncReader = typeof FileReader !== 'undefined';	// Safari doesn't consider it a function - see issue #105
+
+			this.stream = function(file)
+			{
+				this._input = file;
+				slice = file.slice || file.webkitSlice || file.mozSlice;
+
+				if (usingAsyncReader)
+				{
+					reader = new FileReader();		// Preferred method of reading files, even in workers
+					reader.onload = bindFunction(this._chunkLoaded, this);
+					reader.onerror = bindFunction(this._chunkError, this);
+				}
+				else
+					reader = new FileReaderSync();	// Hack for running in a web worker in Firefox
+
+				this._nextChunk();	// Starts streaming
+			};
+
+			this._nextChunk = function()
+			{
+				if (!this._finished && (!this._config.preview || this._rowCount < this._config.preview))
+					this._readChunk();
+			}
+
+			this._readChunk = function()
+			{
+				var input = this._input;
+				if (this._config.chunkSize)
+				{
+					var end = Math.min(this._start + this._config.chunkSize, this._input.size);
+					input = slice.call(input, this._start, end);
+				}
+				var txt = reader.readAsText(input, this._config.encoding);
+				if (!usingAsyncReader)
+					this._chunkLoaded({ target: { result: txt } });	// mimic the async signature
+			}
+
+			this._chunkLoaded = function(event)
+			{
+				// Very important to increment start each time before handling results
+				this._start += this._config.chunkSize;
+				this._finished = !this._config.chunkSize || this._start >= this._input.size;
+				this.parseChunk(event.target.result);
+			}
+
+			this._chunkError = function()
+			{
+				this._sendError(reader.error);
+			}
+
+		}
+		FileStreamer.prototype = Object.create(ChunkStreamer.prototype);
+		FileStreamer.prototype.constructor = FileStreamer;
+
+
+		function StringStreamer(config)
+		{
+			config = config || {};
+			ChunkStreamer.call(this, config);
+
+			var string;
+			var remaining;
+			this.stream = function(s)
+			{
+				string = s;
+				remaining = s;
+				return this._nextChunk();
+			}
+			this._nextChunk = function()
+			{
+				if (this._finished) return;
+				var size = this._config.chunkSize;
+				var chunk = size ? remaining.substr(0, size) : remaining;
+				remaining = size ? remaining.substr(size) : '';
+				this._finished = !remaining;
+				return this.parseChunk(chunk);
+			}
+		}
+		StringStreamer.prototype = Object.create(StringStreamer.prototype);
+		StringStreamer.prototype.constructor = StringStreamer;
+
+
+
+		// Use one ParserHandle per entire CSV file or string
+		function ParserHandle(_config)
+		{
+			// One goal is to minimize the use of regular expressions...
+			var FLOAT = /^\s*-?(\d*\.?\d+|\d+\.?\d*)(e[-+]?\d+)?\s*$/i;
+
+			var self = this;
+			var _stepCounter = 0;	// Number of times step was called (number of rows parsed)
+			var _input;				// The input being parsed
+			var _parser;			// The core parser being used
+			var _paused = false;	// Whether we are paused or not
+			var _aborted = false;   // Whether the parser has aborted or not
+			var _delimiterError;	// Temporary state between delimiter detection and processing results
+			var _fields = [];		// Fields are from the header row of the input, if there is one
+			var _results = {		// The last results returned from the parser
+				data: [],
+				errors: [],
+				meta: {}
+			};
+
+			if (isFunction(_config.step))
+			{
+				var userStep = _config.step;
+				_config.step = function(results)
+				{
+					_results = results;
+
+					if (needsHeaderRow())
+						processResults();
+					else	// only call user's step function after header row
+					{
+						processResults();
+
+						// It's possbile that this line was empty and there's no row here after all
+						if (_results.data.length === 0)
+							return;
+
+						_stepCounter += results.data.length;
+						if (_config.preview && _stepCounter > _config.preview)
+							_parser.abort();
+						else
+							userStep(_results, self);
+					}
+				};
+			}
+
+			/**
+			 * Parses input. Most users won't need, and shouldn't mess with, the baseIndex
+			 * and ignoreLastRow parameters. They are used by streamers (wrapper functions)
+			 * when an input comes in multiple chunks, like from a file.
+			 */
+			this.parse = function(input, baseIndex, ignoreLastRow)
+			{
+				if (!_config.newline)
+					_config.newline = guessLineEndings(input);
+
+				_delimiterError = false;
+				if (!_config.delimiter)
+				{
+					var delimGuess = guessDelimiter(input, _config.newline);
+					if (delimGuess.successful)
+						_config.delimiter = delimGuess.bestDelimiter;
+					else
+					{
+						_delimiterError = true;	// add error after parsing (otherwise it would be overwritten)
+						_config.delimiter = Papa.DefaultDelimiter;
+					}
+					_results.meta.delimiter = _config.delimiter;
+				}
+				else if(typeof _config.delimiter === 'function')
+				{
+					_config.delimiter = _config.delimiter(input);
+					_results.meta.delimiter = _config.delimiter;
+				}
+
+				var parserConfig = copy(_config);
+				if (_config.preview && _config.header)
+					parserConfig.preview++;	// to compensate for header row
+
+				_input = input;
+				_parser = new Parser(parserConfig);
+				_results = _parser.parse(_input, baseIndex, ignoreLastRow);
+				processResults();
+				return _paused ? { meta: { paused: true } } : (_results || { meta: { paused: false } });
+			};
+
+			this.paused = function()
+			{
+				return _paused;
+			};
+
+			this.pause = function()
+			{
+				_paused = true;
+				_parser.abort();
+				_input = _input.substr(_parser.getCharIndex());
+			};
+
+			this.resume = function()
+			{
+				_paused = false;
+				self.streamer.parseChunk(_input);
+			};
+
+			this.aborted = function ()
+			{
+				return _aborted;
+			};
+
+			this.abort = function()
+			{
+				_aborted = true;
+				_parser.abort();
+				_results.meta.aborted = true;
+				if (isFunction(_config.complete))
+					_config.complete(_results);
+				_input = '';
+			};
+
+			function processResults()
+			{
+				if (_results && _delimiterError)
+				{
+					addError('Delimiter', 'UndetectableDelimiter', 'Unable to auto-detect delimiting character; defaulted to \''+Papa.DefaultDelimiter+'\'');
+					_delimiterError = false;
+				}
+
+				if (_config.skipEmptyLines)
+				{
+					for (var i = 0; i < _results.data.length; i++)
+						if (_results.data[i].length === 1 && _results.data[i][0] === '')
+							_results.data.splice(i--, 1);
+				}
+
+				if (needsHeaderRow())
+					fillHeaderFields();
+
+				return applyHeaderAndDynamicTyping();
+			}
+
+			function needsHeaderRow()
+			{
+				return _config.header && _fields.length === 0;
+			}
+
+			function fillHeaderFields()
+			{
+				if (!_results)
+					return;
+				for (var i = 0; needsHeaderRow() && i < _results.data.length; i++)
+					for (var j = 0; j < _results.data[i].length; j++)
+						_fields.push(_results.data[i][j]);
+				_results.data.splice(0, 1);
+			}
+
+			function parseDynamic(field, value)
+			{
+				if ((_config.dynamicTyping[field] || _config.dynamicTyping) === true)
+				{
+					if (value === 'true' || value === 'TRUE')
+						return true;
+					else if (value === 'false' || value === 'FALSE')
+						return false;
+					else
+						return tryParseFloat(value);
+				}
+				return value;
+			}
+
+			function applyHeaderAndDynamicTyping()
+			{
+				if (!_results || (!_config.header && !_config.dynamicTyping))
+					return _results;
+
+				for (var i = 0; i < _results.data.length; i++)
+				{
+					var row = _config.header ? {} : [];
+
+					for (var j = 0; j < _results.data[i].length; j++)
+					{
+						var field = j;
+						var value = _results.data[i][j];
+
+						if (_config.header)
+							field = j >= _fields.length ? '__parsed_extra' : _fields[j];
+
+						value = parseDynamic(field, value);
+
+						if (field === '__parsed_extra')
+						{
+							row[field] = row[field] || [];
+							row[field].push(value);
+						}
+						else
+							row[field] = value;
+					}
+
+					_results.data[i] = row;
+
+					if (_config.header)
+					{
+						if (j > _fields.length)
+							addError('FieldMismatch', 'TooManyFields', 'Too many fields: expected ' + _fields.length + ' fields but parsed ' + j, i);
+						else if (j < _fields.length)
+							addError('FieldMismatch', 'TooFewFields', 'Too few fields: expected ' + _fields.length + ' fields but parsed ' + j, i);
+					}
+				}
+
+				if (_config.header && _results.meta)
+					_results.meta.fields = _fields;
+				return _results;
+			}
+
+			function guessDelimiter(input, newline)
+			{
+				var delimChoices = [',', '\t', '|', ';', Papa.RECORD_SEP, Papa.UNIT_SEP];
+				var bestDelim, bestDelta, fieldCountPrevRow;
+
+				for (var i = 0; i < delimChoices.length; i++)
+				{
+					var delim = delimChoices[i];
+					var delta = 0, avgFieldCount = 0;
+					fieldCountPrevRow = undefined;
+
+					var preview = new Parser({
+						delimiter: delim,
+						newline: newline,
+						preview: 10
+					}).parse(input);
+
+					for (var j = 0; j < preview.data.length; j++)
+					{
+						var fieldCount = preview.data[j].length;
+						avgFieldCount += fieldCount;
+
+						if (typeof fieldCountPrevRow === 'undefined')
+						{
+							fieldCountPrevRow = fieldCount;
+							continue;
+						}
+						else if (fieldCount > 1)
+						{
+							delta += Math.abs(fieldCount - fieldCountPrevRow);
+							fieldCountPrevRow = fieldCount;
+						}
+					}
+
+					if (preview.data.length > 0)
+						avgFieldCount /= preview.data.length;
+
+					if ((typeof bestDelta === 'undefined' || delta < bestDelta)
+						&& avgFieldCount > 1.99)
+					{
+						bestDelta = delta;
+						bestDelim = delim;
+					}
+				}
+
+				_config.delimiter = bestDelim;
+
+				return {
+					successful: !!bestDelim,
+					bestDelimiter: bestDelim
+				}
+			}
+
+			function guessLineEndings(input)
+			{
+				input = input.substr(0, 1024*1024);	// max length 1 MB
+
+				var r = input.split('\r');
+
+				var n = input.split('\n');
+
+				var nAppearsFirst = (n.length > 1 && n[0].length < r[0].length);
+
+				if (r.length === 1 || nAppearsFirst)
+					return '\n';
+
+				var numWithN = 0;
+				for (var i = 0; i < r.length; i++)
+				{
+					if (r[i][0] === '\n')
+						numWithN++;
+				}
+
+				return numWithN >= r.length / 2 ? '\r\n' : '\r';
+			}
+
+			function tryParseFloat(val)
+			{
+				var isNumber = FLOAT.test(val);
+				return isNumber ? parseFloat(val) : val;
+			}
+
+			function addError(type, code, msg, row)
+			{
+				_results.errors.push({
+					type: type,
+					code: code,
+					message: msg,
+					row: row
+				});
+			}
+		}
+
+
+
+
+
+		/** The core parser implements speedy and correct CSV parsing */
+		function Parser(config)
+		{
+			// Unpack the config object
+			config = config || {};
+			var delim = config.delimiter;
+			var newline = config.newline;
+			var comments = config.comments;
+			var step = config.step;
+			var preview = config.preview;
+			var fastMode = config.fastMode;
+			var quoteChar = config.quoteChar || '"';
+
+			// Delimiter must be valid
+			if (typeof delim !== 'string'
+				|| Papa.BAD_DELIMITERS.indexOf(delim) > -1)
+				delim = ',';
+
+			// Comment character must be valid
+			if (comments === delim)
+				throw 'Comment character same as delimiter';
+			else if (comments === true)
+				comments = '#';
+			else if (typeof comments !== 'string'
+				|| Papa.BAD_DELIMITERS.indexOf(comments) > -1)
+				comments = false;
+
+			// Newline must be valid: \r, \n, or \r\n
+			if (newline != '\n' && newline != '\r' && newline != '\r\n')
+				newline = '\n';
+
+			// We're gonna need these at the Parser scope
+			var cursor = 0;
+			var aborted = false;
+
+			this.parse = function(input, baseIndex, ignoreLastRow)
+			{
+				// For some reason, in Chrome, this speeds things up (!?)
+				if (typeof input !== 'string')
+					throw 'Input must be a string';
+
+				// We don't need to compute some of these every time parse() is called,
+				// but having them in a more local scope seems to perform better
+				var inputLen = input.length,
+					delimLen = delim.length,
+					newlineLen = newline.length,
+					commentsLen = comments.length;
+				var stepIsFunction = typeof step === 'function';
+
+				// Establish starting state
+				cursor = 0;
+				var data = [], errors = [], row = [], lastCursor = 0;
+
+				if (!input)
+					return returnable();
+
+				if (fastMode || (fastMode !== false && input.indexOf(quoteChar) === -1))
+				{
+					var rows = input.split(newline);
+					for (var i = 0; i < rows.length; i++)
+					{
+						var row = rows[i];
+						cursor += row.length;
+						if (i !== rows.length - 1)
+							cursor += newline.length;
+						else if (ignoreLastRow)
+							return returnable();
+						if (comments && row.substr(0, commentsLen) === comments)
+							continue;
+						if (stepIsFunction)
+						{
+							data = [];
+							pushRow(row.split(delim));
+							doStep();
+							if (aborted)
+								return returnable();
+						}
+						else
+							pushRow(row.split(delim));
+						if (preview && i >= preview)
+						{
+							data = data.slice(0, preview);
+							return returnable(true);
+						}
+					}
+					return returnable();
+				}
+
+				var nextDelim = input.indexOf(delim, cursor);
+				var nextNewline = input.indexOf(newline, cursor);
+				var quoteCharRegex = new RegExp(quoteChar+quoteChar, 'g');
+
+				// Parser loop
+				for (;;)
+				{
+					// Field has opening quote
+					if (input[cursor] === quoteChar)
+					{
+						// Start our search for the closing quote where the cursor is
+						var quoteSearch = cursor;
+
+						// Skip the opening quote
+						cursor++;
+
+						for (;;)
+						{
+							// Find closing quote
+							var quoteSearch = input.indexOf(quoteChar, quoteSearch+1);
+
+							if (quoteSearch === -1)
+							{
+								if (!ignoreLastRow) {
+									// No closing quote... what a pity
+									errors.push({
+										type: 'Quotes',
+										code: 'MissingQuotes',
+										message: 'Quoted field unterminated',
+										row: data.length,	// row has yet to be inserted
+										index: cursor
+									});
+								}
+								return finish();
+							}
+
+							if (quoteSearch === inputLen-1)
+							{
+								// Closing quote at EOF
+								var value = input.substring(cursor, quoteSearch).replace(quoteCharRegex, quoteChar);
+								return finish(value);
+							}
+
+							// If this quote is escaped, it's part of the data; skip it
+							if (input[quoteSearch+1] === quoteChar)
+							{
+								quoteSearch++;
+								continue;
+							}
+
+							if (input[quoteSearch+1] === delim)
+							{
+								// Closing quote followed by delimiter
+								row.push(input.substring(cursor, quoteSearch).replace(quoteCharRegex, quoteChar));
+								cursor = quoteSearch + 1 + delimLen;
+								nextDelim = input.indexOf(delim, cursor);
+								nextNewline = input.indexOf(newline, cursor);
+								break;
+							}
+
+							if (input.substr(quoteSearch+1, newlineLen) === newline)
+							{
+								// Closing quote followed by newline
+								row.push(input.substring(cursor, quoteSearch).replace(quoteCharRegex, quoteChar));
+								saveRow(quoteSearch + 1 + newlineLen);
+								nextDelim = input.indexOf(delim, cursor);	// because we may have skipped the nextDelim in the quoted field
+
+								if (stepIsFunction)
+								{
+									doStep();
+									if (aborted)
+										return returnable();
+								}
+
+								if (preview && data.length >= preview)
+									return returnable(true);
+
+								break;
+							}
+						}
+
+						continue;
+					}
+
+					// Comment found at start of new line
+					if (comments && row.length === 0 && input.substr(cursor, commentsLen) === comments)
+					{
+						if (nextNewline === -1)	// Comment ends at EOF
+							return returnable();
+						cursor = nextNewline + newlineLen;
+						nextNewline = input.indexOf(newline, cursor);
+						nextDelim = input.indexOf(delim, cursor);
+						continue;
+					}
+
+					// Next delimiter comes before next newline, so we've reached end of field
+					if (nextDelim !== -1 && (nextDelim < nextNewline || nextNewline === -1))
+					{
+						row.push(input.substring(cursor, nextDelim));
+						cursor = nextDelim + delimLen;
+						nextDelim = input.indexOf(delim, cursor);
+						continue;
+					}
+
+					// End of row
+					if (nextNewline !== -1)
+					{
+						row.push(input.substring(cursor, nextNewline));
+						saveRow(nextNewline + newlineLen);
+
+						if (stepIsFunction)
+						{
+							doStep();
+							if (aborted)
+								return returnable();
+						}
+
+						if (preview && data.length >= preview)
+							return returnable(true);
+
+						continue;
+					}
+
+					break;
+				}
+
+
+				return finish();
+
+
+				function pushRow(row)
+				{
+					data.push(row);
+					lastCursor = cursor;
+				}
+
+				/**
+				 * Appends the remaining input from cursor to the end into
+				 * row, saves the row, calls step, and returns the results.
+				 */
+				function finish(value)
+				{
+					if (ignoreLastRow)
+						return returnable();
+					if (typeof value === 'undefined')
+						value = input.substr(cursor);
+					row.push(value);
+					cursor = inputLen;	// important in case parsing is paused
+					pushRow(row);
+					if (stepIsFunction)
+						doStep();
+					return returnable();
+				}
+
+				/**
+				 * Appends the current row to the results. It sets the cursor
+				 * to newCursor and finds the nextNewline. The caller should
+				 * take care to execute user's step function and check for
+				 * preview and end parsing if necessary.
+				 */
+				function saveRow(newCursor)
+				{
+					cursor = newCursor;
+					pushRow(row);
+					row = [];
+					nextNewline = input.indexOf(newline, cursor);
+				}
+
+				/** Returns an object with the results, errors, and meta. */
+				function returnable(stopped)
+				{
+					return {
+						data: data,
+						errors: errors,
+						meta: {
+							delimiter: delim,
+							linebreak: newline,
+							aborted: aborted,
+							truncated: !!stopped,
+							cursor: lastCursor + (baseIndex || 0)
+						}
+					};
+				}
+
+				/** Executes the user's step function and resets data & errors. */
+				function doStep()
+				{
+					step(returnable());
+					data = [], errors = [];
+				}
+			};
+
+			/** Sets the abort flag */
+			this.abort = function()
+			{
+				aborted = true;
+			};
+
+			/** Gets the cursor position */
+			this.getCharIndex = function()
+			{
+				return cursor;
+			};
+		}
+
+
+		// If you need to load Papa Parse asynchronously and you also need worker threads, hard-code
+		// the script path here. See: https://github.com/mholt/PapaParse/issues/87#issuecomment-57885358
+		function getScriptPath()
+		{
+			var scripts = document.getElementsByTagName('script');
+			return scripts.length ? scripts[scripts.length - 1].src : '';
+		}
+
+		function newWorker()
+		{
+			if (!Papa.WORKERS_SUPPORTED)
+				return false;
+			if (!LOADED_SYNC && Papa.SCRIPT_PATH === null)
+				throw new Error(
+					'Script path cannot be determined automatically when Papa Parse is loaded asynchronously. ' +
+					'You need to set Papa.SCRIPT_PATH manually.'
+				);
+			var workerUrl = Papa.SCRIPT_PATH || AUTO_SCRIPT_PATH;
+			// Append 'papaworker' to the search string to tell papaparse that this is our worker.
+			workerUrl += (workerUrl.indexOf('?') !== -1 ? '&' : '?') + 'papaworker';
+			var w = new global.Worker(workerUrl);
+			w.onmessage = mainThreadReceivedMessage;
+			w.id = workerIdCounter++;
+			workers[w.id] = w;
+			return w;
+		}
+
+		/** Callback when main thread receives a message */
+		function mainThreadReceivedMessage(e)
+		{
+			var msg = e.data;
+			var worker = workers[msg.workerId];
+			var aborted = false;
+
+			if (msg.error)
+				worker.userError(msg.error, msg.file);
+			else if (msg.results && msg.results.data)
+			{
+				var abort = function() {
+					aborted = true;
+					completeWorker(msg.workerId, { data: [], errors: [], meta: { aborted: true } });
+				};
+
+				var handle = {
+					abort: abort,
+					pause: notImplemented,
+					resume: notImplemented
+				};
+
+				if (isFunction(worker.userStep))
+				{
+					for (var i = 0; i < msg.results.data.length; i++)
+					{
+						worker.userStep({
+							data: [msg.results.data[i]],
+							errors: msg.results.errors,
+							meta: msg.results.meta
+						}, handle);
+						if (aborted)
+							break;
+					}
+					delete msg.results;	// free memory ASAP
+				}
+				else if (isFunction(worker.userChunk))
+				{
+					worker.userChunk(msg.results, handle, msg.file);
+					delete msg.results;
+				}
+			}
+
+			if (msg.finished && !aborted)
+				completeWorker(msg.workerId, msg.results);
+		}
+
+		function completeWorker(workerId, results) {
+			var worker = workers[workerId];
+			if (isFunction(worker.userComplete))
+				worker.userComplete(results);
+			worker.terminate();
+			delete workers[workerId];
+		}
+
+		function notImplemented() {
+			throw 'Not implemented.';
+		}
+
+		/** Callback when worker thread receives a message */
+		function workerThreadReceivedMessage(e)
+		{
+			var msg = e.data;
+
+			if (typeof Papa.WORKER_ID === 'undefined' && msg)
+				Papa.WORKER_ID = msg.workerId;
+
+			if (typeof msg.input === 'string')
+			{
+				global.postMessage({
+					workerId: Papa.WORKER_ID,
+					results: Papa.parse(msg.input, msg.config),
+					finished: true
+				});
+			}
+			else if ((global.File && msg.input instanceof File) || msg.input instanceof Object)	// thank you, Safari (see issue #106)
+			{
+				var results = Papa.parse(msg.input, msg.config);
+				if (results)
+					global.postMessage({
+						workerId: Papa.WORKER_ID,
+						results: results,
+						finished: true
+					});
+			}
+		}
+
+		/** Makes a deep copy of an array or object (mostly) */
+		function copy(obj)
+		{
+			if (typeof obj !== 'object')
+				return obj;
+			var cpy = obj instanceof Array ? [] : {};
+			for (var key in obj)
+				cpy[key] = copy(obj[key]);
+			return cpy;
+		}
+
+		function bindFunction(f, self)
+		{
+			return function() { f.apply(self, arguments); };
+		}
+
+		function isFunction(func)
+		{
+			return typeof func === 'function';
+		}
+
+		return Papa;
+	}));
+
+
+/***/ },
+/* 303 */
 /***/ function(module, exports) {
 
-	module.exports = "<!--<div class=\"container\">-->\r\n<div class=\"row\">\r\n\r\n    <page-title>\r\n        <h5>Fluxo de caixa</h5>\r\n    </page-title>\r\n\r\n    <div class=\"card-panel z-depth-5\">\r\n        <div v-if=\"hasCashFlows\">\r\n            <table class=\"bordered striped hightlight responsive-table\">\r\n                <thead>\r\n                <tr>\r\n                    <th></th>\r\n                    <th v-if=\"!hasFirstMonthYear\">\r\n                        {{firstMonthYear | monthYear}}\r\n                    </th>\r\n                    <th v-for=\"o in monthsList\">\r\n                        {{o.month_year | monthYear}}\r\n                    </th>\r\n                </tr>\r\n                </thead>\r\n                <tbody>\r\n                <tr>\r\n                    <td><strong>Recebimentos</strong></td>\r\n                    <td v-if=\"!hasFirstMonthYear\">\r\n                        0\r\n                    </td>\r\n                    <td v-for=\"o in monthsList\">\r\n                        {{o.revenues.total}}\r\n                    </td>\r\n                </tr>\r\n                <tr v-for=\"o in categoriesMonths.revenues.data\">\r\n                    <td>{{o.name}}</td>\r\n                    <td v-if=\"!hasFirstMonthYear\"></td>\r\n                    <td v-for=\"v in monthsList\">\r\n                        {{categoryTotal(o,v.month_year).total}}\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n                    <td><strong>Pagamentos</strong></td>\r\n                    <td v-if=\"!hasFirstMonthYear\">\r\n                        0\r\n                    </td>\r\n                    <td v-for=\"o in monthsList\">\r\n                        {{o.expenses.total}}\r\n                    </td>\r\n                </tr>\r\n                <tr v-for=\"o in categoriesMonths.expenses.data\">\r\n                    <td>{{o.name}}</td>\r\n                    <td v-if=\"!hasFirstMonthYear\"></td>\r\n                    <td v-for=\"v in monthsList\">\r\n                        {{categoryTotal(o,v.month_year).total}}\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n                    <td><strong>Geração de caixa</strong></td>\r\n                    <td v-if=\"!hasFirstMonthYear\">\r\n                        0\r\n                    </td>\r\n                    <td v-for=\"o in monthsList\">\r\n                        {{o.revenues.total - o.expenses.total}}\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n                    <td><strong>Saldo mês anterior</strong></td>\r\n                    <td>{{balanceBeforeFirstMonth}}</td>\r\n                    <td>{{firstBalance}}</td>\r\n                    <td>{{secondBalance}}</td>\r\n                    <td v-for=\"(key,o) in monthsListBalancePrevious\">\r\n                        {{balance(key)}}\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n                    <td><strong>Saldo final</strong></td>\r\n                    <td>{{firstBalance}}</td>\r\n                    <td>{{secondBalance}}</td>\r\n                    <td v-for=\"(key,o) in monthsListBalanceFinal\">\r\n                        {{balance(key)}}\r\n                    </td>\r\n                </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n</div>\r\n<!--</div>  container -->";
+	module.exports = "<!--<div class=\"container\">-->\n<div class=\"row\" _v-46a877ac=\"\">\n\n    <page-title _v-46a877ac=\"\">\n        <h5 _v-46a877ac=\"\">Fluxo de caixa</h5>\n    </page-title>\n\n    <div class=\"card-panel z-depth-5\" _v-46a877ac=\"\">\n        <div v-if=\"hasCashFlows\" _v-46a877ac=\"\">\n            <table class=\"bordered hightlight responsive-table\" _v-46a877ac=\"\">\n                <thead _v-46a877ac=\"\">\n                <tr class=\"green lighten-3\" _v-46a877ac=\"\">\n                    <th class=\"text-csv\" _v-46a877ac=\"\"></th>\n                    <th v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{firstMonthYear | monthYear}}\n                    </th>\n                    <th v-for=\"o in monthsList\" class=\"text-csv\" :class=\"{'green lighten-2': isCurrentMonthYear(o.month_year)}\" _v-46a877ac=\"\">\n                        {{o.month_year | monthYear}}\n                    </th>\n                </tr>\n                </thead>\n                <tbody _v-46a877ac=\"\">\n                <tr class=\"grey lighten-3\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Recebimentos</strong></td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        0\n                    </td>\n                    <td v-for=\"o in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{o.revenues.total}}\n                    </td>\n                </tr>\n                <tr v-for=\"o in categoriesMonths.revenues.data\" _v-46a877ac=\"\">\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{o.name}}</td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\"></td>\n                    <td v-for=\"v in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{categoryTotal(o,v.month_year).total}}\n                    </td>\n                </tr>\n                <tr class=\"grey lighten-3\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Pagamentos</strong></td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        0\n                    </td>\n                    <td v-for=\"o in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{o.expenses.total}}\n                    </td>\n                </tr>\n                <tr v-for=\"o in categoriesMonths.expenses.data\" _v-46a877ac=\"\">\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{o.name}}</td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\"></td>\n                    <td v-for=\"v in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{categoryTotal(o,v.month_year).total}}\n                    </td>\n                </tr>\n                <tr class=\"grey lighten-4\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Geração de caixa</strong></td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        0\n                    </td>\n                    <td v-for=\"o in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{o.revenues.total - o.expenses.total}}\n                    </td>\n                </tr>\n                <tr class=\"grey lighten-4\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Saldo mês anterior</strong></td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{balanceBeforeFirstMonth}}</td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{firstBalance}}</td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{secondBalance}}</td>\n                    <td v-for=\"(key,o) in monthsListBalancePrevious\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{balance(key)}}\n                    </td>\n                </tr>\n                <tr class=\"green lighten-3\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Saldo final</strong></td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{firstBalance}}</td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{secondBalance}}</td>\n                    <td v-for=\"(key,o) in monthsListBalanceFinal\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{balance(key)}}\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n\n            <div class=\"fixed-action-btn\" _v-46a877ac=\"\">\n                <a class=\"btn-floating btn-large\" @click=\"downloadCsv\" title=\"Download\" _v-46a877ac=\"\">\n                    <i class=\"large material-icons\" _v-46a877ac=\"\">file_download</i>\n                </a>\n            </div>\n\n        </div>\n    </div>\n\n</div>\n<!--</div>  container -->";
+
+/***/ },
+/* 304 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__vue_script__ = __webpack_require__(305)
+	if (__vue_script__ &&
+	    __vue_script__.__esModule &&
+	    Object.keys(__vue_script__).length > 1) {
+	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\statement\\StatementList.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(306)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-1cbaeb92/StatementList.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ },
+/* 305 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _store = __webpack_require__(199);
+
+	var _store2 = _interopRequireDefault(_store);
+
+	var _moment = __webpack_require__(79);
+
+	var _moment2 = _interopRequireDefault(_moment);
+
+	var _Pagination = __webpack_require__(236);
+
+	var _Pagination2 = _interopRequireDefault(_Pagination);
+
+	var _PageTitle = __webpack_require__(239);
+
+	var _PageTitle2 = _interopRequireDefault(_PageTitle);
+
+	var _Search = __webpack_require__(244);
+
+	var _Search2 = _interopRequireDefault(_Search);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	    components: {
+	        'pagination': _Pagination2.default,
+	        'page-title': _PageTitle2.default,
+	        'search': _Search2.default
+	    },
+	    data: function data() {
+	        return {
+	            table: {
+	                headers: {
+	                    date: {
+	                        label: 'Data', width: '10%'
+	                    },
+	                    'bank_accounts:bank_account_id|bank_accounts.name': {
+	                        label: 'Conta bancária', width: '13%'
+	                    },
+	                    value: {
+	                        label: 'Valor', width: '20%'
+	                    },
+	                    balance: {
+	                        label: 'Saldo', width: '20%'
+	                    }
+	                }
+	            }
+	        };
+	    },
+
+	    computed: {
+	        statements: function statements() {
+	            return _store2.default.state.statement.statements;
+	        },
+	        statementData: function statementData() {
+	            return _store2.default.state.statement.statementData;
+	        },
+	        searchOptions: function searchOptions() {
+	            return _store2.default.state.statement.searchOptions;
+	        },
+
+	        search: {
+	            get: function get() {
+	                return _store2.default.state.statement.searchOptions.search;
+	            },
+	            set: function set(value) {
+	                _store2.default.commit('statement/setFilter', value);
+	            }
+	        }
+	    },
+	    created: function created() {
+	        _store2.default.commit('statement/setFilter', this.dateFilterStart() + ' - ' + this.dateFilterEnd());
+	        _store2.default.dispatch('statement/query');
+	    },
+
+	    methods: {
+	        sortBy: function sortBy(key) {
+	            _store2.default.dispatch('statement/queryWithSortBy', key);
+	        },
+	        filter: function filter() {
+	            _store2.default.dispatch('statement/queryWithFilter');
+	        },
+	        dateFilterStart: function dateFilterStart() {
+	            var date = new Date();
+	            date.setDate(1);
+	            return (0, _moment2.default)(date).format('DD/MM/YYYY');
+	        },
+	        dateFilterEnd: function dateFilterEnd() {
+	            return (0, _moment2.default)(new Date()).endOf('month').format('DD/MM/YYYY');
+	        }
+	    },
+	    events: {
+	        'pagination::changed': function paginationChanged(page) {
+	            _store2.default.dispatch('statement/queryWithPagination', page);
+	        }
+	    }
+	};
+
+/***/ },
+/* 306 */
+/***/ function(module, exports) {
+
+	module.exports = "\n<div class=\"row\">\n        <page-title>\n            <h5>Extrato</h5>\n        </page-title>\n    <div class=\"card-panel z-depth-5\">\n        <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n        <table class=\"bordered striped hightlight responsive-table\">\n            <thead>\n            <tr>\n                <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                    <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                        {{o.label}}\n                        <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                            {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                        </i>\n                    </a>\n                </th>\n            </tr>\n            </thead>\n            <tbody>\n            <tr v-for=\"o in statements\">\n                <td>{{o.date | dateFormat}}</td>\n                <td>{{o.bankAccount.data.name}}</td>\n                <td>{{o.value | numberFormat true}}</td>\n                <td>{{o.balance | numberFormat true}}</td>\n            </tr>\n            </tbody>\n        </table>\n        <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                    :total-records=\"searchOptions.pagination.total\"></pagination>\n        <table class=\"grey-text text-darken-2\">\n            <tbody class=\"left\">\n                <tr>\n                    <td><strong>Total de Recebimentos</strong></td>\n                    <td><strong>{{statementData.revenues.total | numberFormat true}}</strong></td>\n                </tr>\n                <tr>\n                    <td><strong>Total de Pagamentos</strong></td>\n                    <td><strong>{{statementData.expenses.total | numberFormat true}}</strong></td>\n                </tr>\n                <tr>\n                    <td><strong>Quantidade de lançamentos</strong></td>\n                    <td><strong>{{statementData.count}}</strong></td>\n                </tr>\n                <tr>\n                    <td><strong>Total do Período</strong></td>\n                    <td><strong>{{statementData.revenues.total + statementData.expenses.total | numberFormat true}}</strong></td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n";
 
 /***/ }
 /******/ ]);

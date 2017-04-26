@@ -54,6 +54,7 @@
                     {name: 'Conta Bancária', routeName: 'bank-account.list'},
                     {name: 'Plano de contas', routeName: 'plan-account.list'},
                     {name: 'Fluxo de caixa', routeName: 'cash-flow.list'},
+                    {name: 'Extrato', routeName: 'statement.list'},
                 ],
                 menusDropdown: [
                     {

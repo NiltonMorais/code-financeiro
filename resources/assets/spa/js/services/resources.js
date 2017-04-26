@@ -25,5 +25,6 @@ let CategoryExpense = Vue.resource('category_expenses{/id}');
 let BillPay = Vue.resource('bill_pays{/id}');
 let BillReceive = Vue.resource('bill_receives{/id}');
 let CashFlow = Vue.resource('cash_flows');
+let Statement = Vue.resource('statements');
 
-export {User, BankAccount, Bank, CategoryRevenue, CategoryExpense, BillPay, BillReceive, CashFlow};
+export {User, BankAccount, Bank, CategoryRevenue, CategoryExpense, BillPay, BillReceive, CashFlow, Statement};
