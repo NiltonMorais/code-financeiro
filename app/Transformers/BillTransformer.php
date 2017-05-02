@@ -39,6 +39,10 @@ class BillTransformer extends TransformerAbstract
 
     public function includeCategory(AbstractBill $model)
     {
+        if(!$model->category){
+            return null;
+        }
+
         $transformer = new CategoryTransformer();
         $transformer->setDefaultIncludes([]);
         return $this->item($model->category, $transformer);

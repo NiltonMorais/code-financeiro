@@ -41,9 +41,9 @@ class BillReceivesController extends Controller
             ->pushCriteria(new FindBetweenDateBRCriteria($search, 'date_due'))
             ->pushCriteria(new FindByValueBRCriteria($search));
 
-        $billPays = $this->repository->paginate();
+        $bills = $this->repository->paginate();
 
-        return $billPays;
+        return $bills;
     }
 
     /**

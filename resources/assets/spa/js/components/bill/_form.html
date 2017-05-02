@@ -1,5 +1,5 @@
 <div>
-    <form id="formId()" name="form" method="POST" @submit.prevent="submit">
+    <form :id="formId()" name="form" method="POST" @submit.prevent="submit">
         <modal :modal="modalOptions">
             <div slot="content">
                 <h5>{{title()}}</h5>
@@ -7,7 +7,7 @@
                     <div class="input-field col s12">
                         <select-material :options="parentOptions" :selected.sync="bill.category_id"
                                          v-validate data-vv-rules="required" data-vv-name="category_id"
-                                         data-vv-value-path="val" name="category_id">
+                                         data-vv-value-path="val" data-vv-as="categoria" name="category_id">
                         </select-material>
                         <label class="active" :data-error="errors.first('category_id')">Categoria de Despesa</label>
                     </div>

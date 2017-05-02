@@ -51,13 +51,13 @@
     <bill-receive-update :index="indexUpdate" :modal-options="modalEdit"></bill-receive-update>
 
     <modal :modal="modalDelete">
-        <div slot="content" v-if="billPayDelete">
+        <div slot="content" v-if="billReceiveDelete">
             <h4>Mensagem de confirmação</h4>
             <p><strong>Deseja excluir esta conta?</strong></p>
             <div class="divider"></div>
-            <p>Vencimento: <strong>{{billPayDelete.date_due}}</strong></p>
-            <p>Nome: <strong>{{billPayDelete.name}}</strong></p>
-            <p>Valor: <strong>{{billPayDelete.value}}</strong></p>
+            <p>Vencimento: <strong>{{billReceiveDelete.date_due}}</strong></p>
+            <p>Nome: <strong>{{billReceiveDelete.name}}</strong></p>
+            <p>Valor: <strong>{{billReceiveDelete.value}}</strong></p>
             <div class="divider"></div>
         </div>
         <div slot="footer">
@@ -114,10 +114,10 @@
         },
         computed: {
             bills(){
-                return store.state.billPay.bills;
+                return store.state.billReceive.bills;
             },
             searchOptions(){
-                return store.state.billPay.searchOptions;
+                return store.state.billReceive.searchOptions;
             },
             search: {
                 get(){
