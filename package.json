@@ -30,12 +30,16 @@
     "webpack-merge": "^0.14.1"
   },
   "devDependencies": {
+    "jquery.animate-number": "0.0.14",
+    "laravel-echo": "^1.2.3",
     "lodash": "^4.11.2",
     "moment": "^2.17.1",
     "numeral": "^2.0.4",
     "papaparse": "^4.1.4",
+    "pusher-js": "^4.0.0",
     "select2": "^4.0.3",
     "vee-validate": "^1.0.0-beta.10",
+    "vue-charts": "^0.1.14",
     "vuex": "^2.1.3"
   }
 }

@@ -6,6 +6,8 @@
                     <h5>Minhas contas a receber</h5>
                 </page-title>
 
+            <bill-data namespace="billReceive"></bill-data>
+
             <div class="card-panel z-depth-5">
                 <search @on-submit="filter" :model.sync="search"></search>
                 <table class="bordered striped hightlight responsive-table">
@@ -75,6 +77,7 @@
     import SearchComponent from '../../../../../_default/components/Search.vue';
     import BillReceiveCreateComponent from './BillReceiveCreate.vue';
     import BillReceiveUpdateComponent from './BillReceiveUpdate.vue';
+    import BillDataComponent from '../BillData.vue';
     export default{
         components: {
             'modal': ModalComponent,
@@ -83,6 +86,7 @@
             'search': SearchComponent,
             'bill-receive-create': BillReceiveCreateComponent,
             'bill-receive-update': BillReceiveUpdateComponent,
+            'bill-data': BillDataComponent,
         },
         data(){
             return{

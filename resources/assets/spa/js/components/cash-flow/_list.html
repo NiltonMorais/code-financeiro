@@ -14,8 +14,8 @@
                     <th v-if="!hasFirstMonthYear"  class="text-csv">
                         {{firstMonthYear | monthYear}}
                     </th>
-                    <th v-for="o in monthsList"  class="text-csv" :class="{'green lighten-2': isCurrentMonthYear(o.month_year)}">
-                        {{o.month_year | monthYear}}
+                    <th v-for="o in monthsList"  class="text-csv" :class="{'green lighten-2': isCurrentMonthYear(o.period)}">
+                        {{o.period | monthYear}}
                     </th>
                 </tr>
                 </thead>
@@ -33,7 +33,7 @@
                     <td class="text-csv">{{o.name}}</td>
                     <td v-if="!hasFirstMonthYear" class="text-csv"></td>
                     <td v-for="v in monthsList" class="text-csv">
-                        {{categoryTotal(o,v.month_year).total}}
+                        {{categoryTotal(o,v.period).total}}
                     </td>
                 </tr>
                 <tr class="grey lighten-3">
@@ -49,7 +49,7 @@
                     <td class="text-csv">{{o.name}}</td>
                     <td v-if="!hasFirstMonthYear" class="text-csv"></td>
                     <td v-for="v in monthsList" class="text-csv">
-                        {{categoryTotal(o,v.month_year).total}}
+                        {{categoryTotal(o,v.period).total}}
                     </td>
                 </tr>
                 <tr class="grey lighten-4">

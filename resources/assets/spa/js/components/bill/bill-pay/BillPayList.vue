@@ -6,6 +6,8 @@
                     <h5>Minhas contas a pagar</h5>
                 </page-title>
 
+            <bill-data namespace="billPay"></bill-data>
+
             <div class="card-panel z-depth-5">
                 <search @on-submit="filter" :model.sync="search"></search>
                 <table class="bordered striped hightlight responsive-table">
@@ -75,6 +77,7 @@
     import SearchComponent from '../../../../../_default/components/Search.vue';
     import BillPayCreateComponent from './BillPayCreate.vue';
     import BillPayUpdateComponent from './BillPayUpdate.vue';
+    import BillDataComponent from '../BillData.vue';
     export default{
         components: {
             'modal': ModalComponent,
@@ -83,6 +86,7 @@
             'search': SearchComponent,
             'bill-pay-create': BillPayCreateComponent,
             'bill-pay-update': BillPayUpdateComponent,
+            'bill-data': BillDataComponent,
         },
         data(){
             return{

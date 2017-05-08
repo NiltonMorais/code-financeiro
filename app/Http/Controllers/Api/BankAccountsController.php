@@ -8,6 +8,7 @@ use CodeFin\Http\Requests;
 use CodeFin\Http\Requests\BankAccountCreateRequest;
 use CodeFin\Http\Requests\BankAccountUpdateRequest;
 use CodeFin\Repositories\Interfaces\BankAccountRepository;
+use Illuminate\Http\Request;
 
 
 class BankAccountsController extends Controller
@@ -28,14 +29,18 @@ class BankAccountsController extends Controller
     {
         return $this->repository->skipPresenter()->all(['id','name','account']);
     }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->repository->paginate();
+        $limit = (int)$request->get('limit', null);
+        $limit = $limit > 0 ? $limit : null;
+        return $this->repository->paginate($limit);
     }
 
     /**

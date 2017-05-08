@@ -13,6 +13,9 @@ const mutations = {
     set(state, bankAccounts){
         state.bankAccounts = bankAccounts;
     },
+    updateBalance(state,{index,balance}){
+        state.bankAccounts[index].balance = balance;
+    },
     setLists(state,lists){
         state.lists = lists;
     },
@@ -27,11 +30,17 @@ const mutations = {
         let sort = state.searchOptions.order.sort;
         state.searchOptions.order.sort = sort == 'desc' ? 'asc' : 'desc';
     },
+    setLimit(state,limit){
+        state.searchOptions.limit = limit;
+    },
     setPagination(state, pagination){
         state.searchOptions.pagination = pagination;
     },
     setCurrentPage(state, currentPage){
         state.searchOptions.pagination.current_page = currentPage;
+    },
+    setSort(state, sort){
+        state.searchOptions.order.sort = sort;
     },
     setFilter(state, filter){
         state.searchOptions.search = filter;

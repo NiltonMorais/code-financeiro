@@ -13,7 +13,8 @@
         "laravelcollective/html": "^5.3.0",
         "league/fractal": "^0.15.0",
         "hipsterjazzbo/landlord": "2.0.4",
-        "kalnoy/nestedset": "4.2.0"
+        "kalnoy/nestedset": "4.2.0",
+        "pusher/pusher-php-server": "2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

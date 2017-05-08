@@ -179,7 +179,7 @@ return [
          */
         CodeFin\Providers\AppServiceProvider::class,
         CodeFin\Providers\AuthServiceProvider::class,
-        // CodeFin\Providers\BroadcastServiceProvider::class,
+        CodeFin\Providers\BroadcastServiceProvider::class,
         CodeFin\Providers\EventServiceProvider::class,
         CodeFin\Providers\RouteServiceProvider::class,
         CodeFin\Providers\RepositoryServiceProvider::class,

@@ -17,6 +17,33 @@ use CodeFin\Models\CategoryRevenue;
 
 trait CashFlowRepositoryTrait
 {
+    public function getCashFlowByPeriod(Carbon $dateStart, Carbon $dateEnd)
+    {
+        $dateFormat = '%Y-%m-%d';
+        $dateStartStr = $dateStart->format('Y-m-d');
+        $dateEndStr = $dateEnd->format('Y-m-d');
+
+        $revenuesCollection = $this->getQueryCategoriesValuesByPeriod(
+            new CategoryRevenue(),
+            (new BillReceive())->getTable(),
+            $dateStartStr,
+            $dateEndStr,
+            $dateFormat
+        )->get();
+
+        $expensesCollection = $this->getQueryCategoriesValuesByPeriod(
+            new CategoryExpense(),
+            (new BillPay())->getTable(),
+            $dateStartStr,
+            $dateEndStr,
+            $dateFormat
+        )->get();
+
+        return [
+            'period_list' => $this->formatPeriods($expensesCollection, $revenuesCollection)
+        ];
+    }
+
     public function getCashFlow(Carbon $dateStart, Carbon $dateEnd)
     {
         $datePrevious = $dateStart->copy()->day(1)->subMonths(2);
@@ -67,57 +94,57 @@ trait CashFlowRepositoryTrait
 
         foreach($categories as $id => $name){
             $filtered = $collection->where('id', $id)->where('name', $name);
-            $months_year = [];
-            $filtered->each(function($category) use(&$months_year){
-                $months_year[] = [
+            $periods = [];
+            $filtered->each(function($category) use(&$periods){
+                $periods[] = [
                     'total' => $category->total,
-                    'month_year' => $category->month_year,
+                    'period' => $category->period,
                 ];
             });
             $arrayResult[] = [
                 'id'  => $id,
                 'name' => $name,
-                'months' => $months_year,
+                'periods' => $periods,
             ];
         }
         return $arrayResult;
     }
 
-    protected function formatMonthsYear($expensesCollection, $revenuesCollection)
+    protected function formatPeriods($expensesCollection, $revenuesCollection)
     {
-        $monthsYearExpenseCollection = $expensesCollection->pluck('month_year');
-        $monthsYearRevenueCollection = $revenuesCollection->pluck('month_year');
-        $monthsYearCollection = $monthsYearExpenseCollection->merge($monthsYearRevenueCollection)->unique()->sort();
-        $monthsYearList = [];
-        $monthsYearCollection->each(function($monthYear) use(&$monthsYearList){
-            $monthsYearList[$monthYear] = [
-                'month_year' => $monthYear,
+        $periodExpenseCollection = $expensesCollection->pluck('period');
+        $periodRevenueCollection = $revenuesCollection->pluck('period');
+        $periodsCollection = $periodExpenseCollection->merge($periodRevenueCollection)->unique()->sort();
+        $periodList = [];
+        $periodsCollection->each(function($period) use(&$periodList){
+            $periodList[$period] = [
+                'period' => $period,
                 'revenues' => ['total'=>0],
                 'expenses' => ['total'=>0]
             ];
         });
 
-        foreach($monthsYearRevenueCollection as $monthYear){
-            $monthsYearList[$monthYear]['revenues']['total'] = $revenuesCollection->where('month_year',$monthYear)->sum('total');
+        foreach($periodRevenueCollection as $period){
+            $periodList[$period]['revenues']['total'] = $revenuesCollection->where('period',$period)->sum('total');
         }
 
-        foreach($monthsYearExpenseCollection as $monthYear){
-            $monthsYearList[$monthYear]['expenses']['total'] = $expensesCollection->where('month_year',$monthYear)->sum('total');
+        foreach($periodExpenseCollection as $period){
+            $periodList[$period]['expenses']['total'] = $expensesCollection->where('period',$period)->sum('total');
         }
 
-        return array_values($monthsYearList);
+        return array_values($periodList);
     }
 
     protected function formatCashFlow($expensesCollection, $revenuesCollection, $balancePreviousMonth)
     {
-        $monthsYearList = $this->formatMonthsYear($expensesCollection, $revenuesCollection);
+        $periodList = $this->formatPeriods($expensesCollection, $revenuesCollection);
         $expensesFormatted = $this->formatCategories($expensesCollection);
         $revenuesFormatted = $this->formatCategories($revenuesCollection);
 
         $collectionFormatted = [
-            'months_list' => $monthsYearList,
+            'period_list' => $periodList,
             'balance_before_first_month' => $balancePreviousMonth,
-            'categories_months' => [
+            'categories_period' => [
                 'expenses' => [
                     'data' => $expensesFormatted
                 ],
@@ -133,7 +160,7 @@ trait CashFlowRepositoryTrait
     protected function getCategoriesValuesCollection($model, $billTable, Carbon $dateStart, Carbon $dateEnd)
     {
         $dateStartStr = $dateStart->copy()->day(1)->format('Y-m-d');
-        $dateEndStr = $dateStart->copy()->day($dateEnd->daysInMonth)->format('Y-m-d');
+        $dateEndStr = $dateEnd->copy()->day($dateEnd->daysInMonth)->format('Y-m-d');
 
         $firstDateStart = $dateStart->copy()->subMonths(1);  // primeiro de janeiro
         $firstDateStartStr = $firstDateStart->format('Y-m-d');
@@ -168,7 +195,7 @@ trait CashFlowRepositoryTrait
             ->where('done',1);
     }
 
-    protected function getQueryCategoriesValuesByPeriod($model, $billTable, $dateStart, $dateEnd)
+    protected function getQueryCategoriesValuesByPeriod($model, $billTable, $dateStart, $dateEnd, $dateFormat = '%Y-%m')
     {
         $table = $model->getTable();
         list($lft, $rgt) = [$model->getLftName(), $model->getRgtName()];
@@ -177,7 +204,7 @@ trait CashFlowRepositoryTrait
             ->addSelect("$table.id")
             ->addSelect("$table.name")
             ->selectRaw("SUM(value) as total")
-            ->selectRaw("DATE_FORMAT(date_due, '%Y-%m') as month_year")
+            ->selectRaw("DATE_FORMAT(date_due, '$dateFormat') as period")
             ->selectSub($this->getQueryWithDepth($model), 'depth')
             ->join("$table as childOrSelf", function($join) use($table, $lft, $rgt){
                 $join->on("$table.$lft",'<=',"childOrSelf.$lft")
@@ -185,9 +212,9 @@ trait CashFlowRepositoryTrait
             })
             ->join($billTable, "$billTable.category_id",'=',"childOrSelf.id")
             ->whereBetween('date_due',[$dateStart, $dateEnd])
-            ->groupBy("$table.id","$table.name",'month_year')
+            ->groupBy("$table.id","$table.name",'period')
             ->havingRaw("depth = 0")
-            ->orderBy("month_year")
+            ->orderBy("period")
             ->orderBy("$table.name");
     }
 

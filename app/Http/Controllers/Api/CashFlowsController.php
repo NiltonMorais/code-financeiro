@@ -29,4 +29,11 @@ class CashFlowsController extends Controller
         $dateEnd = $dateStart->copy()->addMonths(10);
         return $this->repository->getCashFlow($dateStart, $dateEnd);
     }
+
+    public function monthly()
+    {
+        $dateStart = new Carbon();
+        $dateEnd = $dateStart->copy()->addDays(30);
+        return $this->repository->getCashFlowByPeriod($dateStart,$dateEnd);
+    }
 }

@@ -50,6 +50,7 @@
         data(){
             return {
                 menus: [
+                    {name: 'Dashboard', routeName: 'dashboard'},
                     {name: 'Contas', dropdownId: 'bills-dropdown'},
                     {name: 'Conta Bancária', routeName: 'bank-account.list'},
                     {name: 'Plano de contas', routeName: 'plan-account.list'},

@@ -13,4 +13,5 @@ interface StatementRepository extends RepositoryInterface
 {
     public function getCashFlow(Carbon $dateStart, Carbon $dateEnd);
     public function getBalanceByMonth(Carbon $date);
+    public function getCashFlowByPeriod(Carbon $dateStart, Carbon $dateEnd);
 }

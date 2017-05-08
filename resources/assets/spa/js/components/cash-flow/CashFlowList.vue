@@ -14,11 +14,11 @@
             },
             monthsList()
             {
-                return this.cashFlows.months_list;
+                return this.cashFlows.period_list;
             },
             categoriesMonths()
             {
-                return this.cashFlows.categories_months;
+                return this.cashFlows.categories_period;
             },
             hasFirstMonthYear(){
                 return store.getters['cashFlow/hasFirstMonthYear'];

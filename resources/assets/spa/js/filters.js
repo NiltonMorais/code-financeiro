@@ -10,7 +10,7 @@ numeral.locale('pt-br');
 Vue.filter('numberFormat', {
     read(value, isCurrency = false){
         let number = 0;
-        if(value && value!="" && !isNaN(value)){
+        if(value !== null && value !== "" && !isNaN(value)){
             number = isCurrency ? numeral(value).format('$0,0.00') : numeral(value).format('0,0.00');
         }
         return number;
@@ -36,5 +36,9 @@ Vue.filter('dateFormat', {
 });
 
 Vue.filter('monthYear', (value) => {
-    return moment(`${value}-01`).format('MM/YYYY');
-})
+   return moment(value instanceof Date ? value : `${value}-01` ).format('MM/YYYY');
+});
+
+Vue.filter('dayMonth', (value) => {
+   return moment(value).format('DD/MM');
+});
