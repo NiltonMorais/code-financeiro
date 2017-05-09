@@ -6,7 +6,7 @@
                         <div class="row card-panel">
                             <div class="center">
                                 <div class="preloader-wrapper big active" v-show="loadingRevenue">
-                                    <div class="spinner-layer spinner-blue">
+                                    <div class="spinner-layer spinner-green">
                                         <div class="circle-clipper left">
                                             <div class="circle"></div>
                                         </div>
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                             <div v-show="!loadingRevenue">
-                                <p>A receber hoje</p>
+                                <h5>A receber hoje</h5>
                                 <h3 id="revenue-number" class="green-text center">{{totalTodayReceive | numberFormat true}}</h3>
                                 <p class="left">Restante do mês</p>
                                 <p class="right">{{totalRestOfMonthReceive | numberFormat true}}</p>
@@ -31,7 +31,7 @@
                         <div class="row card-panel">
                             <div class="center">
                                 <div class="preloader-wrapper big active" v-show="loadingExpense">
-                                    <div class="spinner-layer spinner-blue">
+                                    <div class="spinner-layer spinner-red">
                                         <div class="circle-clipper left">
                                             <div class="circle"></div>
                                         </div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div v-show="!loadingExpense">
-                                <p>A pagar hoje</p>
+                                <h5>A pagar hoje</h5>
                                 <h3 id="expense-number" class="red-text center">{{totalTodayPay | numberFormat true}}</h3>
                                 <p class="left">Restante do mês</p>
                                 <p class="right">{{totalRestOfMonthPay | numberFormat true}}</p>
@@ -110,6 +110,7 @@
     import store from '../store/store';
     import VueCharts from 'vue-charts';
     import 'jquery.animate-number';
+    import {User} from '../services/resources';
 
     Vue.use(VueCharts);
     export default{
@@ -124,9 +125,6 @@
         computed: {
             bankAccounts(){
                 return store.state.bankAccount.bankAccounts;
-            },
-            clientId(){
-                return store.state.auth.user.client_id;
             },
             cashFlowsMonthly(){
                 return store.state.cashFlow.cashFlowsMonthly;
@@ -218,8 +216,8 @@
 
                 store.dispatch('billPay/totalRestOfMonth');
                 store.dispatch('billPay/totalToday').then(()=>{
-                    this.loadingRevenue = false;
-                    $("#revenue-number").animateNumber({
+                    this.loadingExpense = false;
+                    $("#expense-number").animateNumber({
                         number: self.totalTodayPay,
                         numberStep(now,tween){
                             let number = self.$options.filters.numberFormat.read(now, true);
@@ -227,23 +225,14 @@
                         }
                     })
                 });
-
-                setTimeout(()=>{
-                    this.loadingExpense = false;
-                    $("#expense-number").animateNumber({
-                        number: 1500.30,
-                        numberStep(now,tween){
-                            let number = self.$options.filters.numberFormat.read(now, true);
-                            $(tween.elem).text(number);
-                        }
-                    })
-                },3000);
             },
             echo(){
-                Echo.private(`client.${this.clientId}`)
-                    .listen('.CodeFin.Events.BankAccountBalanceUpdatedEvent', (event)=>{
-                        this.updateBalance(event.bankAccount);
-                    });
+                User.get().then((response) => {
+                    Echo.private(`client.${response.data.clientId}`)
+                        .listen('.CodeFin.Events.BankAccountBalanceUpdatedEvent', (event)=>{
+                            this.updateBalance(event.bankAccount);
+                        });
+                })
             },
             findIndexBankAccount(id){
                 let index = this.bankAccounts.findIndex(item => {
