@@ -36,9 +36,15 @@
         },
         methods: {
             submit(){
-                store.dispatch('bankAccount/save', this.bankAccount).then(() => {
-                    Materialize.toast('Conta bancária criada com sucesso!',5000);
-                    this.$router.go({name: 'bank-account.list'});
+                this.$validator.validateAll().then(success => {
+                    if(success){
+                        store.dispatch('bankAccount/save', this.bankAccount).then(() => {
+                            Materialize.toast('Conta bancária criada com sucesso!',5000);
+                            this.$router.go({name: 'bank-account.list'});
+                        });
+                    }else{
+                        Materialize.toast('Alguns campos são obrigatórios!',5000);
+                    }
                 });
             },
             getBanks(){
@@ -54,6 +60,9 @@
                         multiple: {
                             enable: false
                         },
+                        hidden: {
+                            el: '#bank-hidden'
+                        },
                         dropdown: {
                             el: '#bank-id-dropdown'
                         },
@@ -64,9 +73,23 @@
                         },
                         onSelect(item){
                             self.bankAccount.bank_id = item.id;
+                            self.bank.name = item.text;
+                            self.validateBank();
                         }
                     });
                 });
+                $('#bank-id').parent().find('label').insertAfter('#bank-id');
+            },
+            blurBank($event){
+                let el = $($event.target);
+                let text = this.bank.name;
+                if(el.val() != text){
+                    el.val(text);
+                }
+                this.validateBank();
+            },
+            validateBank(){
+                this.$validator.validate('bank_id', this.bankAccount.bank_id);
             }
         }
     }

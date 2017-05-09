@@ -1,0 +1,27 @@
+// Material Icons
+@import url(http://fonts.googleapis.com/icon?family=Material+Icons);
+
+// Materialize CSS
+@import "node_modules/materialize-css/sass/components/color";
+
+// Variables
+@import "variables";
+
+// Materialize CSS
+@import "node_modules/materialize-css/sass/materialize";
+
+@import "../../_default/sass/default";
+
+#app{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column
+}
+
+main{
+  flex: 1 0 auto
+}
+
+#sidenav-overlay {
+  z-index: 996 !important;
+}

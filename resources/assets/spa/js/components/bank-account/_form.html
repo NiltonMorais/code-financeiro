@@ -18,30 +18,44 @@
             <form name="form" method="GET" @submit.prevent="submit()">
                 <div class="row">
                     <div class="input-field col s12">
-                        <label class="active">Nome</label>
-                        <input type="text" v-model="bankAccount.name" placeholder="Digite o nome"/>
+                        <input type="text" v-model="bankAccount.name" placeholder="Digite o nome"
+                               name="name" class="validate"
+                               v-validate data-vv-rules="required" :class="{'invalid': errors.has('name')}"
+                               data-vv-as="nome"/>
+                        <label class="active" :data-error="errors.first('name')">Nome</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <label class="active">Banco</label>
                         <!--<select v-model="bankAccount.bank_id" id="bank_id" class="browser-default">
                             <option value="" disabled selected>Escolha um banco</option>
                             <option v-for="o in banks" :value="o.id">{{o.name}}</option>
                         </select>-->
-                        <input type="text" id="bank-id" placeholder="Buscar banco"
-                            autocomplete="off" data-activates="bank-id-dropdown" data-belloworigin="true" :value="bank.name"/>
+                        <input type="text" id="bank-id" placeholder="Buscar banco" name="bank"
+                               class="validate" :value="bank.name"
+                               @blur="blurBank" :class="{'invalid': errors.has('bank')}"
+                               autocomplete="off" data-activates="bank-id-dropdown" data-belloworigin="true"/>
+                        <input type="hidden" name="bank_id" id="bank-hidden"
+                               :value="bankAccount.bank_id" v-validate data-vv-rules="required"
+                               data-vv-as="banco">
+                        <label class="active" :data-error="errors.first('bank')">Banco:</label>
                         <ul id="bank-id-dropdown" class="dropdown-content ac-dropdown"></ul>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <label class="active">Agência</label>
-                        <input type="text" v-model="bankAccount.agency" placeholder="Digite a agência"/>
+                        <input type="text" v-model="bankAccount.agency" placeholder="Digite a agência"
+                               name="agency" class="validate"
+                               v-validate data-vv-rules="required" :class="{'invalid': errors.has('agency')}"
+                               data-vv-as="agencia"/>
+                        <label class="active" :data-error="errors.first('agency')">Agência</label>
                     </div>
                     <div class="input-field col s6">
-                        <label class="active">Conta corrente</label>
-                        <input type="text" v-model="bankAccount.account" placeholder="Digite a conta"/>
+                        <input type="text" v-model="bankAccount.account" placeholder="Digite a conta"
+                               name="account" class="validate"
+                               v-validate data-vv-rules="required" :class="{'invalid': errors.has('account')}"
+                               data-vv-as="conta"/>
+                        <label class="active" :data-error="errors.first('account')">Conta corrente</label>
                     </div>
                 </div>
                 <div class="row">
