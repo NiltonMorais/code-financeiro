@@ -27,10 +27,6 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <!--<select v-model="bankAccount.bank_id" id="bank_id" class="browser-default">
-                            <option value="" disabled selected>Escolha um banco</option>
-                            <option v-for="o in banks" :value="o.id">{{o.name}}</option>
-                        </select>-->
                         <input type="text" id="bank-id" placeholder="Buscar banco" name="bank"
                                class="validate" :value="bank.name"
                                @blur="blurBank" :class="{'invalid': errors.has('bank')}"

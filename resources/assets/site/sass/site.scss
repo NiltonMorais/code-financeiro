@@ -12,6 +12,10 @@
 
 @import "../../_default/sass/default";
 
+body{
+  background-color: color('blue-grey','lighten-5');
+}
+
 #app{
   display: flex;
   min-height: 100vh;
@@ -22,6 +26,10 @@ main{
   flex: 1 0 auto
 }
 
-#sidenav-overlay {
-  z-index: 996 !important;
+#plan-business {
+  border: none;
+}
+
+#plan-business > .collection-item {
+  border: none;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="card-panel indigo lighten-1">
+    <div class="card-panel grey lighten-1">
         <span class="white-text">
             <slot></slot>
         </span>

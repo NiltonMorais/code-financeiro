@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed5655868ec5fdba291533d03afaa415",
+    "content-hash": "df067a0be6ff9a05da26edb8f2363d77",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -260,6 +260,54 @@
                 "tenant"
             ],
             "time": "2016-11-29T23:37:17+00:00"
+        },
+        {
+            "name": "iugu/iugu",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iugu/iugu-php.git",
+                "reference": "e22635ca112d2a5b003372d966261314135257ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iugu/iugu-php/zipball/e22635ca112d2a5b003372d966261314135257ed",
+                "reference": "e22635ca112d2a5b003372d966261314135257ed",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "1.1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/Iugu/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Iugu team and contributors",
+                    "homepage": "https://github.com/iugu/iugu-php/contributors"
+                }
+            ],
+            "description": "iugu PHP Library",
+            "homepage": "https://iugu.com",
+            "keywords": [
+                "api",
+                "iugu",
+                "pagamentos"
+            ],
+            "time": "2015-11-25T10:36:10+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2573,12 +2621,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },

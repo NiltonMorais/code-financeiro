@@ -10,7 +10,7 @@ class Client extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','email','code'];
 
     public function users()
     {
@@ -24,5 +24,9 @@ class Client extends Model implements Transformable
 
     public function categoryExpenses(){
         return $this->hasMany(CategoryExpense::class);
+    }
+
+    public function categoryRevenues(){
+        return $this->hasMany(CategoryRevenue::class);
     }
 }

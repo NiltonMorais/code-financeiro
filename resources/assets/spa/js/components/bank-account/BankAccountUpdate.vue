@@ -2,10 +2,12 @@
 <script>
     import {BankAccount, Bank} from '../../services/resources';
     import PageTitleComponent from '../../../../_default/components/PageTitle.vue';
+    import validatorOffRemoveMixim from '../../mixins/validator-off-remove-mixin';
     import 'materialize-autocomplete';
     import _ from 'lodash';
 
     export default{
+        mixins: [validatorOffRemoveMixim],
         components: {
             'page-title': PageTitleComponent
         },

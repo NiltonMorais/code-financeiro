@@ -2,9 +2,11 @@
 <script>
     import store from '../../store/store';
     import PageTitleComponent from '../../../../_default/components/PageTitle.vue';
+    import validatorOffRemoveMixim from '../../mixins/validator-off-remove-mixin';
     import 'materialize-autocomplete';
 
     export default{
+        mixins: [validatorOffRemoveMixim],
         components: {
             'page-title': PageTitleComponent
         },

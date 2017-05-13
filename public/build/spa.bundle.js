@@ -46,7 +46,7 @@
 
 	'use strict';
 
-	var _appConfig = __webpack_require__(75);
+	var _appConfig = __webpack_require__(81);
 
 	var _appConfig2 = _interopRequireDefault(_appConfig);
 
@@ -54,17 +54,17 @@
 
 	__webpack_require__(2);
 	window.Vue = __webpack_require__(6);
-	__webpack_require__(77);
-	__webpack_require__(78);
+	__webpack_require__(83);
+	__webpack_require__(84);
 
 	Vue.http.options.root = _appConfig2.default.api_url;
 
-	__webpack_require__(79);
-
 	__webpack_require__(85);
-	__webpack_require__(199);
-	__webpack_require__(202);
-	__webpack_require__(213);
+
+	__webpack_require__(91);
+	__webpack_require__(205);
+	__webpack_require__(208);
+	__webpack_require__(219);
 
 /***/ },
 /* 1 */,
@@ -24189,7 +24189,13 @@
 
 /***/ },
 /* 74 */,
-/* 75 */
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24198,7 +24204,7 @@
 	    value: true
 	});
 
-	var _config = __webpack_require__(76);
+	var _config = __webpack_require__(82);
 
 	var _config2 = _interopRequireDefault(_config);
 
@@ -24218,7 +24224,7 @@
 	exports.default = appConfig;
 
 /***/ },
-/* 76 */
+/* 82 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24230,7 +24236,7 @@
 	};
 
 /***/ },
-/* 77 */
+/* 83 */
 /***/ function(module, exports) {
 
 	/*!
@@ -25753,7 +25759,7 @@
 	module.exports = plugin;
 
 /***/ },
-/* 78 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -26564,16 +26570,16 @@
 
 
 /***/ },
-/* 79 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _laravelEcho = __webpack_require__(80);
+	var _laravelEcho = __webpack_require__(86);
 
 	var _laravelEcho2 = _interopRequireDefault(_laravelEcho);
 
-	var _jwtToken = __webpack_require__(82);
+	var _jwtToken = __webpack_require__(88);
 
 	var _jwtToken2 = _interopRequireDefault(_jwtToken);
 
@@ -26595,7 +26601,7 @@
 	changeJwtTokenInEcho(_jwtToken2.default.token);
 
 /***/ },
-/* 80 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {var asyncGenerator = function () {
@@ -27281,7 +27287,7 @@
 	        }
 	        if (this.options.broadcaster == 'pusher') {
 	            if (!window['Pusher']) {
-	                window['Pusher'] = __webpack_require__(81);
+	                window['Pusher'] = __webpack_require__(87);
 	            }
 	            this.connector = new PusherConnector(this.options);
 	        } else if (this.options.broadcaster == 'socket.io') {
@@ -27362,7 +27368,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 81 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -31497,7 +31503,7 @@
 	;
 
 /***/ },
-/* 82 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -31506,9 +31512,9 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _localStorage = __webpack_require__(84);
+	var _localStorage = __webpack_require__(90);
 
 	var _localStorage2 = _interopRequireDefault(_localStorage);
 
@@ -31589,7 +31595,7 @@
 	};
 
 /***/ },
-/* 83 */
+/* 89 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -31661,7 +31667,7 @@
 	exports.Statement = Statement;
 
 /***/ },
-/* 84 */
+/* 90 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -31692,24 +31698,24 @@
 	};
 
 /***/ },
-/* 85 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-	var _moment = __webpack_require__(86);
+	var _moment = __webpack_require__(92);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	__webpack_require__(166);
+	__webpack_require__(172);
 
-	var _numeral = __webpack_require__(197);
+	var _numeral = __webpack_require__(203);
 
 	var _numeral2 = _interopRequireDefault(_numeral);
 
-	__webpack_require__(198);
+	__webpack_require__(204);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31755,7 +31761,7 @@
 	});
 
 /***/ },
-/* 86 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {//! moment.js
@@ -33572,7 +33578,7 @@
 	            module && module.exports) {
 	        try {
 	            oldLocale = globalLocale._abbr;
-	            __webpack_require__(88)("./" + name);
+	            __webpack_require__(94)("./" + name);
 	            // because defineLocale currently also sets the global locale, we
 	            // want to undo that for lazy loaded locales
 	            getSetGlobalLocale(oldLocale);
@@ -36060,10 +36066,10 @@
 
 	})));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(93)(module)))
 
 /***/ },
-/* 87 */
+/* 93 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -36079,226 +36085,226 @@
 
 
 /***/ },
-/* 88 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 89,
-		"./af.js": 89,
-		"./ar": 90,
-		"./ar-dz": 91,
-		"./ar-dz.js": 91,
-		"./ar-ly": 92,
-		"./ar-ly.js": 92,
-		"./ar-ma": 93,
-		"./ar-ma.js": 93,
-		"./ar-sa": 94,
-		"./ar-sa.js": 94,
-		"./ar-tn": 95,
-		"./ar-tn.js": 95,
-		"./ar.js": 90,
-		"./az": 96,
-		"./az.js": 96,
-		"./be": 97,
-		"./be.js": 97,
-		"./bg": 98,
-		"./bg.js": 98,
-		"./bn": 99,
-		"./bn.js": 99,
-		"./bo": 100,
-		"./bo.js": 100,
-		"./br": 101,
-		"./br.js": 101,
-		"./bs": 102,
-		"./bs.js": 102,
-		"./ca": 103,
-		"./ca.js": 103,
-		"./cs": 104,
-		"./cs.js": 104,
-		"./cv": 105,
-		"./cv.js": 105,
-		"./cy": 106,
-		"./cy.js": 106,
-		"./da": 107,
-		"./da.js": 107,
-		"./de": 108,
-		"./de-at": 109,
-		"./de-at.js": 109,
-		"./de.js": 108,
-		"./dv": 110,
-		"./dv.js": 110,
-		"./el": 111,
-		"./el.js": 111,
-		"./en-au": 112,
-		"./en-au.js": 112,
-		"./en-ca": 113,
-		"./en-ca.js": 113,
-		"./en-gb": 114,
-		"./en-gb.js": 114,
-		"./en-ie": 115,
-		"./en-ie.js": 115,
-		"./en-nz": 116,
-		"./en-nz.js": 116,
-		"./eo": 117,
-		"./eo.js": 117,
-		"./es": 118,
-		"./es-do": 119,
-		"./es-do.js": 119,
-		"./es.js": 118,
-		"./et": 120,
-		"./et.js": 120,
-		"./eu": 121,
-		"./eu.js": 121,
-		"./fa": 122,
-		"./fa.js": 122,
-		"./fi": 123,
-		"./fi.js": 123,
-		"./fo": 124,
-		"./fo.js": 124,
-		"./fr": 125,
-		"./fr-ca": 126,
-		"./fr-ca.js": 126,
-		"./fr-ch": 127,
-		"./fr-ch.js": 127,
-		"./fr.js": 125,
-		"./fy": 128,
-		"./fy.js": 128,
-		"./gd": 129,
-		"./gd.js": 129,
-		"./gl": 130,
-		"./gl.js": 130,
-		"./he": 131,
-		"./he.js": 131,
-		"./hi": 132,
-		"./hi.js": 132,
-		"./hr": 133,
-		"./hr.js": 133,
-		"./hu": 134,
-		"./hu.js": 134,
-		"./hy-am": 135,
-		"./hy-am.js": 135,
-		"./id": 136,
-		"./id.js": 136,
-		"./is": 137,
-		"./is.js": 137,
-		"./it": 138,
-		"./it.js": 138,
-		"./ja": 139,
-		"./ja.js": 139,
-		"./jv": 140,
-		"./jv.js": 140,
-		"./ka": 141,
-		"./ka.js": 141,
-		"./kk": 142,
-		"./kk.js": 142,
-		"./km": 143,
-		"./km.js": 143,
-		"./ko": 144,
-		"./ko.js": 144,
-		"./ky": 145,
-		"./ky.js": 145,
-		"./lb": 146,
-		"./lb.js": 146,
-		"./lo": 147,
-		"./lo.js": 147,
-		"./lt": 148,
-		"./lt.js": 148,
-		"./lv": 149,
-		"./lv.js": 149,
-		"./me": 150,
-		"./me.js": 150,
-		"./mi": 151,
-		"./mi.js": 151,
-		"./mk": 152,
-		"./mk.js": 152,
-		"./ml": 153,
-		"./ml.js": 153,
-		"./mr": 154,
-		"./mr.js": 154,
-		"./ms": 155,
-		"./ms-my": 156,
-		"./ms-my.js": 156,
-		"./ms.js": 155,
-		"./my": 157,
-		"./my.js": 157,
-		"./nb": 158,
-		"./nb.js": 158,
-		"./ne": 159,
-		"./ne.js": 159,
-		"./nl": 160,
-		"./nl-be": 161,
-		"./nl-be.js": 161,
-		"./nl.js": 160,
-		"./nn": 162,
-		"./nn.js": 162,
-		"./pa-in": 163,
-		"./pa-in.js": 163,
-		"./pl": 164,
-		"./pl.js": 164,
-		"./pt": 165,
-		"./pt-br": 166,
-		"./pt-br.js": 166,
-		"./pt.js": 165,
-		"./ro": 167,
-		"./ro.js": 167,
-		"./ru": 168,
-		"./ru.js": 168,
-		"./se": 169,
-		"./se.js": 169,
-		"./si": 170,
-		"./si.js": 170,
-		"./sk": 171,
-		"./sk.js": 171,
-		"./sl": 172,
-		"./sl.js": 172,
-		"./sq": 173,
-		"./sq.js": 173,
-		"./sr": 174,
-		"./sr-cyrl": 175,
-		"./sr-cyrl.js": 175,
-		"./sr.js": 174,
-		"./ss": 176,
-		"./ss.js": 176,
-		"./sv": 177,
-		"./sv.js": 177,
-		"./sw": 178,
-		"./sw.js": 178,
-		"./ta": 179,
-		"./ta.js": 179,
-		"./te": 180,
-		"./te.js": 180,
-		"./tet": 181,
-		"./tet.js": 181,
-		"./th": 182,
-		"./th.js": 182,
-		"./tl-ph": 183,
-		"./tl-ph.js": 183,
-		"./tlh": 184,
-		"./tlh.js": 184,
-		"./tr": 185,
-		"./tr.js": 185,
-		"./tzl": 186,
-		"./tzl.js": 186,
-		"./tzm": 187,
-		"./tzm-latn": 188,
-		"./tzm-latn.js": 188,
-		"./tzm.js": 187,
-		"./uk": 189,
-		"./uk.js": 189,
-		"./uz": 190,
-		"./uz.js": 190,
-		"./vi": 191,
-		"./vi.js": 191,
-		"./x-pseudo": 192,
-		"./x-pseudo.js": 192,
-		"./yo": 193,
-		"./yo.js": 193,
-		"./zh-cn": 194,
-		"./zh-cn.js": 194,
-		"./zh-hk": 195,
-		"./zh-hk.js": 195,
-		"./zh-tw": 196,
-		"./zh-tw.js": 196
+		"./af": 95,
+		"./af.js": 95,
+		"./ar": 96,
+		"./ar-dz": 97,
+		"./ar-dz.js": 97,
+		"./ar-ly": 98,
+		"./ar-ly.js": 98,
+		"./ar-ma": 99,
+		"./ar-ma.js": 99,
+		"./ar-sa": 100,
+		"./ar-sa.js": 100,
+		"./ar-tn": 101,
+		"./ar-tn.js": 101,
+		"./ar.js": 96,
+		"./az": 102,
+		"./az.js": 102,
+		"./be": 103,
+		"./be.js": 103,
+		"./bg": 104,
+		"./bg.js": 104,
+		"./bn": 105,
+		"./bn.js": 105,
+		"./bo": 106,
+		"./bo.js": 106,
+		"./br": 107,
+		"./br.js": 107,
+		"./bs": 108,
+		"./bs.js": 108,
+		"./ca": 109,
+		"./ca.js": 109,
+		"./cs": 110,
+		"./cs.js": 110,
+		"./cv": 111,
+		"./cv.js": 111,
+		"./cy": 112,
+		"./cy.js": 112,
+		"./da": 113,
+		"./da.js": 113,
+		"./de": 114,
+		"./de-at": 115,
+		"./de-at.js": 115,
+		"./de.js": 114,
+		"./dv": 116,
+		"./dv.js": 116,
+		"./el": 117,
+		"./el.js": 117,
+		"./en-au": 118,
+		"./en-au.js": 118,
+		"./en-ca": 119,
+		"./en-ca.js": 119,
+		"./en-gb": 120,
+		"./en-gb.js": 120,
+		"./en-ie": 121,
+		"./en-ie.js": 121,
+		"./en-nz": 122,
+		"./en-nz.js": 122,
+		"./eo": 123,
+		"./eo.js": 123,
+		"./es": 124,
+		"./es-do": 125,
+		"./es-do.js": 125,
+		"./es.js": 124,
+		"./et": 126,
+		"./et.js": 126,
+		"./eu": 127,
+		"./eu.js": 127,
+		"./fa": 128,
+		"./fa.js": 128,
+		"./fi": 129,
+		"./fi.js": 129,
+		"./fo": 130,
+		"./fo.js": 130,
+		"./fr": 131,
+		"./fr-ca": 132,
+		"./fr-ca.js": 132,
+		"./fr-ch": 133,
+		"./fr-ch.js": 133,
+		"./fr.js": 131,
+		"./fy": 134,
+		"./fy.js": 134,
+		"./gd": 135,
+		"./gd.js": 135,
+		"./gl": 136,
+		"./gl.js": 136,
+		"./he": 137,
+		"./he.js": 137,
+		"./hi": 138,
+		"./hi.js": 138,
+		"./hr": 139,
+		"./hr.js": 139,
+		"./hu": 140,
+		"./hu.js": 140,
+		"./hy-am": 141,
+		"./hy-am.js": 141,
+		"./id": 142,
+		"./id.js": 142,
+		"./is": 143,
+		"./is.js": 143,
+		"./it": 144,
+		"./it.js": 144,
+		"./ja": 145,
+		"./ja.js": 145,
+		"./jv": 146,
+		"./jv.js": 146,
+		"./ka": 147,
+		"./ka.js": 147,
+		"./kk": 148,
+		"./kk.js": 148,
+		"./km": 149,
+		"./km.js": 149,
+		"./ko": 150,
+		"./ko.js": 150,
+		"./ky": 151,
+		"./ky.js": 151,
+		"./lb": 152,
+		"./lb.js": 152,
+		"./lo": 153,
+		"./lo.js": 153,
+		"./lt": 154,
+		"./lt.js": 154,
+		"./lv": 155,
+		"./lv.js": 155,
+		"./me": 156,
+		"./me.js": 156,
+		"./mi": 157,
+		"./mi.js": 157,
+		"./mk": 158,
+		"./mk.js": 158,
+		"./ml": 159,
+		"./ml.js": 159,
+		"./mr": 160,
+		"./mr.js": 160,
+		"./ms": 161,
+		"./ms-my": 162,
+		"./ms-my.js": 162,
+		"./ms.js": 161,
+		"./my": 163,
+		"./my.js": 163,
+		"./nb": 164,
+		"./nb.js": 164,
+		"./ne": 165,
+		"./ne.js": 165,
+		"./nl": 166,
+		"./nl-be": 167,
+		"./nl-be.js": 167,
+		"./nl.js": 166,
+		"./nn": 168,
+		"./nn.js": 168,
+		"./pa-in": 169,
+		"./pa-in.js": 169,
+		"./pl": 170,
+		"./pl.js": 170,
+		"./pt": 171,
+		"./pt-br": 172,
+		"./pt-br.js": 172,
+		"./pt.js": 171,
+		"./ro": 173,
+		"./ro.js": 173,
+		"./ru": 174,
+		"./ru.js": 174,
+		"./se": 175,
+		"./se.js": 175,
+		"./si": 176,
+		"./si.js": 176,
+		"./sk": 177,
+		"./sk.js": 177,
+		"./sl": 178,
+		"./sl.js": 178,
+		"./sq": 179,
+		"./sq.js": 179,
+		"./sr": 180,
+		"./sr-cyrl": 181,
+		"./sr-cyrl.js": 181,
+		"./sr.js": 180,
+		"./ss": 182,
+		"./ss.js": 182,
+		"./sv": 183,
+		"./sv.js": 183,
+		"./sw": 184,
+		"./sw.js": 184,
+		"./ta": 185,
+		"./ta.js": 185,
+		"./te": 186,
+		"./te.js": 186,
+		"./tet": 187,
+		"./tet.js": 187,
+		"./th": 188,
+		"./th.js": 188,
+		"./tl-ph": 189,
+		"./tl-ph.js": 189,
+		"./tlh": 190,
+		"./tlh.js": 190,
+		"./tr": 191,
+		"./tr.js": 191,
+		"./tzl": 192,
+		"./tzl.js": 192,
+		"./tzm": 193,
+		"./tzm-latn": 194,
+		"./tzm-latn.js": 194,
+		"./tzm.js": 193,
+		"./uk": 195,
+		"./uk.js": 195,
+		"./uz": 196,
+		"./uz.js": 196,
+		"./vi": 197,
+		"./vi.js": 197,
+		"./x-pseudo": 198,
+		"./x-pseudo.js": 198,
+		"./yo": 199,
+		"./yo.js": 199,
+		"./zh-cn": 200,
+		"./zh-cn.js": 200,
+		"./zh-hk": 201,
+		"./zh-hk.js": 201,
+		"./zh-tw": 202,
+		"./zh-tw.js": 202
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -36311,11 +36317,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 88;
+	webpackContext.id = 94;
 
 
 /***/ },
-/* 89 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36323,7 +36329,7 @@
 	//! author : Werner Mollentze : https://github.com/wernerm
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36393,7 +36399,7 @@
 
 
 /***/ },
-/* 90 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36403,7 +36409,7 @@
 	//! author : forabi https://github.com/forabi
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36540,7 +36546,7 @@
 
 
 /***/ },
-/* 91 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36548,7 +36554,7 @@
 	//! author : Noureddine LOUAHEDJ : https://github.com/noureddineme
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36604,7 +36610,7 @@
 
 
 /***/ },
-/* 92 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36612,7 +36618,7 @@
 	//! author : Ali Hmer: https://github.com/kikoanis
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36735,7 +36741,7 @@
 
 
 /***/ },
-/* 93 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36744,7 +36750,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36800,7 +36806,7 @@
 
 
 /***/ },
-/* 94 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36808,7 +36814,7 @@
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36910,7 +36916,7 @@
 
 
 /***/ },
-/* 95 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36918,7 +36924,7 @@
 	//! author : Nader Toukabri : https://github.com/naderio
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -36974,7 +36980,7 @@
 
 
 /***/ },
-/* 96 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -36982,7 +36988,7 @@
 	//! author : topchiyev : https://github.com/topchiyev
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37084,7 +37090,7 @@
 
 
 /***/ },
-/* 97 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37094,7 +37100,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37223,7 +37229,7 @@
 
 
 /***/ },
-/* 98 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37231,7 +37237,7 @@
 	//! author : Krasen Borisov : https://github.com/kraz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37318,7 +37324,7 @@
 
 
 /***/ },
-/* 99 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37326,7 +37332,7 @@
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37442,7 +37448,7 @@
 
 
 /***/ },
-/* 100 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37450,7 +37456,7 @@
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37566,7 +37572,7 @@
 
 
 /***/ },
-/* 101 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37574,7 +37580,7 @@
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37679,7 +37685,7 @@
 
 
 /***/ },
-/* 102 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37688,7 +37694,7 @@
 	//! based on (hr) translation by Bojan Marković
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37827,7 +37833,7 @@
 
 
 /***/ },
-/* 103 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37835,7 +37841,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -37913,7 +37919,7 @@
 
 
 /***/ },
-/* 104 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -37921,7 +37927,7 @@
 	//! author : petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38090,7 +38096,7 @@
 
 
 /***/ },
-/* 105 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38098,7 +38104,7 @@
 	//! author : Anatoly Mironov : https://github.com/mirontoli
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38158,7 +38164,7 @@
 
 
 /***/ },
-/* 106 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38167,7 +38173,7 @@
 	//! author : https://github.com/ryangreaves
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38244,7 +38250,7 @@
 
 
 /***/ },
-/* 107 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38252,7 +38258,7 @@
 	//! author : Ulrik Nielsen : https://github.com/mrbase
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38309,7 +38315,7 @@
 
 
 /***/ },
-/* 108 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38319,7 +38325,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38392,7 +38398,7 @@
 
 
 /***/ },
-/* 109 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38403,7 +38409,7 @@
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38476,7 +38482,7 @@
 
 
 /***/ },
-/* 110 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38484,7 +38490,7 @@
 	//! author : Jawish Hameed : https://github.com/jawish
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38581,7 +38587,7 @@
 
 
 /***/ },
-/* 111 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38589,7 +38595,7 @@
 	//! author : Aggelos Karalias : https://github.com/mehiel
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38684,7 +38690,7 @@
 
 
 /***/ },
-/* 112 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38692,7 +38698,7 @@
 	//! author : Jared Morse : https://github.com/jarcoal
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38756,7 +38762,7 @@
 
 
 /***/ },
-/* 113 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38764,7 +38770,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38824,7 +38830,7 @@
 
 
 /***/ },
-/* 114 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38832,7 +38838,7 @@
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38896,7 +38902,7 @@
 
 
 /***/ },
-/* 115 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38904,7 +38910,7 @@
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -38968,7 +38974,7 @@
 
 
 /***/ },
-/* 116 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -38976,7 +38982,7 @@
 	//! author : Luke McGregor : https://github.com/lukemcgregor
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39040,7 +39046,7 @@
 
 
 /***/ },
-/* 117 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39050,7 +39056,7 @@
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39118,7 +39124,7 @@
 
 
 /***/ },
-/* 118 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39126,7 +39132,7 @@
 	//! author : Julio Napurí : https://github.com/julionc
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39204,14 +39210,14 @@
 
 
 /***/ },
-/* 119 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
 	//! locale : Spanish (Dominican Republic) [es-do]
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39289,7 +39295,7 @@
 
 
 /***/ },
-/* 120 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39298,7 +39304,7 @@
 	//! improvements : Illimar Tambek : https://github.com/ragulka
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39374,7 +39380,7 @@
 
 
 /***/ },
-/* 121 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39382,7 +39388,7 @@
 	//! author : Eneko Illarramendi : https://github.com/eillarra
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39445,7 +39451,7 @@
 
 
 /***/ },
-/* 122 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39453,7 +39459,7 @@
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39557,7 +39563,7 @@
 
 
 /***/ },
-/* 123 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39565,7 +39571,7 @@
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39669,7 +39675,7 @@
 
 
 /***/ },
-/* 124 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39677,7 +39683,7 @@
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39734,7 +39740,7 @@
 
 
 /***/ },
-/* 125 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39742,7 +39748,7 @@
 	//! author : John Fischer : https://github.com/jfroffice
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39803,7 +39809,7 @@
 
 
 /***/ },
-/* 126 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39811,7 +39817,7 @@
 	//! author : Jonathan Abourbih : https://github.com/jonbca
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39868,7 +39874,7 @@
 
 
 /***/ },
-/* 127 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39876,7 +39882,7 @@
 	//! author : Gaspard Bucher : https://github.com/gaspard
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -39937,7 +39943,7 @@
 
 
 /***/ },
-/* 128 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -39945,7 +39951,7 @@
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40015,7 +40021,7 @@
 
 
 /***/ },
-/* 129 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40023,7 +40029,7 @@
 	//! author : Jon Ashdown : https://github.com/jonashdown
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40096,7 +40102,7 @@
 
 
 /***/ },
-/* 130 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40104,7 +40110,7 @@
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40178,7 +40184,7 @@
 
 
 /***/ },
-/* 131 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40188,7 +40194,7 @@
 	//! author : Tal Ater : https://github.com/TalAter
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40282,7 +40288,7 @@
 
 
 /***/ },
-/* 132 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40290,7 +40296,7 @@
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40411,7 +40417,7 @@
 
 
 /***/ },
-/* 133 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40419,7 +40425,7 @@
 	//! author : Bojan Marković : https://github.com/bmarkovic
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40561,7 +40567,7 @@
 
 
 /***/ },
-/* 134 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40569,7 +40575,7 @@
 	//! author : Adam Brunner : https://github.com/adambrunner
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40675,7 +40681,7 @@
 
 
 /***/ },
-/* 135 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40683,7 +40689,7 @@
 	//! author : Armendarabyan : https://github.com/armendarabyan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40775,7 +40781,7 @@
 
 
 /***/ },
-/* 136 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40784,7 +40790,7 @@
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40863,7 +40869,7 @@
 
 
 /***/ },
-/* 137 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -40871,7 +40877,7 @@
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -40995,7 +41001,7 @@
 
 
 /***/ },
-/* 138 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41004,7 +41010,7 @@
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41070,7 +41076,7 @@
 
 
 /***/ },
-/* 139 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41078,7 +41084,7 @@
 	//! author : LI Long : https://github.com/baryon
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41151,7 +41157,7 @@
 
 
 /***/ },
-/* 140 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41160,7 +41166,7 @@
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41239,7 +41245,7 @@
 
 
 /***/ },
-/* 141 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41247,7 +41253,7 @@
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41333,7 +41339,7 @@
 
 
 /***/ },
-/* 142 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41341,7 +41347,7 @@
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41425,7 +41431,7 @@
 
 
 /***/ },
-/* 143 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41433,7 +41439,7 @@
 	//! author : Kruy Vanna : https://github.com/kruyvanna
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41488,7 +41494,7 @@
 
 
 /***/ },
-/* 144 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41497,7 +41503,7 @@
 	//! author : Jeeeyul Lee <jeeeyul@gmail.com>
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41558,7 +41564,7 @@
 
 
 /***/ },
-/* 145 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41566,7 +41572,7 @@
 	//! author : Chyngyz Arystan uulu : https://github.com/chyngyz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41651,7 +41657,7 @@
 
 
 /***/ },
-/* 146 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41660,7 +41666,7 @@
 	//! author : David Raison : https://github.com/kwisatz
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41793,7 +41799,7 @@
 
 
 /***/ },
-/* 147 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41801,7 +41807,7 @@
 	//! author : Ryan Hart : https://github.com/ryanhart2
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41868,7 +41874,7 @@
 
 
 /***/ },
-/* 148 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41876,7 +41882,7 @@
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -41990,7 +41996,7 @@
 
 
 /***/ },
-/* 149 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -41999,7 +42005,7 @@
 	//! author : Jānis Elmeris : https://github.com/JanisE
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42092,7 +42098,7 @@
 
 
 /***/ },
-/* 150 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42100,7 +42106,7 @@
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42208,7 +42214,7 @@
 
 
 /***/ },
-/* 151 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42216,7 +42222,7 @@
 	//! author : John Corrigan <robbiecloset@gmail.com> : https://github.com/johnideal
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42277,7 +42283,7 @@
 
 
 /***/ },
-/* 152 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42285,7 +42291,7 @@
 	//! author : Borislav Mickov : https://github.com/B0k0
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42372,7 +42378,7 @@
 
 
 /***/ },
-/* 153 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42380,7 +42386,7 @@
 	//! author : Floyd Pink : https://github.com/floydpink
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42458,7 +42464,7 @@
 
 
 /***/ },
-/* 154 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42467,7 +42473,7 @@
 	//! author : Vivek Athalye : https://github.com/vnathalye
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42622,7 +42628,7 @@
 
 
 /***/ },
-/* 155 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42630,7 +42636,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42709,7 +42715,7 @@
 
 
 /***/ },
-/* 156 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42718,7 +42724,7 @@
 	//! author : Weldan Jamili : https://github.com/weldan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42797,7 +42803,7 @@
 
 
 /***/ },
-/* 157 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42807,7 +42813,7 @@
 	//! author : Tin Aung Lin : https://github.com/thanyawzinmin
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42898,7 +42904,7 @@
 
 
 /***/ },
-/* 158 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42907,7 +42913,7 @@
 	//!           Sigurd Gartmann : https://github.com/sigurdga
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -42966,7 +42972,7 @@
 
 
 /***/ },
-/* 159 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -42974,7 +42980,7 @@
 	//! author : suvash : https://github.com/suvash
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43094,7 +43100,7 @@
 
 
 /***/ },
-/* 160 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43103,7 +43109,7 @@
 	//! author : Jacob Middag : https://github.com/middagj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43185,7 +43191,7 @@
 
 
 /***/ },
-/* 161 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43194,7 +43200,7 @@
 	//! author : Jacob Middag : https://github.com/middagj
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43276,7 +43282,7 @@
 
 
 /***/ },
-/* 162 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43284,7 +43290,7 @@
 	//! author : https://github.com/mechuwind
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43341,7 +43347,7 @@
 
 
 /***/ },
-/* 163 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43349,7 +43355,7 @@
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43470,7 +43476,7 @@
 
 
 /***/ },
-/* 164 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43478,7 +43484,7 @@
 	//! author : Rafal Hirsz : https://github.com/evoL
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43580,7 +43586,7 @@
 
 
 /***/ },
-/* 165 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43588,7 +43594,7 @@
 	//! author : Jefferson : https://github.com/jalex79
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43650,7 +43656,7 @@
 
 
 /***/ },
-/* 166 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43658,7 +43664,7 @@
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43716,7 +43722,7 @@
 
 
 /***/ },
-/* 167 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43725,7 +43731,7 @@
 	//! author : Valentin Agachi : https://github.com/avaly
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43796,7 +43802,7 @@
 
 
 /***/ },
-/* 168 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43806,7 +43812,7 @@
 	//! author : Коренберг Марк : https://github.com/socketpair
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -43984,7 +43990,7 @@
 
 
 /***/ },
-/* 169 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -43992,7 +43998,7 @@
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44050,7 +44056,7 @@
 
 
 /***/ },
-/* 170 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44058,7 +44064,7 @@
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44126,7 +44132,7 @@
 
 
 /***/ },
-/* 171 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44135,7 +44141,7 @@
 	//! based on work of petrbela : https://github.com/petrbela
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44281,7 +44287,7 @@
 
 
 /***/ },
-/* 172 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44289,7 +44295,7 @@
 	//! author : Robert Sedovšek : https://github.com/sedovsek
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44448,7 +44454,7 @@
 
 
 /***/ },
-/* 173 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44458,7 +44464,7 @@
 	//! author : Oerd Cukalla : https://github.com/oerd
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44523,7 +44529,7 @@
 
 
 /***/ },
-/* 174 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44531,7 +44537,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44638,7 +44644,7 @@
 
 
 /***/ },
-/* 175 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44646,7 +44652,7 @@
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44753,7 +44759,7 @@
 
 
 /***/ },
-/* 176 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44761,7 +44767,7 @@
 	//! author : Nicolai Davies<mail@nicolai.io> : https://github.com/nicolaidavies
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44847,7 +44853,7 @@
 
 
 /***/ },
-/* 177 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44855,7 +44861,7 @@
 	//! author : Jens Alm : https://github.com/ulmus
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44921,7 +44927,7 @@
 
 
 /***/ },
-/* 178 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44929,7 +44935,7 @@
 	//! author : Fahad Kassim : https://github.com/fadsel
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -44985,7 +44991,7 @@
 
 
 /***/ },
-/* 179 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -44993,7 +44999,7 @@
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45120,7 +45126,7 @@
 
 
 /***/ },
-/* 180 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45128,7 +45134,7 @@
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45214,7 +45220,7 @@
 
 
 /***/ },
-/* 181 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45223,7 +45229,7 @@
 	//! author : Onorio De J. Afonso : https://github.com/marobo
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45287,7 +45293,7 @@
 
 
 /***/ },
-/* 182 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45295,7 +45301,7 @@
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45359,7 +45365,7 @@
 
 
 /***/ },
-/* 183 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45367,7 +45373,7 @@
 	//! author : Dan Hagman : https://github.com/hagmandan
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45426,7 +45432,7 @@
 
 
 /***/ },
-/* 184 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45434,7 +45440,7 @@
 	//! author : Dominika Kruk : https://github.com/amaranthrose
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45551,7 +45557,7 @@
 
 
 /***/ },
-/* 185 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45560,7 +45566,7 @@
 	//!           Burak Yiğit Kaya: https://github.com/BYK
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45646,7 +45652,7 @@
 
 
 /***/ },
-/* 186 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45655,7 +45661,7 @@
 	//! author : Iustì Canun
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45742,7 +45748,7 @@
 
 
 /***/ },
-/* 187 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45750,7 +45756,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45805,7 +45811,7 @@
 
 
 /***/ },
-/* 188 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45813,7 +45819,7 @@
 	//! author : Abdel Said : https://github.com/abdelsaid
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -45868,7 +45874,7 @@
 
 
 /***/ },
-/* 189 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -45877,7 +45883,7 @@
 	//! Author : Menelion Elensúle : https://github.com/Oire
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46019,7 +46025,7 @@
 
 
 /***/ },
-/* 190 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46027,7 +46033,7 @@
 	//! author : Sardor Muminov : https://github.com/muminoff
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46082,7 +46088,7 @@
 
 
 /***/ },
-/* 191 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46090,7 +46096,7 @@
 	//! author : Bang Nguyen : https://github.com/bangnk
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46166,7 +46172,7 @@
 
 
 /***/ },
-/* 192 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46174,7 +46180,7 @@
 	//! author : Andrew Hood : https://github.com/andrewhood125
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46239,7 +46245,7 @@
 
 
 /***/ },
-/* 193 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46247,7 +46253,7 @@
 	//! author : Atolagbe Abisoye : https://github.com/andela-batolagbe
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46304,7 +46310,7 @@
 
 
 /***/ },
-/* 194 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46313,7 +46319,7 @@
 	//! author : Zeno Zeng : https://github.com/zenozeng
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46436,7 +46442,7 @@
 
 
 /***/ },
-/* 195 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46446,7 +46452,7 @@
 	//! author : Konstantin : https://github.com/skfd
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46546,7 +46552,7 @@
 
 
 /***/ },
-/* 196 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -46555,7 +46561,7 @@
 	//! author : Chris Lam : https://github.com/hehachris
 
 	;(function (global, factory) {
-	    true ? factory(__webpack_require__(86)) :
+	    true ? factory(__webpack_require__(92)) :
 	   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
 	   factory(global.moment)
 	}(this, (function (moment) { 'use strict';
@@ -46655,7 +46661,7 @@
 
 
 /***/ },
-/* 197 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! @preserve
@@ -47616,7 +47622,7 @@
 
 
 /***/ },
-/* 198 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// numeral.js locale configuration
@@ -47625,7 +47631,7 @@
 
 	(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(197)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(203)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof module === 'object' && module.exports) {
 	        factory(require('../numeral'));
 	    } else {
@@ -47654,7 +47660,7 @@
 
 
 /***/ },
-/* 199 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47663,25 +47669,25 @@
 
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-	var _veeValidate = __webpack_require__(200);
+	var _veeValidate = __webpack_require__(206);
 
 	var _veeValidate2 = _interopRequireDefault(_veeValidate);
 
-	var _ptBr = __webpack_require__(201);
+	var _ptBr = __webpack_require__(207);
 
 	var _ptBr2 = _interopRequireDefault(_ptBr);
 
-	var _moment = __webpack_require__(86);
+	var _moment = __webpack_require__(92);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	__webpack_require__(166);
+	__webpack_require__(172);
 
-	var _numeral = __webpack_require__(197);
+	var _numeral = __webpack_require__(203);
 
 	var _numeral2 = _interopRequireDefault(_numeral);
 
-	__webpack_require__(198);
+	__webpack_require__(204);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47734,7 +47740,7 @@
 	});
 
 /***/ },
-/* 200 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -51216,7 +51222,7 @@
 	;
 
 /***/ },
-/* 201 */
+/* 207 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51349,20 +51355,20 @@
 	};
 
 /***/ },
-/* 202 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _jwtToken = __webpack_require__(82);
+	var _jwtToken = __webpack_require__(88);
 
 	var _jwtToken2 = _interopRequireDefault(_jwtToken);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _appConfig = __webpack_require__(75);
+	var _appConfig = __webpack_require__(81);
 
 	var _appConfig2 = _interopRequireDefault(_appConfig);
 
@@ -51388,7 +51394,7 @@
 	});
 
 /***/ },
-/* 203 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51397,37 +51403,37 @@
 	    value: true
 	});
 
-	var _vuex = __webpack_require__(78);
+	var _vuex = __webpack_require__(84);
 
 	var _vuex2 = _interopRequireDefault(_vuex);
 
-	var _auth = __webpack_require__(204);
+	var _auth = __webpack_require__(210);
 
 	var _auth2 = _interopRequireDefault(_auth);
 
-	var _bankAccount = __webpack_require__(205);
+	var _bankAccount = __webpack_require__(211);
 
 	var _bankAccount2 = _interopRequireDefault(_bankAccount);
 
-	var _bank = __webpack_require__(208);
+	var _bank = __webpack_require__(214);
 
 	var _bank2 = _interopRequireDefault(_bank);
 
-	var _cashFlow = __webpack_require__(209);
+	var _cashFlow = __webpack_require__(215);
 
 	var _cashFlow2 = _interopRequireDefault(_cashFlow);
 
-	var _statement = __webpack_require__(210);
+	var _statement = __webpack_require__(216);
 
 	var _statement2 = _interopRequireDefault(_statement);
 
-	var _category = __webpack_require__(211);
+	var _category = __webpack_require__(217);
 
 	var _category2 = _interopRequireDefault(_category);
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _bill = __webpack_require__(212);
+	var _bill = __webpack_require__(218);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -51459,7 +51465,7 @@
 	});
 
 /***/ },
-/* 204 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -51468,15 +51474,15 @@
 	    value: true
 	});
 
-	var _jwtToken = __webpack_require__(82);
+	var _jwtToken = __webpack_require__(88);
 
 	var _jwtToken2 = _interopRequireDefault(_jwtToken);
 
-	var _localStorage = __webpack_require__(84);
+	var _localStorage = __webpack_require__(90);
 
 	var _localStorage2 = _interopRequireDefault(_localStorage);
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51540,7 +51546,7 @@
 	exports.default = _module;
 
 /***/ },
-/* 205 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -51549,13 +51555,13 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _searchOptions = __webpack_require__(206);
+	var _searchOptions = __webpack_require__(212);
 
 	var _searchOptions2 = _interopRequireDefault(_searchOptions);
 
-	var _lodash = __webpack_require__(207);
+	var _lodash = __webpack_require__(213);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -51690,7 +51696,7 @@
 	exports.default = _module;
 
 /***/ },
-/* 206 */
+/* 212 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -51759,7 +51765,7 @@
 	exports.default = _class;
 
 /***/ },
-/* 207 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/**
@@ -67912,10 +67918,10 @@
 	  }
 	}.call(this));
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(87)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(93)(module), (function() { return this; }())))
 
 /***/ },
-/* 208 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67924,9 +67930,9 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _lodash = __webpack_require__(207);
+	var _lodash = __webpack_require__(213);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -67980,7 +67986,7 @@
 	exports.default = _module;
 
 /***/ },
-/* 209 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -67989,9 +67995,9 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _moment = __webpack_require__(86);
+	var _moment = __webpack_require__(92);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -68122,7 +68128,7 @@
 	exports.default = _module;
 
 /***/ },
-/* 210 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -68131,13 +68137,13 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _searchOptions = __webpack_require__(206);
+	var _searchOptions = __webpack_require__(212);
 
 	var _searchOptions2 = _interopRequireDefault(_searchOptions);
 
-	var _moment = __webpack_require__(86);
+	var _moment = __webpack_require__(92);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
@@ -68207,7 +68213,7 @@
 	exports.default = _module;
 
 /***/ },
-/* 211 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -68216,7 +68222,7 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
 	var formatCategories = function formatCategories(categories) {
 	    var categoryCollection = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -68430,7 +68436,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 212 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -68439,7 +68445,7 @@
 	    value: true
 	});
 
-	var _searchOptions = __webpack_require__(206);
+	var _searchOptions = __webpack_require__(212);
 
 	var _searchOptions2 = _interopRequireDefault(_searchOptions);
 
@@ -68584,24 +68590,24 @@
 	};
 
 /***/ },
-/* 213 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _App = __webpack_require__(214);
+	var _App = __webpack_require__(220);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _vueRouter = __webpack_require__(227);
+	var _vueRouter = __webpack_require__(233);
 
 	var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-	var _router = __webpack_require__(228);
+	var _router = __webpack_require__(234);
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -68628,18 +68634,18 @@
 	}, 'body');
 
 /***/ },
-/* 214 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(215)
-	__vue_script__ = __webpack_require__(217)
+	__webpack_require__(221)
+	__vue_script__ = __webpack_require__(223)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\App.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(226)
+	__vue_template__ = __webpack_require__(232)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -68664,13 +68670,13 @@
 	})()}
 
 /***/ },
-/* 215 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(216);
+	var content = __webpack_require__(222);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -68690,7 +68696,7 @@
 	}
 
 /***/ },
-/* 216 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -68704,7 +68710,7 @@
 
 
 /***/ },
-/* 217 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -68713,15 +68719,15 @@
 	    value: true
 	});
 
-	var _Menu = __webpack_require__(218);
+	var _Menu = __webpack_require__(224);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _Loading = __webpack_require__(221);
+	var _Loading = __webpack_require__(227);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -68749,17 +68755,17 @@
 	};
 
 /***/ },
-/* 218 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(219)
+	__vue_script__ = __webpack_require__(225)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Menu.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(220)
+	__vue_template__ = __webpack_require__(226)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -68784,7 +68790,7 @@
 	})()}
 
 /***/ },
-/* 219 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -68793,7 +68799,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -68827,24 +68833,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 220 */
+/* 226 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"navbar-fixed\">\n    <ul :id=\"o.id\" class=\"dropdown-content\" v-for=\"o in menusDropdown\">\n        <li v-for=\"item in o.items\">\n            <a v-link=\"{name: item.routeName}\">{{item.name}}</a>\n        </li>\n    </ul>\n    <ul id=\"dropdown-logout\" class='dropdown-content'>\n        <li>\n            <a v-link=\"{name: 'auth.logout'}\">Sair</a>\n        </li>\n\n    </ul>\n    <nav>\n        <div class=\"nav-wrapper\">\n            <div class=\"row\">\n                <div class=\"col s12\">\n                    <a href=\"#\" class=\"brand-logo\">Code Financeiro</a>\n                    <a href=\"#\" data-activates=\"nav-mobile\" class=\"button-collapse\">\n                        <i class=\"material-icons\">menu</i>\n                    </a>\n                    <ul class=\"right hide-on-med-and-down\">\n                        <li v-for=\"o in menus\">\n                            <a v-if=\"o.dropdownId\" class=\"dropdown-button\" href=\"!#\" :data-activates=\"o.dropdownId\">\n                                {{o.name}} <i class=\"material-icons right\">arrow_drop_down</i>\n                            </a>\n                            <a v-else v-link=\"{name: o.routeName}\">{{o.name}}</a>\n                        </li>\n                        <li>\n                            <a class=\"dropdown-button\" href=\"!#\" data-activates=\"dropdown-logout\">\n                                {{name}} <i class=\"material-icons right\">arrow_drop_down</i>\n                            </a>\n                        </li>\n                    </ul>\n                    <ul id=\"nav-mobile\" class=\"side-nav\">\n                        <li v-for=\"o in menus\">\n                            <a v-link=\"{name: o.routeName}\">{{o.name}}</a>\n                        </li>\n                    </ul>\n                </div>\n            </div>\n        </div>\n    </nav>\n</div>\n";
 
 /***/ },
-/* 221 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(222)
-	__vue_script__ = __webpack_require__(224)
+	__webpack_require__(228)
+	__vue_script__ = __webpack_require__(230)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\Loading.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(225)
+	__vue_template__ = __webpack_require__(231)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -68869,13 +68875,13 @@
 	})()}
 
 /***/ },
-/* 222 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(223);
+	var content = __webpack_require__(229);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -68895,7 +68901,7 @@
 	}
 
 /***/ },
-/* 223 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -68909,7 +68915,7 @@
 
 
 /***/ },
-/* 224 */
+/* 230 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -68936,19 +68942,19 @@
 	};
 
 /***/ },
-/* 225 */
+/* 231 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"spinner-fixed\" v-if=\"loading\">\n    <div class=\"progress spinner\">\n        <div class=\"indeterminate\"></div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 226 */
+/* 232 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div id=\"app\">\n    <loading></loading>\n    <header v-if=\"showMenu\">\n        <menu></menu>\n    </header>\n\n    <main>\n        <router-view></router-view>\n    </main>\n\n    <footer class=\"page-footer\">\n        <div class=\"footer-copyright\">\n            <div class=\"container\">\n                © {{year}} <a class=\"grey-text text-lighten-4\" href=\"http://code.education\">Code Education</a>\n            </div>\n        </div>\n    </footer>\n\n\n</div>\n";
 
 /***/ },
-/* 227 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -71662,7 +71668,7 @@
 	}));
 
 /***/ },
-/* 228 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71671,47 +71677,47 @@
 	    value: true
 	});
 
-	var _Login = __webpack_require__(229);
+	var _Login = __webpack_require__(235);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _Logout = __webpack_require__(232);
+	var _Logout = __webpack_require__(238);
 
 	var _Logout2 = _interopRequireDefault(_Logout);
 
-	var _Dashboard = __webpack_require__(235);
+	var _Dashboard = __webpack_require__(241);
 
 	var _Dashboard2 = _interopRequireDefault(_Dashboard);
 
-	var _BankAccountList = __webpack_require__(242);
+	var _BankAccountList = __webpack_require__(248);
 
 	var _BankAccountList2 = _interopRequireDefault(_BankAccountList);
 
-	var _BankAccountCreate = __webpack_require__(256);
+	var _BankAccountCreate = __webpack_require__(262);
 
 	var _BankAccountCreate2 = _interopRequireDefault(_BankAccountCreate);
 
-	var _BankAccountUpdate = __webpack_require__(260);
+	var _BankAccountUpdate = __webpack_require__(266);
 
 	var _BankAccountUpdate2 = _interopRequireDefault(_BankAccountUpdate);
 
-	var _PlanAccount = __webpack_require__(262);
+	var _PlanAccount = __webpack_require__(268);
 
 	var _PlanAccount2 = _interopRequireDefault(_PlanAccount);
 
-	var _BillPayList = __webpack_require__(282);
+	var _BillPayList = __webpack_require__(288);
 
 	var _BillPayList2 = _interopRequireDefault(_BillPayList);
 
-	var _BillReceiveList = __webpack_require__(299);
+	var _BillReceiveList = __webpack_require__(305);
 
 	var _BillReceiveList2 = _interopRequireDefault(_BillReceiveList);
 
-	var _CashFlowList = __webpack_require__(309);
+	var _CashFlowList = __webpack_require__(315);
 
 	var _CashFlowList2 = _interopRequireDefault(_CashFlowList);
 
-	var _StatementList = __webpack_require__(315);
+	var _StatementList = __webpack_require__(321);
 
 	var _StatementList2 = _interopRequireDefault(_StatementList);
 
@@ -71779,17 +71785,17 @@
 	};
 
 /***/ },
-/* 229 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(230)
+	__vue_script__ = __webpack_require__(236)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Login.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(231)
+	__vue_template__ = __webpack_require__(237)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -71814,7 +71820,7 @@
 	})()}
 
 /***/ },
-/* 230 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71823,7 +71829,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -71864,23 +71870,23 @@
 	};
 
 /***/ },
-/* 231 */
+/* 237 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"card-panel col s8 offset-s2 z-depth-2\">\n            <h3 class=\"center\">Code Financeiro</h3>\n\n            <div class=\"row\" v-if=\"error.error\">\n                <div class=\"col s12\">\n                    <div class=\"card-panel red\">\n                        <span class=\"white-text\">{{error.message}}</span>\n                    </div>\n                </div>\n            </div>\n\n            <form method=\"POST\" @submit.prevent=\"login()\">\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <input id=\"email\" type=\"email\" class=\"validate\" name=\"email\" v-model=\"user.email\" required\n                               autofocus>\n                        <label for=\"email\" class=\"active\">E-Mail</label>\n                    </div>\n                </div>\n\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <input id=\"password\" type=\"password\" class=\"validate\" name=\"password\"\n                               v-model=\"user.password\" required>\n                        <label for=\"password\" class=\"active\">Senha</label>\n                    </div>\n                </div>\n\n                <div class=\"row\">\n                    <div class=\"input-field col s12\">\n                        <button type=\"submit\" class=\"btn\">Login</button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 232 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(233)
+	__vue_script__ = __webpack_require__(239)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Logout.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(234)
+	__vue_template__ = __webpack_require__(240)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -71905,7 +71911,7 @@
 	})()}
 
 /***/ },
-/* 233 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -71914,7 +71920,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -71942,24 +71948,24 @@
 	};
 
 /***/ },
-/* 234 */
+/* 240 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"card-panel col s8 offset-s2 z-depth-2\">\n            <h5 class=\"center\">Efetuando logout...</h5>\n            <div class=\"progress\">\n                <div class=\"indeterminate\"></div>\n            </div>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 235 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(236)
-	__vue_script__ = __webpack_require__(238)
+	__webpack_require__(242)
+	__vue_script__ = __webpack_require__(244)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\Dashboard.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(241)
+	__vue_template__ = __webpack_require__(247)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -71984,13 +71990,13 @@
 	})()}
 
 /***/ },
-/* 236 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(237);
+	var content = __webpack_require__(243);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -72010,7 +72016,7 @@
 	}
 
 /***/ },
-/* 237 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -72024,7 +72030,7 @@
 
 
 /***/ },
-/* 238 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -72037,17 +72043,17 @@
 
 	var _getIterator3 = _interopRequireDefault(_getIterator2);
 
-	var _store2 = __webpack_require__(203);
+	var _store2 = __webpack_require__(209);
 
 	var _store3 = _interopRequireDefault(_store2);
 
-	var _vueCharts = __webpack_require__(239);
+	var _vueCharts = __webpack_require__(245);
 
 	var _vueCharts2 = _interopRequireDefault(_vueCharts);
 
-	__webpack_require__(240);
+	__webpack_require__(246);
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -72211,7 +72217,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 239 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -72221,7 +72227,7 @@
 	 */
 	'use strict';
 
-	var _ = __webpack_require__(207);
+	var _ = __webpack_require__(213);
 	_ = 'default' in _ ? _['default'] : _;
 
 	/*
@@ -72555,7 +72561,7 @@
 	module.exports = install;
 
 /***/ },
-/* 240 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/** @preserve jQuery animateNumber plugin v0.0.14
@@ -72736,23 +72742,23 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 241 */
+/* 247 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"row\" _v-20b3360b=\"\">\n    <div class=\"col s8\" _v-20b3360b=\"\">\n        <div class=\"row\" _v-20b3360b=\"\">\n            <div class=\"col s6\" _v-20b3360b=\"\">\n                <div class=\"row card-panel\" _v-20b3360b=\"\">\n                    <div class=\"center\" _v-20b3360b=\"\">\n                        <div class=\"preloader-wrapper big active\" v-show=\"loadingRevenue\" _v-20b3360b=\"\">\n                            <div class=\"spinner-layer spinner-green\" _v-20b3360b=\"\">\n                                <div class=\"circle-clipper left\" _v-20b3360b=\"\">\n                                    <div class=\"circle\" _v-20b3360b=\"\"></div>\n                                </div>\n                                <div class=\"gap-patch\" _v-20b3360b=\"\">\n                                    <div class=\"circle\" _v-20b3360b=\"\"></div>\n                                </div>\n                                <div class=\"circle-clipper right\" _v-20b3360b=\"\">\n                                    <div class=\"circle\" _v-20b3360b=\"\"></div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div v-show=\"!loadingRevenue\" _v-20b3360b=\"\">\n                        <h5 _v-20b3360b=\"\">A receber hoje</h5>\n                        <h3 id=\"revenue-number\" class=\"green-text center\" _v-20b3360b=\"\">{{totalTodayReceive | numberFormat true}}</h3>\n                        <p class=\"left\" _v-20b3360b=\"\">Restante do mês</p>\n                        <p class=\"right\" _v-20b3360b=\"\">{{totalRestOfMonthReceive | numberFormat true}}</p>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col s6\" _v-20b3360b=\"\">\n                <div class=\"row card-panel\" _v-20b3360b=\"\">\n                    <div class=\"center\" _v-20b3360b=\"\">\n                        <div class=\"preloader-wrapper big active\" v-show=\"loadingExpense\" _v-20b3360b=\"\">\n                            <div class=\"spinner-layer spinner-red\" _v-20b3360b=\"\">\n                                <div class=\"circle-clipper left\" _v-20b3360b=\"\">\n                                    <div class=\"circle\" _v-20b3360b=\"\"></div>\n                                </div>\n                                <div class=\"gap-patch\" _v-20b3360b=\"\">\n                                    <div class=\"circle\" _v-20b3360b=\"\"></div>\n                                </div>\n                                <div class=\"circle-clipper right\" _v-20b3360b=\"\">\n                                    <div class=\"circle\" _v-20b3360b=\"\"></div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                    <div v-show=\"!loadingExpense\" _v-20b3360b=\"\">\n                        <h5 _v-20b3360b=\"\">A pagar hoje</h5>\n                        <h3 id=\"expense-number\" class=\"red-text center\" _v-20b3360b=\"\">{{totalTodayPay | numberFormat true}}</h3>\n                        <p class=\"left\" _v-20b3360b=\"\">Restante do mês</p>\n                        <p class=\"right\" _v-20b3360b=\"\">{{totalRestOfMonthPay | numberFormat true}}</p>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row card-panel\" _v-20b3360b=\"\">\n            <div class=\"center\" v-show=\"loadingChart\" _v-20b3360b=\"\">\n                <div class=\"preloader-wrapper big active\" _v-20b3360b=\"\">\n                    <div class=\"spinner-layer spinner-blue\" _v-20b3360b=\"\">\n                        <div class=\"circle-clipper left\" _v-20b3360b=\"\">\n                            <div class=\"circle\" _v-20b3360b=\"\"></div>\n                        </div>\n                        <div class=\"gap-patch\" _v-20b3360b=\"\">\n                            <div class=\"circle\" _v-20b3360b=\"\"></div>\n                        </div>\n                        <div class=\"circle-clipper right\" _v-20b3360b=\"\">\n                            <div class=\"circle\" _v-20b3360b=\"\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div v-if=\"hasCashFlowsMonthly\" _v-20b3360b=\"\">\n            <vue-chart :chart-type=\"chartOptions.chartType\" :columns=\"chartOptions.columns\" :rows=\"chartOptions.rows\" :options=\"chartOptions.options\" :chart-events=\"chartOptions.chartEvents\" _v-20b3360b=\"\"></vue-chart>\n            </div>\n        </div>\n    </div>\n    <div class=\"col s4\" _v-20b3360b=\"\">\n        <div class=\"row card-panel\" _v-20b3360b=\"\">\n            <div class=\"center\" v-show=\"loadingBankAccountList\" _v-20b3360b=\"\">\n                <div class=\"preloader-wrapper big active\" _v-20b3360b=\"\">\n                    <div class=\"spinner-layer spinner-blue\" _v-20b3360b=\"\">\n                        <div class=\"circle-clipper left\" _v-20b3360b=\"\">\n                            <div class=\"circle\" _v-20b3360b=\"\"></div>\n                        </div>\n                        <div class=\"gap-patch\" _v-20b3360b=\"\">\n                            <div class=\"circle\" _v-20b3360b=\"\"></div>\n                        </div>\n                        <div class=\"circle-clipper right\" _v-20b3360b=\"\">\n                            <div class=\"circle\" _v-20b3360b=\"\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <ul class=\"collection\" id=\"bank-account-list\" v-show=\"!loadingBankAccountList\" _v-20b3360b=\"\">\n            <li class=\"collection-item avatar\" v-for=\"o in bankAccounts\" _v-20b3360b=\"\">\n                <img :src=\"o.bank.data.logo\" class=\"circle\" _v-20b3360b=\"\">\n                <span class=\"title\" _v-20b3360b=\"\"><strong _v-20b3360b=\"\">{{o.name}}</strong></span>\n                <p _v-20b3360b=\"\">{{o.balance | numberFormat true}}</p>\n            </li>\n        </ul>\n        </div>\n    </div>\n</div>\n";
 
 /***/ },
-/* 242 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(243)
+	__vue_script__ = __webpack_require__(249)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bank-account\\BankAccountList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(255)
+	__vue_template__ = __webpack_require__(261)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -72777,7 +72783,7 @@
 	})()}
 
 /***/ },
-/* 243 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -72786,7 +72792,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -72794,19 +72800,19 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _Pagination = __webpack_require__(244);
+	var _Pagination = __webpack_require__(250);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(252);
+	var _Search = __webpack_require__(258);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
-	var _searchOptions = __webpack_require__(206);
+	var _searchOptions = __webpack_require__(212);
 
 	var _searchOptions2 = _interopRequireDefault(_searchOptions);
 
@@ -72899,17 +72905,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 244 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(245)
+	__vue_script__ = __webpack_require__(251)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\Pagination.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(246)
+	__vue_template__ = __webpack_require__(252)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -72934,7 +72940,7 @@
 	})()}
 
 /***/ },
-/* 245 */
+/* 251 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -72986,24 +72992,24 @@
 	};
 
 /***/ },
-/* 246 */
+/* 252 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<ul class=\"pagination\">\n    <li :class=\"{'disabled': currentPage == 0}\">\n        <a @click.prevent=\"previousPage\" href=\"#\">\n            <i class=\"material-icons\">chevron_left</i>\n        </a>\n    </li>\n    <li v-for=\"o in pages\" class=\"waves-effect\" :class=\"{'active': currentPage == o}\">\n        <a @click.prevent=\"setCurrentPage(o)\" href=\"#\">{{o + 1}}</a>\n    </li>\n    <li :class=\"{'disabled': currentPage == pages - 1}\">\n        <a @click.prevent=\"nextPage\" href=\"#\">\n            <i class=\"material-icons\">chevron_right</i>\n        </a>\n    </li>\n</ul>\n";
 
 /***/ },
-/* 247 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(248)
-	__vue_script__ = __webpack_require__(250)
+	__webpack_require__(254)
+	__vue_script__ = __webpack_require__(256)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\PageTitle.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(251)
+	__vue_template__ = __webpack_require__(257)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73028,13 +73034,13 @@
 	})()}
 
 /***/ },
-/* 248 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(249);
+	var content = __webpack_require__(255);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -73054,7 +73060,7 @@
 	}
 
 /***/ },
-/* 249 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -73068,7 +73074,7 @@
 
 
 /***/ },
-/* 250 */
+/* 256 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -73079,23 +73085,23 @@
 	exports.default = {};
 
 /***/ },
-/* 251 */
+/* 257 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"card-panel indigo lighten-1\" _v-65496c1f=\"\">\n    <span class=\"white-text\" _v-65496c1f=\"\">\n        <slot _v-65496c1f=\"\"></slot>\n    </span>\n</div>\n";
 
 /***/ },
-/* 252 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(253)
+	__vue_script__ = __webpack_require__(259)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\Search.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(254)
+	__vue_template__ = __webpack_require__(260)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73120,7 +73126,7 @@
 	})()}
 
 /***/ },
-/* 253 */
+/* 259 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -73143,29 +73149,29 @@
 	};
 
 /***/ },
-/* 254 */
+/* 260 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<form name=\"form\" method=\"GET\" @submit=\"submit()\">\n    <div class=\"filter-group\">\n        <button class=\"btn waves-effect\" @click.prevent=\"submit\">\n            <i class=\"material-icons\">search</i>\n        </button>\n        <div class=\"filter-wrapper\">\n            <input type=\"text\" v-model=\"model\" placeholder=\"Buscar..\"/>\n        </div>\n    </div>\n</form>\n";
 
 /***/ },
-/* 255 */
+/* 261 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas bancárias</h5>\n            </page-title>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bankAccounts\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.agency}}</td>\n                    <td>{{o.account}}</td>\n                    <td>\n                        <div class=\"row valign-wrapper\">\n                            <div class=\"col s2\">\n                                <img :src=\"o.bank.data.logo\" class=\"bank-logo\">\n                            </div>\n                            <div class=\"col s10\">\n                                <span class=\"left\">{{o.bank.data.name}}</span>\n                            </div>\n                        </div>\n                    </td>\n                    <td>\n                        <i class=\"material-icons green-text\" v-if=\"o.default\">check</i>\n                    </td>\n                    <td>\n                        <a v-link=\"{name: 'bank-account.update', params: {id: o.id} }\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n\n        <div class=\"fixed-action-btn\">\n            <a class=\"btn-floating btn-large\" v-link=\"{name: 'bank-account.create'}\">\n                <i class=\"large material-icons\">add</i>\n            </a>\n        </div>\n    </div>\n<!--</div>  container -->\n<modal :modal=\"modal\">\n    <div slot=\"content\" v-if=\"bankAccountDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta bancária?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Nome: <strong>{{bankAccountDelete.name}}</strong></p>\n        <p>Agência: <strong>{{bankAccountDelete.agency}}</strong></p>\n        <p>C/C: <strong>{{bankAccountDelete.account}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";
 
 /***/ },
-/* 256 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(257)
+	__vue_script__ = __webpack_require__(263)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bank-account\\BankAccountCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(259)
+	__vue_template__ = __webpack_require__(265)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73190,7 +73196,7 @@
 	})()}
 
 /***/ },
-/* 257 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -73199,15 +73205,15 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	__webpack_require__(258);
+	__webpack_require__(264);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -73309,7 +73315,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 258 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
@@ -73777,23 +73783,23 @@
 
 
 /***/ },
-/* 259 */
+/* 265 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col s6\">\r\n            <page-title>\r\n                <h5>{{title}}</h5>\r\n            </page-title>\r\n        </div>\r\n        <div class=\"col s6\">\r\n            <page-title class=\"valign-wrapper\">\r\n                <div class=\"valign\">\r\n                    <a class=\"waves-effect waves-light btn\" v-link=\"{name: 'bank-account.list'}\">\r\n                        <i class=\"material-icons\">arrow_back</i>\r\n                    </a>\r\n                </div>\r\n            </page-title>\r\n        </div>\r\n        <div class=\"card-panel z-depth-5\">\r\n            <form name=\"form\" method=\"GET\" @submit.prevent=\"submit()\">\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <input type=\"text\" v-model=\"bankAccount.name\" placeholder=\"Digite o nome\"\r\n                               name=\"name\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\"\r\n                               data-vv-as=\"nome\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('name')\">Nome</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <!--<select v-model=\"bankAccount.bank_id\" id=\"bank_id\" class=\"browser-default\">\r\n                            <option value=\"\" disabled selected>Escolha um banco</option>\r\n                            <option v-for=\"o in banks\" :value=\"o.id\">{{o.name}}</option>\r\n                        </select>-->\r\n                        <input type=\"text\" id=\"bank-id\" placeholder=\"Buscar banco\" name=\"bank\"\r\n                               class=\"validate\" :value=\"bank.name\"\r\n                               @blur=\"blurBank\" :class=\"{'invalid': errors.has('bank')}\"\r\n                               autocomplete=\"off\" data-activates=\"bank-id-dropdown\" data-belloworigin=\"true\"/>\r\n                        <input type=\"hidden\" name=\"bank_id\" id=\"bank-hidden\"\r\n                               :value=\"bankAccount.bank_id\" v-validate data-vv-rules=\"required\"\r\n                               data-vv-as=\"banco\">\r\n                        <label class=\"active\" :data-error=\"errors.first('bank')\">Banco:</label>\r\n                        <ul id=\"bank-id-dropdown\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bankAccount.agency\" placeholder=\"Digite a agência\"\r\n                               name=\"agency\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('agency')}\"\r\n                               data-vv-as=\"agencia\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('agency')\">Agência</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bankAccount.account\" placeholder=\"Digite a conta\"\r\n                               name=\"account\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('account')}\"\r\n                               data-vv-as=\"conta\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('account')\">Conta corrente</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bankAccount.default\" id=\"account_id\"/>\r\n                        <label for=\"account_id\">Padrão?</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"fixed-action-btn\">\r\n                    <button type=\"submit\" class=\"btn-floating btn-large\">\r\n                        <i class=\"large material-icons\">save</i>\r\n                    </button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 260 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(261)
+	__vue_script__ = __webpack_require__(267)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bank-account\\BankAccountUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(259)
+	__vue_template__ = __webpack_require__(265)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73818,7 +73824,7 @@
 	})()}
 
 /***/ },
-/* 261 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -73827,15 +73833,15 @@
 	    value: true
 	});
 
-	var _resources = __webpack_require__(83);
+	var _resources = __webpack_require__(89);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	__webpack_require__(258);
+	__webpack_require__(264);
 
-	var _lodash = __webpack_require__(207);
+	var _lodash = __webpack_require__(213);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -73950,17 +73956,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 262 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(263)
+	__vue_script__ = __webpack_require__(269)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\PlanAccount.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(281)
+	__vue_template__ = __webpack_require__(287)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -73985,7 +73991,7 @@
 	})()}
 
 /***/ },
-/* 263 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -73994,15 +74000,15 @@
 	    value: true
 	});
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _CategoryRevenue = __webpack_require__(264);
+	var _CategoryRevenue = __webpack_require__(270);
 
 	var _CategoryRevenue2 = _interopRequireDefault(_CategoryRevenue);
 
-	var _CategoryExpense = __webpack_require__(278);
+	var _CategoryExpense = __webpack_require__(284);
 
 	var _CategoryExpense2 = _interopRequireDefault(_CategoryExpense);
 
@@ -74026,17 +74032,17 @@
 	};
 
 /***/ },
-/* 264 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(265)
+	__vue_script__ = __webpack_require__(271)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategoryRevenue.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(277)
+	__vue_template__ = __webpack_require__(283)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74061,7 +74067,7 @@
 	})()}
 
 /***/ },
-/* 265 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74070,7 +74076,7 @@
 	    value: true
 	});
 
-	var _categoryMixin = __webpack_require__(266);
+	var _categoryMixin = __webpack_require__(272);
 
 	var _categoryMixin2 = _interopRequireDefault(_categoryMixin);
 
@@ -74091,7 +74097,7 @@
 	};
 
 /***/ },
-/* 266 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -74100,11 +74106,11 @@
 	    value: true
 	});
 
-	var _CategoryTree = __webpack_require__(267);
+	var _CategoryTree = __webpack_require__(273);
 
 	var _CategoryTree2 = _interopRequireDefault(_CategoryTree);
 
-	var _CategorySave = __webpack_require__(270);
+	var _CategorySave = __webpack_require__(276);
 
 	var _CategorySave2 = _interopRequireDefault(_CategorySave);
 
@@ -74112,7 +74118,7 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -74237,17 +74243,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 267 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(268)
+	__vue_script__ = __webpack_require__(274)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategoryTree.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(269)
+	__vue_template__ = __webpack_require__(275)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74272,7 +74278,7 @@
 	})()}
 
 /***/ },
-/* 268 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -74344,23 +74350,23 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 269 */
+/* 275 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<ul class=\"category-tree\">\n    <li class=\"category-child\" v-for=\"(index, o) in categories\">\n        <div class=\"valign-wrapper\">\n            <a :data-activates=\"dropdownId(o)\" href=\"#\" class=\"category-symbol\" :id=\"categorySymbolId(o)\"\n               :class=\"{'grey-text': !o.children.data.length > 0}\">\n                <i class=\"material-icons\">{{ categoryIcon(o) }}</i>\n            </a>\n            <ul :id=\"dropdownId(o)\" class=\"dropdown-content\">\n                <li>\n                    <a href=\"#\" @click.prevent=\"categoryNew(o)\">Adicionar</a>\n                </li>\n                <li>\n                    <a href=\"#\" @click.prevent=\"categoryEdit(o)\">Editar</a>\n                </li>\n                <li>\n                    <a href=\"#\" @click.prevent=\"categoryDelete(o)\">Excluir</a>\n                </li>\n            </ul>\n            <span class=\"valign\">{{{ categoryText(o) }}}</span>\n        </div>\n        <category-tree :categories=\"o.children.data\" :parent=\"o\"></category-tree>\n    </li>\n</ul>\n";
 
 /***/ },
-/* 270 */
+/* 276 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(271)
+	__vue_script__ = __webpack_require__(277)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategorySave.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(276)
+	__vue_template__ = __webpack_require__(282)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74385,7 +74391,7 @@
 	})()}
 
 /***/ },
-/* 271 */
+/* 277 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -74398,7 +74404,7 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _SelectMaterial = __webpack_require__(272);
+	var _SelectMaterial = __webpack_require__(278);
 
 	var _SelectMaterial2 = _interopRequireDefault(_SelectMaterial);
 
@@ -74440,17 +74446,17 @@
 	};
 
 /***/ },
-/* 272 */
+/* 278 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(273)
+	__vue_script__ = __webpack_require__(279)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\_default\\components\\SelectMaterial.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(275)
+	__vue_template__ = __webpack_require__(281)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -74475,7 +74481,7 @@
 	})()}
 
 /***/ },
-/* 273 */
+/* 279 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -74484,7 +74490,7 @@
 	    value: true
 	});
 
-	__webpack_require__(274);
+	__webpack_require__(280);
 
 	exports.default = {
 	    props: {
@@ -74535,7 +74541,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 274 */
+/* 280 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/* WEBPACK VAR INJECTION */(function($) {/*!
@@ -80267,35 +80273,35 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 275 */
+/* 281 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<select></select>\n";
 
 /***/ },
-/* 276 */
+/* 282 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n    <form name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\n        <modal :modal=\"modalOptions\">\n            <div slot=\"content\">\n                <h4>\n                    <slot name=\"title\"></slot>\n                <h4>\n                    <div class=\"row\">\n                        <div class=\"input-field col s12\">\n                            <label class=\"active\">Nome</label>\n                            <input type=\"text\" v-model=\"category.name\" placeholder=\"Digite o nome\"/>\n                        </div>\n                    </div>\n                    <div class=\"row\">\n                        <div class=\"input-field col s12\">\n                            <label class=\"active\">Categoria pai</label>\n                            <select-material :options=\"parentOptions\" :selected.sync=\"category.parent_id\"></select-material>\n                        </div>\n                    </div>\n            </div>\n            <div slot=\"footer\">\n                <slot name=\"footer\"></slot>\n            </div>\n        </modal>\n    </form>\n</div>\n";
 
 /***/ },
-/* 277 */
+/* 283 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n    <category-tree :categories=\"categories\"></category-tree>\n\n    <category-save :modal-options=\"modalOptionsSave\" :category.sync=\"categorySave\" :parent-options=\"parentOptions\"\n                   @save-category=\"saveCategory\">\n        <span slot=\"title\">{{title}}</span>\n        <div slot=\"footer\">\n            <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">Ok\n            </button>\n            <a class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</a>\n        </div>\n    </category-save>\n\n    <modal :modal=\"modalOptionsDelete\">\n        <div slot=\"content\" v-if=\"categoryDelete\">\n            <h4>Mensagem de confirmação</h4>\n            <p><strong>Deseja excluir esta categoria?</strong></p>\n            <div class=\"divider\"></div>\n            <p>Nome: <strong>{{categoryDelete.name}}</strong></p>\n            <div class=\"divider\"></div>\n        </div>\n        <div slot=\"footer\">\n            <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click='destroy()'>\n                Ok\n            </button>\n            <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n        </div>\n    </modal>\n</div>\n";
 
 /***/ },
-/* 278 */
+/* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(279)
+	__vue_script__ = __webpack_require__(285)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\category\\CategoryExpense.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(280)
+	__vue_template__ = __webpack_require__(286)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -80320,7 +80326,7 @@
 	})()}
 
 /***/ },
-/* 279 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80329,7 +80335,7 @@
 	    value: true
 	});
 
-	var _categoryMixin = __webpack_require__(266);
+	var _categoryMixin = __webpack_require__(272);
 
 	var _categoryMixin2 = _interopRequireDefault(_categoryMixin);
 
@@ -80350,29 +80356,29 @@
 	};
 
 /***/ },
-/* 280 */
+/* 286 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div>\n    <category-tree :categories=\"categories\"></category-tree>\n\n    <category-save :modal-options=\"modalOptionsSave\" :category.sync=\"categorySave\" :parent-options=\"parentOptions\"\n                   @save-category=\"saveCategory\">\n        <span slot=\"title\">{{title}}</span>\n        <div slot=\"footer\">\n            <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\">Ok\n            </button>\n            <a class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</a>\n        </div>\n    </category-save>\n\n    <modal :modal=\"modalOptionsDelete\">\n        <div slot=\"content\" v-if=\"categoryDelete\">\n            <h4>Mensagem de confirmação</h4>\n            <p><strong>Deseja excluir esta categoria?</strong></p>\n            <div class=\"divider\"></div>\n            <p>Nome: <strong>{{categoryDelete.name}}</strong></p>\n            <div class=\"divider\"></div>\n        </div>\n        <div slot=\"footer\">\n            <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click='destroy()'>\n                Ok\n            </button>\n            <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n        </div>\n    </modal>\n</div>\n";
 
 /***/ },
-/* 281 */
+/* 287 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"row\">\n\n    <page-title>\n        <h5>Plano de contas</h5>\n    </page-title>\n\n    <div class=\"card-panel z-depth-5\">\n        <h5>Categorias de Receitas</h5>\n        <category-revenue v-ref:revenue></category-revenue>\n        <h5>Categorias de Despesas</h5>\n        <category-expense v-ref:expense></category-expense>\n    </div>\n\n    <div class=\"fixed-action-btn\">\n        <a class=\"btn-floating btn-large\">\n            <i class=\"large material-icons\">add</i>\n        </a>\n        <ul>\n            <li>\n                <a class=\"btn-floating green\" href=\"#\" @click.prevent=\"newRevenue\" title=\"Nova categoria de receita\">\n                    <i class=\"material-icons\">attach_money</i>\n                </a>\n            </li>\n            <li>\n                <a class=\"btn-floating red\" href=\"#\" @click.prevent=\"newExpense\" title=\"Nova categoria de despesa\">\n                    <i class=\"material-icons\">money_off</i>\n                </a>\n            </li>\n        </ul>\n    </div>\n</div>\n";
 
 /***/ },
-/* 282 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(283)
+	__vue_script__ = __webpack_require__(289)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(298)
+	__vue_template__ = __webpack_require__(304)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -80397,7 +80403,7 @@
 	})()}
 
 /***/ },
-/* 283 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -80406,7 +80412,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -80414,27 +80420,27 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _Pagination = __webpack_require__(244);
+	var _Pagination = __webpack_require__(250);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(252);
+	var _Search = __webpack_require__(258);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
-	var _BillPayCreate = __webpack_require__(284);
+	var _BillPayCreate = __webpack_require__(290);
 
 	var _BillPayCreate2 = _interopRequireDefault(_BillPayCreate);
 
-	var _BillPayUpdate = __webpack_require__(292);
+	var _BillPayUpdate = __webpack_require__(298);
 
 	var _BillPayUpdate2 = _interopRequireDefault(_BillPayUpdate);
 
-	var _BillData = __webpack_require__(295);
+	var _BillData = __webpack_require__(301);
 
 	var _BillData2 = _interopRequireDefault(_BillData);
 
@@ -80538,18 +80544,18 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 284 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(285)
-	__vue_script__ = __webpack_require__(287)
+	__webpack_require__(291)
+	__vue_script__ = __webpack_require__(293)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(291)
+	__vue_template__ = __webpack_require__(297)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -80574,13 +80580,13 @@
 	})()}
 
 /***/ },
-/* 285 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(286);
+	var content = __webpack_require__(292);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -80600,7 +80606,7 @@
 	}
 
 /***/ },
-/* 286 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -80614,7 +80620,7 @@
 
 
 /***/ },
-/* 287 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80623,11 +80629,11 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(288);
+	var _billMixin = __webpack_require__(294);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(290);
+	var _validatorOffRemoveMixin = __webpack_require__(296);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
@@ -80653,7 +80659,7 @@
 	};
 
 /***/ },
-/* 288 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -80666,15 +80672,15 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _SelectMaterial = __webpack_require__(272);
+	var _SelectMaterial = __webpack_require__(278);
 
 	var _SelectMaterial2 = _interopRequireDefault(_SelectMaterial);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _bill = __webpack_require__(289);
+	var _bill = __webpack_require__(295);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -80854,7 +80860,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 289 */
+/* 295 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -80920,7 +80926,7 @@
 	;
 
 /***/ },
-/* 290 */
+/* 296 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -80935,23 +80941,23 @@
 	};
 
 /***/ },
-/* 291 */
+/* 297 */
 /***/ function(module, exports) {
 
 	module.exports = "<div _v-6031222f=\"\">\n    <form :id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\" _v-6031222f=\"\">\n        <modal :modal=\"modalOptions\" _v-6031222f=\"\">\n            <div slot=\"content\" _v-6031222f=\"\">\n                <h5 _v-6031222f=\"\">{{title()}}</h5>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s12\" _v-6031222f=\"\">\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-name=\"category_id\" data-vv-value-path=\"val\" data-vv-as=\"categoria\" name=\"category_id\" _v-6031222f=\"\">\n                        </select-material>\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\" _v-6031222f=\"\">Categoria de Despesa</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\" class=\"validate\" name=\"value\" v-validate=\"\" data-vv-rules=\"required|number_format:1.00\" :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('value')\" _v-6031222f=\"\">Valor</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\" class=\"validate\" name=\"date_due\" v-validate=\"\" data-vv-rules=\"required|date_format_custom\" :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\" _v-6031222f=\"\">Vencimento</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-6031222f=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\" _v-6031222f=\"\">\n                        <label :for=\"doneId()\" _v-6031222f=\"\">Pago?</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s6\" _v-6031222f=\"\">\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\" v-validate=\"\" data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\" data-vv-as=\"nome\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('name')\" _v-6031222f=\"\">Nome</label>\n                    </div>\n                    <div class=\"input-field col s6\" _v-6031222f=\"\">\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\" class=\"validate\" :value=\"bankAccount.text\" autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\" @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\" _v-6031222f=\"\">\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\" :value=\"bill.bank_account_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-as=\"conta_bancaria\" _v-6031222f=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\" _v-6031222f=\"\">Conta bancária:</label>\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\" _v-6031222f=\"\"></ul>\n                    </div>\n                </div>\n                <div class=\"row\" _v-6031222f=\"\">\n                    <div class=\"input-field col s3\" _v-6031222f=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\" _v-6031222f=\"\">\n                        <label :for=\"repeatId()\" _v-6031222f=\"\">Repetir?</label>\n                    </div>\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\" _v-6031222f=\"\">\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\" _v-6031222f=\"\">\n                            <option value=\"1\" _v-6031222f=\"\">Mensalmente</option>\n                            <option value=\"2\" _v-6031222f=\"\">Anualmente</option>\n                        </select>\n                    </div>\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\" _v-6031222f=\"\">\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\" _v-6031222f=\"\">\n                        <label class=\"active\" _v-6031222f=\"\">Ocorrências</label>\n                    </div>\n                </div>\n            </div>\n            <div slot=\"footer\" _v-6031222f=\"\">\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\" :disabled=\"fields.dirty() &amp;&amp; errors.any()\" _v-6031222f=\"\">\n                    Ok\n                </button>\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\" _v-6031222f=\"\">\n                    Cancelar\n                </button>\n            </div>\n        </modal>\n    </form>\n</div>";
 
 /***/ },
-/* 292 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(293)
+	__vue_script__ = __webpack_require__(299)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-pay\\BillPayUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(294)
+	__vue_template__ = __webpack_require__(300)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -80976,7 +80982,7 @@
 	})()}
 
 /***/ },
-/* 293 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80985,19 +80991,19 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(288);
+	var _billMixin = __webpack_require__(294);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(290);
+	var _validatorOffRemoveMixin = __webpack_require__(296);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _bill = __webpack_require__(289);
+	var _bill = __webpack_require__(295);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -81034,23 +81040,23 @@
 	};
 
 /***/ },
-/* 294 */
+/* 300 */
 /***/ function(module, exports) {
 
 	module.exports = "<div>\r\n    <form :id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\">\r\n        <modal :modal=\"modalOptions\">\r\n            <div slot=\"content\">\r\n                <h5>{{title()}}</h5>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s12\">\r\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\"\r\n                                         v-validate data-vv-rules=\"required\" data-vv-name=\"category_id\"\r\n                                         data-vv-value-path=\"val\" data-vv-as=\"categoria\" name=\"category_id\">\r\n                        </select-material>\r\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\">Categoria de Despesa</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\"\r\n                               class=\"validate\" name=\"value\" v-validate data-vv-rules=\"required|number_format:1.00\"\r\n                               :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('value')\">Valor</label>\r\n                    </div>\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\"\r\n                               class=\"validate\" name=\"date_due\" v-validate data-vv-rules=\"required|date_format_custom\"\r\n                               :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\">Vencimento</label>\r\n                    </div>\r\n                    <div class=\"input-field col s4\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\"/>\r\n                        <label :for=\"doneId()\">Pago?</label>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\"\r\n                               v-validate data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\"\r\n                               data-vv-as=\"nome\"/>\r\n                        <label class=\"active\" :data-error=\"errors.first('name')\">Nome</label>\r\n                    </div>\r\n                    <div class=\"input-field col s6\">\r\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\"\r\n                               class=\"validate\" :value=\"bankAccount.text\"\r\n                               autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\"\r\n                               @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\"/>\r\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\"\r\n                               :value=\"bill.bank_account_id\" v-validate data-vv-rules=\"required\"\r\n                               data-vv-as=\"conta_bancaria\">\r\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\">Conta bancária:</label>\r\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\"></ul>\r\n                    </div>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <div class=\"input-field col s3\">\r\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\"/>\r\n                        <label :for=\"repeatId()\">Repetir?</label>\r\n                    </div>\r\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\">\r\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\">\r\n                            <option value=\"1\">Mensalmente</option>\r\n                            <option value=\"2\">Anualmente</option>\r\n                        </select>\r\n                    </div>\r\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\">\r\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\"/>\r\n                        <label class=\"active\">Ocorrências</label>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div slot=\"footer\">\r\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\"\r\n                        :disabled=\"fields.dirty() && errors.any()\">\r\n                    Ok\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\">\r\n                    Cancelar\r\n                </button>\r\n            </div>\r\n        </modal>\r\n    </form>\r\n</div>";
 
 /***/ },
-/* 295 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(296)
+	__vue_script__ = __webpack_require__(302)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\BillData.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(297)
+	__vue_template__ = __webpack_require__(303)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -81075,7 +81081,7 @@
 	})()}
 
 /***/ },
-/* 296 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81084,7 +81090,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -81109,29 +81115,29 @@
 	};
 
 /***/ },
-/* 297 */
+/* 303 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<table class=\"grey-text text-darken-2\">\n    <tbody class=\"left\">\n    <tr>\n        <td><strong>{{ paidText }}</strong></td>\n        <td><strong>{{ billData.total_paid | numberFormat true }}</strong></td>\n    </tr>\n    <tr>\n        <td><strong>{{ toPayText }}</strong></td>\n        <td><strong>{{ billData.total_to_pay | numberFormat true }}</strong></td>\n    </tr>\n    <tr>\n        <td><strong>Vencidas</strong></td>\n        <td><strong>{{ billData.total_expired | numberFormat true }}</strong></td>\n    </tr>\n    <tr>\n        <td><strong>{{ totalFinalText }}</strong></td>\n        <td><strong>{{ (billData.total_paid + billData.total_to_pay) | numberFormat true }}</strong></td>\n    </tr>\n    <tbody>\n</table>\n";
 
 /***/ },
-/* 298 */
+/* 304 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas a pagar</h5>\n            </page-title>\n\n        <bill-data namespace=\"billPay\"></bill-data>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bills\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.date_due | dateFormat}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.value | numberFormat true}}</td>\n                    <td>\n                        <a href=\"#\" @click.prevent=\"openModalEdit(index)\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n    </div>\n<!--</div>  container -->\n\n<div class=\"fixed-action-btn\">\n    <a class=\"btn-floating btn-large\" @click.prevent=\"openModalCreate()\">\n        <i class=\"large material-icons\">add</i>\n    </a>\n</div>\n\n<bill-pay-create :modal-options=\"modalCreate\"></bill-pay-create>\n<bill-pay-update :index=\"indexUpdate\" :modal-options=\"modalEdit\"></bill-pay-update>\n\n<modal :modal=\"modalDelete\">\n    <div slot=\"content\" v-if=\"billPayDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Vencimento: <strong>{{billPayDelete.date_due}}</strong></p>\n        <p>Nome: <strong>{{billPayDelete.name}}</strong></p>\n        <p>Valor: <strong>{{billPayDelete.value}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";
 
 /***/ },
-/* 299 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(300)
+	__vue_script__ = __webpack_require__(306)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-receive\\BillReceiveList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(308)
+	__vue_template__ = __webpack_require__(314)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -81156,7 +81162,7 @@
 	})()}
 
 /***/ },
-/* 300 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -81165,7 +81171,7 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -81173,27 +81179,27 @@
 
 	var _Modal2 = _interopRequireDefault(_Modal);
 
-	var _Pagination = __webpack_require__(244);
+	var _Pagination = __webpack_require__(250);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(252);
+	var _Search = __webpack_require__(258);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
-	var _BillReceiveCreate = __webpack_require__(301);
+	var _BillReceiveCreate = __webpack_require__(307);
 
 	var _BillReceiveCreate2 = _interopRequireDefault(_BillReceiveCreate);
 
-	var _BillReceiveUpdate = __webpack_require__(306);
+	var _BillReceiveUpdate = __webpack_require__(312);
 
 	var _BillReceiveUpdate2 = _interopRequireDefault(_BillReceiveUpdate);
 
-	var _BillData = __webpack_require__(295);
+	var _BillData = __webpack_require__(301);
 
 	var _BillData2 = _interopRequireDefault(_BillData);
 
@@ -81297,18 +81303,18 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 301 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(302)
-	__vue_script__ = __webpack_require__(304)
+	__webpack_require__(308)
+	__vue_script__ = __webpack_require__(310)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-receive\\BillReceiveCreate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(305)
+	__vue_template__ = __webpack_require__(311)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -81333,13 +81339,13 @@
 	})()}
 
 /***/ },
-/* 302 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(303);
+	var content = __webpack_require__(309);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -81359,7 +81365,7 @@
 	}
 
 /***/ },
-/* 303 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -81373,7 +81379,7 @@
 
 
 /***/ },
-/* 304 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81382,11 +81388,11 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(288);
+	var _billMixin = __webpack_require__(294);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(290);
+	var _validatorOffRemoveMixin = __webpack_require__(296);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
@@ -81412,23 +81418,23 @@
 	};
 
 /***/ },
-/* 305 */
+/* 311 */
 /***/ function(module, exports) {
 
 	module.exports = "<div _v-454c6225=\"\">\n    <form :id=\"formId()\" name=\"form\" method=\"POST\" @submit.prevent=\"submit\" _v-454c6225=\"\">\n        <modal :modal=\"modalOptions\" _v-454c6225=\"\">\n            <div slot=\"content\" _v-454c6225=\"\">\n                <h5 _v-454c6225=\"\">{{title()}}</h5>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s12\" _v-454c6225=\"\">\n                        <select-material :options=\"parentOptions\" :selected.sync=\"bill.category_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-name=\"category_id\" data-vv-value-path=\"val\" data-vv-as=\"categoria\" name=\"category_id\" _v-454c6225=\"\">\n                        </select-material>\n                        <label class=\"active\" :data-error=\"errors.first('category_id')\" _v-454c6225=\"\">Categoria de Despesa</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s4\" _v-454c6225=\"\">\n                        <input type=\"text\" v-model=\"bill.value | numberFormat\" placeholder=\"Informe o valor\" class=\"validate\" name=\"value\" v-validate=\"\" data-vv-rules=\"required|number_format:1.00\" :class=\"{'invalid': errors.has('value')}\" data-vv-as=\"valor\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('value')\" _v-454c6225=\"\">Valor</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-454c6225=\"\">\n                        <input type=\"text\" v-model=\"bill.date_due | dateFormat\" placeholder=\"Informe a data\" class=\"validate\" name=\"date_due\" v-validate=\"\" data-vv-rules=\"required|date_format_custom\" :class=\"{'invalid': errors.has('date_due')}\" data-vv-as=\"vencimento\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('date_due')\" _v-454c6225=\"\">Vencimento</label>\n                    </div>\n                    <div class=\"input-field col s4\" _v-454c6225=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.done\" :id=\"doneId()\" _v-454c6225=\"\">\n                        <label :for=\"doneId()\" _v-454c6225=\"\">Pago?</label>\n                    </div>\n                </div>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s6\" _v-454c6225=\"\">\n                        <input type=\"text\" v-model=\"bill.name\" placeholder=\"Informe o nome\" name=\"name\" class=\"validate\" v-validate=\"\" data-vv-rules=\"required\" :class=\"{'invalid': errors.has('name')}\" data-vv-as=\"nome\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('name')\" _v-454c6225=\"\">Nome</label>\n                    </div>\n                    <div class=\"input-field col s6\" _v-454c6225=\"\">\n                        <input type=\"text\" :id=\"bankAccountTextId()\" placeholder=\"Buscar conta bancária\" class=\"validate\" :value=\"bankAccount.text\" autocomplete=\"off\" :data-activates=\"bankAccountDropdownId()\" data-belloworigin=\"true\" @blur=\"blurBankAccount\" :class=\"{'invalid': errors.has('bank_account_id')}\" _v-454c6225=\"\">\n                        <input type=\"hidden\" name=\"bank_account_id\" id=\"bankAccountHiddenId()\" :value=\"bill.bank_account_id\" v-validate=\"\" data-vv-rules=\"required\" data-vv-as=\"conta_bancaria\" _v-454c6225=\"\">\n                        <label class=\"active\" :data-error=\"errors.first('bank_account_id')\" _v-454c6225=\"\">Conta bancária:</label>\n                        <ul :id=\"bankAccountDropdownId()\" class=\"dropdown-content ac-dropdown\" _v-454c6225=\"\"></ul>\n                    </div>\n                </div>\n                <div class=\"row\" _v-454c6225=\"\">\n                    <div class=\"input-field col s3\" _v-454c6225=\"\">\n                        <input type=\"checkbox\" class=\"filled-ind\" v-model=\"bill.repeat\" :id=\"repeatId()\" _v-454c6225=\"\">\n                        <label :for=\"repeatId()\" _v-454c6225=\"\">Repetir?</label>\n                    </div>\n                    <div class=\"input-field col s5\" v-if=\"bill.repeat\" _v-454c6225=\"\">\n                        <select v-model=\"bill.repeat_type\" class=\"browser-default\" _v-454c6225=\"\">\n                            <option value=\"1\" _v-454c6225=\"\">Mensalmente</option>\n                            <option value=\"2\" _v-454c6225=\"\">Anualmente</option>\n                        </select>\n                    </div>\n                    <div class=\"input-field col s4\" v-if=\"bill.repeat\" _v-454c6225=\"\">\n                        <input type=\"number\" v-model=\"bill.repeat_number\" placeholder=\"Ocorrências\" @blur=\"blurRepeatNumber\" _v-454c6225=\"\">\n                        <label class=\"active\" _v-454c6225=\"\">Ocorrências</label>\n                    </div>\n                </div>\n            </div>\n            <div slot=\"footer\" _v-454c6225=\"\">\n                <button type=\"submit\" class=\"btn btn-flat waves-effect green lighten-2\" :disabled=\"fields.dirty() &amp;&amp; errors.any()\" _v-454c6225=\"\">\n                    Ok\n                </button>\n                <button type=\"button\" class=\"btn btn-flat waves-effect waves-red lighten-2 modal-close modal-action\" _v-454c6225=\"\">\n                    Cancelar\n                </button>\n            </div>\n        </modal>\n    </form>\n</div>";
 
 /***/ },
-/* 306 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(307)
+	__vue_script__ = __webpack_require__(313)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\bill\\bill-receive\\BillReceiveUpdate.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(294)
+	__vue_template__ = __webpack_require__(300)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -81453,7 +81459,7 @@
 	})()}
 
 /***/ },
-/* 307 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81462,19 +81468,19 @@
 	    value: true
 	});
 
-	var _billMixin = __webpack_require__(288);
+	var _billMixin = __webpack_require__(294);
 
 	var _billMixin2 = _interopRequireDefault(_billMixin);
 
-	var _validatorOffRemoveMixin = __webpack_require__(290);
+	var _validatorOffRemoveMixin = __webpack_require__(296);
 
 	var _validatorOffRemoveMixin2 = _interopRequireDefault(_validatorOffRemoveMixin);
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _bill = __webpack_require__(289);
+	var _bill = __webpack_require__(295);
 
 	var _bill2 = _interopRequireDefault(_bill);
 
@@ -81511,24 +81517,24 @@
 	};
 
 /***/ },
-/* 308 */
+/* 314 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<!--<div class=\"container\">-->\n    <div class=\"row\">\n\n            <page-title>\n                <h5>Minhas contas a receber</h5>\n            </page-title>\n\n        <bill-data namespace=\"billReceive\"></bill-data>\n\n        <div class=\"card-panel z-depth-5\">\n            <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n            <table class=\"bordered striped hightlight responsive-table\">\n                <thead>\n                <tr>\n                    <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                        <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                            {{o.label}}\n                            <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                                {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                            </i>\n                        </a>\n                    </th>\n                    <th>Ações</th>\n                </tr>\n                </thead>\n                <tbody>\n                <tr v-for=\"(index,o) in bills\">\n                    <td>{{o.id}}</td>\n                    <td>{{o.date_due | dateFormat}}</td>\n                    <td>{{o.name}}</td>\n                    <td>{{o.value | numberFormat true}}</td>\n                    <td>\n                        <a href=\"#\" @click.prevent=\"openModalEdit(index)\">Editar</a>\n                        <a href=\"#\" @click.prevent=\"openModalDelete(o)\">Excluir</a>\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n            <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                        :total-records=\"searchOptions.pagination.total\"></pagination>\n        </div>\n    </div>\n<!--</div>  container -->\n\n<div class=\"fixed-action-btn\">\n    <a class=\"btn-floating btn-large\" @click.prevent=\"openModalCreate()\">\n        <i class=\"large material-icons\">add</i>\n    </a>\n</div>\n\n<bill-receive-create :modal-options=\"modalCreate\"></bill-receive-create>\n<bill-receive-update :index=\"indexUpdate\" :modal-options=\"modalEdit\"></bill-receive-update>\n\n<modal :modal=\"modalDelete\">\n    <div slot=\"content\" v-if=\"billReceiveDelete\">\n        <h4>Mensagem de confirmação</h4>\n        <p><strong>Deseja excluir esta conta?</strong></p>\n        <div class=\"divider\"></div>\n        <p>Vencimento: <strong>{{billReceiveDelete.date_due}}</strong></p>\n        <p>Nome: <strong>{{billReceiveDelete.name}}</strong></p>\n        <p>Valor: <strong>{{billReceiveDelete.value}}</strong></p>\n        <div class=\"divider\"></div>\n    </div>\n    <div slot=\"footer\">\n        <button class=\"btn btn-flat waves-effect green lighten-2 modal-close modal-action\" @click=\"destroy()\">Ok\n        </button>\n        <button class=\"btn btn-flat waves-effect waves-red modal-close modal-action\">Cancelar</button>\n    </div>\n</modal>\n";
 
 /***/ },
-/* 309 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__webpack_require__(310)
-	__vue_script__ = __webpack_require__(312)
+	__webpack_require__(316)
+	__vue_script__ = __webpack_require__(318)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\cash-flow\\CashFlowList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(314)
+	__vue_template__ = __webpack_require__(320)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -81553,13 +81559,13 @@
 	})()}
 
 /***/ },
-/* 310 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(311);
+	var content = __webpack_require__(317);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(68)(content, {});
@@ -81579,7 +81585,7 @@
 	}
 
 /***/ },
-/* 311 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(67)();
@@ -81593,7 +81599,7 @@
 
 
 /***/ },
-/* 312 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
@@ -81602,15 +81608,15 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _papaparse = __webpack_require__(313);
+	var _papaparse = __webpack_require__(319);
 
 	var _papaparse2 = _interopRequireDefault(_papaparse);
 
@@ -81693,7 +81699,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 313 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -83168,23 +83174,23 @@
 
 
 /***/ },
-/* 314 */
+/* 320 */
 /***/ function(module, exports) {
 
 	module.exports = "<!--<div class=\"container\">-->\n<div class=\"row\" _v-46a877ac=\"\">\n\n    <page-title _v-46a877ac=\"\">\n        <h5 _v-46a877ac=\"\">Fluxo de caixa</h5>\n    </page-title>\n\n    <div class=\"card-panel z-depth-5\" _v-46a877ac=\"\">\n        <div v-if=\"hasCashFlows\" _v-46a877ac=\"\">\n            <table class=\"bordered hightlight responsive-table\" _v-46a877ac=\"\">\n                <thead _v-46a877ac=\"\">\n                <tr class=\"green lighten-3\" _v-46a877ac=\"\">\n                    <th class=\"text-csv\" _v-46a877ac=\"\"></th>\n                    <th v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{firstMonthYear | monthYear}}\n                    </th>\n                    <th v-for=\"o in monthsList\" class=\"text-csv\" :class=\"{'green lighten-2': isCurrentMonthYear(o.period)}\" _v-46a877ac=\"\">\n                        {{o.period | monthYear}}\n                    </th>\n                </tr>\n                </thead>\n                <tbody _v-46a877ac=\"\">\n                <tr class=\"grey lighten-3\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Recebimentos</strong></td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        0\n                    </td>\n                    <td v-for=\"o in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{o.revenues.total}}\n                    </td>\n                </tr>\n                <tr v-for=\"o in categoriesMonths.revenues.data\" _v-46a877ac=\"\">\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{o.name}}</td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\"></td>\n                    <td v-for=\"v in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{categoryTotal(o,v.period).total}}\n                    </td>\n                </tr>\n                <tr class=\"grey lighten-3\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Pagamentos</strong></td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        0\n                    </td>\n                    <td v-for=\"o in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{o.expenses.total}}\n                    </td>\n                </tr>\n                <tr v-for=\"o in categoriesMonths.expenses.data\" _v-46a877ac=\"\">\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{o.name}}</td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\"></td>\n                    <td v-for=\"v in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{categoryTotal(o,v.period).total}}\n                    </td>\n                </tr>\n                <tr class=\"grey lighten-4\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Geração de caixa</strong></td>\n                    <td v-if=\"!hasFirstMonthYear\" class=\"text-csv\" _v-46a877ac=\"\">\n                        0\n                    </td>\n                    <td v-for=\"o in monthsList\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{o.revenues.total - o.expenses.total}}\n                    </td>\n                </tr>\n                <tr class=\"grey lighten-4\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Saldo mês anterior</strong></td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{balanceBeforeFirstMonth}}</td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{firstBalance}}</td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{secondBalance}}</td>\n                    <td v-for=\"(key,o) in monthsListBalancePrevious\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{balance(key)}}\n                    </td>\n                </tr>\n                <tr class=\"green lighten-3\" _v-46a877ac=\"\">\n                    <td _v-46a877ac=\"\"><strong class=\"text-csv\" _v-46a877ac=\"\">Saldo final</strong></td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{firstBalance}}</td>\n                    <td class=\"text-csv\" _v-46a877ac=\"\">{{secondBalance}}</td>\n                    <td v-for=\"(key,o) in monthsListBalanceFinal\" class=\"text-csv\" _v-46a877ac=\"\">\n                        {{balance(key)}}\n                    </td>\n                </tr>\n                </tbody>\n            </table>\n\n            <div class=\"fixed-action-btn\" _v-46a877ac=\"\">\n                <a class=\"btn-floating btn-large\" @click=\"downloadCsv\" title=\"Download\" _v-46a877ac=\"\">\n                    <i class=\"large material-icons\" _v-46a877ac=\"\">file_download</i>\n                </a>\n            </div>\n\n        </div>\n    </div>\n\n</div>\n<!--</div>  container -->";
 
 /***/ },
-/* 315 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_script__, __vue_template__
 	var __vue_styles__ = {}
-	__vue_script__ = __webpack_require__(316)
+	__vue_script__ = __webpack_require__(322)
 	if (__vue_script__ &&
 	    __vue_script__.__esModule &&
 	    Object.keys(__vue_script__).length > 1) {
 	  console.warn("[vue-loader] resources\\assets\\spa\\js\\components\\statement\\StatementList.vue: named exports in *.vue files are ignored.")}
-	__vue_template__ = __webpack_require__(317)
+	__vue_template__ = __webpack_require__(323)
 	module.exports = __vue_script__ || {}
 	if (module.exports.__esModule) module.exports = module.exports.default
 	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
@@ -83209,7 +83215,7 @@
 	})()}
 
 /***/ },
-/* 316 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -83218,23 +83224,23 @@
 	    value: true
 	});
 
-	var _store = __webpack_require__(203);
+	var _store = __webpack_require__(209);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _moment = __webpack_require__(86);
+	var _moment = __webpack_require__(92);
 
 	var _moment2 = _interopRequireDefault(_moment);
 
-	var _Pagination = __webpack_require__(244);
+	var _Pagination = __webpack_require__(250);
 
 	var _Pagination2 = _interopRequireDefault(_Pagination);
 
-	var _PageTitle = __webpack_require__(247);
+	var _PageTitle = __webpack_require__(253);
 
 	var _PageTitle2 = _interopRequireDefault(_PageTitle);
 
-	var _Search = __webpack_require__(252);
+	var _Search = __webpack_require__(258);
 
 	var _Search2 = _interopRequireDefault(_Search);
 
@@ -83316,7 +83322,7 @@
 	};
 
 /***/ },
-/* 317 */
+/* 323 */
 /***/ function(module, exports) {
 
 	module.exports = "\n<div class=\"row\">\n        <page-title>\n            <h5>Extrato</h5>\n        </page-title>\n    <div class=\"card-panel z-depth-5\">\n        <search @on-submit=\"filter\" :model.sync=\"search\"></search>\n        <table class=\"bordered striped hightlight responsive-table\">\n            <thead>\n            <tr>\n                <th v-for=\"(key,o) in table.headers\" :width=\"o.width\">\n                    <a href=\"#\" @click.prevent=\"sortBy(key)\">\n                        {{o.label}}\n                        <i class=\"material-icons left\" v-if=\"searchOptions.order.key == key\">\n                            {{searchOptions.order.sort == 'asc' ? 'arrow_drop_up' : 'arrow_drop_down'}}\n                        </i>\n                    </a>\n                </th>\n            </tr>\n            </thead>\n            <tbody>\n            <tr v-for=\"o in statements\">\n                <td>{{o.date | dateFormat}}</td>\n                <td>{{o.bankAccount.data.name}}</td>\n                <td>{{o.value | numberFormat true}}</td>\n                <td>{{o.balance | numberFormat true}}</td>\n            </tr>\n            </tbody>\n        </table>\n        <pagination :current-page.sync=\"searchOptions.pagination.current_page\" :per-page=\"searchOptions.pagination.per_page\"\n                    :total-records=\"searchOptions.pagination.total\"></pagination>\n        <table class=\"grey-text text-darken-2\">\n            <tbody class=\"left\">\n                <tr>\n                    <td><strong>Total de Recebimentos</strong></td>\n                    <td><strong>{{statementData.revenues.total | numberFormat true}}</strong></td>\n                </tr>\n                <tr>\n                    <td><strong>Total de Pagamentos</strong></td>\n                    <td><strong>{{statementData.expenses.total | numberFormat true}}</strong></td>\n                </tr>\n                <tr>\n                    <td><strong>Quantidade de lançamentos</strong></td>\n                    <td><strong>{{statementData.count}}</strong></td>\n                </tr>\n                <tr>\n                    <td><strong>Total do Período</strong></td>\n                    <td><strong>{{statementData.revenues.total + statementData.expenses.total | numberFormat true}}</strong></td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n</div>\n";

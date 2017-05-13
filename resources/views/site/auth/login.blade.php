@@ -1,12 +1,12 @@
-@extends('layouts.admin')
+@extends('layouts.site')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col s8 offset-s2 z-depth-2">
-                <h3 class="center">{{ config('app.name', 'Laravel') }}</h3>
+                <h3 class="center">Login</h3>
 
-                <form method="POST" action="{{ env('URL_ADMIN_LOGIN') }}">
+                <form method="POST" action="{{ env('URL_SITE_LOGIN') }}">
                     {{ csrf_field() }}
 
                     <div class="row">
@@ -39,8 +39,8 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <button type="submit" class="btn">Login</button>
-                            <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                Esqueceu sua senha?
+                            <a class="btn white blue-grey-text" href="{{ route('site.auth.register.create') }}">
+                                Registre-se aqui
                             </a>
                         </div>
                     </div>

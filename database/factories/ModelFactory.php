@@ -40,7 +40,8 @@ $factory->define(\CodeFin\Models\BankAccount::class, function (Faker\Generator $
 
 $factory->define(\CodeFin\Models\Client::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->company,
+        'email' => $faker->companyEmail
     ];
 });
 
@@ -71,5 +72,13 @@ $factory->define(\CodeFin\Models\BillReceive::class, function (Faker\Generator $
         'name' => $faker->word,
         'value' => $faker->numberBetween(10,1000),
         'done' => rand(0,1)
+    ];
+});
+
+$factory->define(\CodeFin\Models\Plan::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->word,
+        'value' => $faker->numberBetween(10,100)
     ];
 });
