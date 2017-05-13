@@ -34,7 +34,7 @@
                         <input type="hidden" name="bank_id" id="bank-hidden"
                                :value="bankAccount.bank_id" v-validate data-vv-rules="required"
                                data-vv-as="banco">
-                        <label class="active" :data-error="errors.first('bank')">Banco:</label>
+                        <label class="active" :data-error="errors.first('bank_id')">Banco:</label>
                         <ul id="bank-id-dropdown" class="dropdown-content ac-dropdown"></ul>
                     </div>
                 </div>
