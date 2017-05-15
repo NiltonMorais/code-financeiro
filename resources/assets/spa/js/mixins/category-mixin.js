@@ -55,6 +55,7 @@ export default{
     methods: {
         saveCategory(){
             store.dispatch(`${this.namespace()}/save`, this.categorySave).then((response)=> {
+                $(`#${this.modalOptionsSave.id}`).modal('close');
                 if (this.categorySave.id === 0) {
                     Materialize.toast('Categoria adicionada com sucesso!', 5000);
                 } else {

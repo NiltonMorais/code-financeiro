@@ -6,7 +6,7 @@
                        @save-category="saveCategory">
             <span slot="title">{{title}}</span>
             <div slot="footer">
-                <button type="submit" class="btn btn-flat waves-effect green lighten-2 modal-close modal-action">Ok
+                <button type="submit" class="btn btn-flat waves-effect green lighten-2">Ok
                 </button>
                 <a class="btn btn-flat waves-effect waves-red modal-close modal-action">Cancelar</a>
             </div>

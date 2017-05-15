@@ -29,7 +29,7 @@
                     <div class="input-field col s12">
                         <input type="text" id="bank-id" placeholder="Buscar banco" name="bank"
                                class="validate" :value="bank.name"
-                               @blur="blurBank" :class="{'invalid': errors.has('bank')}"
+                               @blur="blurBank" :class="{'invalid': errors.has('bank_id')}"
                                autocomplete="off" data-activates="bank-id-dropdown" data-belloworigin="true"/>
                         <input type="hidden" name="bank_id" id="bank-hidden"
                                :value="bankAccount.bank_id" v-validate data-vv-rules="required"
