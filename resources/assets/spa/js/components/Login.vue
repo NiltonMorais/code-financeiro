@@ -61,14 +61,12 @@
                             this.$router.go({name: 'dashboard'});
                         })
                         .catch((responseError) => {
-                            switch(responseError.status){
-                                case 401:
-                                    this.error.message = responseError.data.message;
-                                    break;
-                                default:
-                                    this.error.message = "Login failed.";
+                            console.log(responseError.data.message);
+                            if(responseError.data && responseError.data.hasOwnProperty('error')){
+                                this.error.message = responseError.data.message;
+                            }else{
+                                this.error.message = "Falha ao efetuar login. Entre em contato com o atendimento.";
                             }
-                            this.error.error = true;
                         });
             }
         }

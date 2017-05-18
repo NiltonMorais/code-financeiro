@@ -12,13 +12,19 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('hooks/iugu','Api\IuguController@hooks');
 
 Route::group(['middleware' => 'cors', 'as' => 'api.'], function () {
 
-    Route::post('access_token', 'Api\AuthController@accessToken')->name('access_token');
-    Route::post('refresh_token', 'Api\AuthController@refreshToken')->name('refresh_token');
+    Route::post('access_token', 'Api\AuthController@accessToken')
+        ->middleware('check-subscription:after')
+        ->name('access_token');
 
-    Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('refresh_token', 'Api\AuthController@refreshToken')
+        ->middleware('check-subscription:after')
+        ->name('refresh_token');
+
+    Route::group(['middleware' => ['auth:api','check-subscription']], function () {
 
         Route::post('logout', 'Api\AuthController@logout')->name('logout');
 

@@ -35,6 +35,13 @@ Route::group(['prefix' => '/', 'as' => 'site.'], function () {
     Route::group(['prefix' => 'subscriptions','as' => 'subscriptions.','middleware'=>'auth'], function(){
         Route::get('create','Site\SubscriptionsController@create')->name('create');
         Route::post('store','Site\SubscriptionsController@store')->name('store');
+        Route::get('successfully','Site\SubscriptionsController@successfully')->name('successfully');
+    });
+
+    Route::group(['prefix'=>'my-financial','as'=>'my_financial','middleware'=>'auth.from_token'],function(){
+       Route::get('/', function(){
+           echo 'teste';
+       });
     });
 
     Route::get('register','Site\Auth\RegisterController@create')->name('auth.register.create');

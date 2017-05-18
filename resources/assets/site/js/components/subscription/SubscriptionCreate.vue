@@ -2,14 +2,15 @@
 </template>
 <script>
     export default{
-        props: ['plan','csrf-token','action'],
+        props: ['plan','csrf_token','action'],
         data(){
             return{
+                token_payment: null,
                 payment_type: 'credit_card',
                 credit_card: {
                     number: '4111111111111111',
                     cvv: '123',
-                    expiration: '12/07',
+                    expiration: '12/25',
                     first_name: 'Nome',
                     last_name: 'Sobrenome'
                 }
@@ -32,14 +33,19 @@
                       this.credit_card.last_name,
                       this.credit_card.cvv
                     );
+                    let self = this;
                     Iugu.createPaymentToken(creditCard, response => {
                         if(response.errors){
                             Materialize.toast("Erro ao processar cartão de crédito. Tente novamente!", 4000);
                         }else{
-                            console.log(response.id);
+                            self.token_payment = response.id;
+                            setTimeout(()=>{
+                                $('#subscription-form')[0].submit();
+                            })
                         }
                     });
                 }else{
+                    $('#subscription-form')[0].submit();
                 }
             }
         }
