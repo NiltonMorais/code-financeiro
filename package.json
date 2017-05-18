@@ -2,23 +2,26 @@
   "name": "myapp",
   "description": "a really cool app",
   "version": "1.0.0",
-  "engines": {
-    "node": "6.9.4"
-  },
   "private": true,
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch",
     "heroku-postbuild": "gulp"
   },
-  "dependencies": {
+  "engines": {
+    "node": "6.8.1",
+    "npm": "3.10.8"
+  },
+  "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-env": "^0.4.0",
     "gulp-file": "^0.3.0",
+    "jquery": "2.2.4",
     "laravel-elixir": "^6.0.0-9",
     "laravel-elixir-browsersync-official": "^1.0.0",
     "laravel-elixir-vue": "^0.1.4",
     "laravel-elixir-webpack-official": "^1.0.2",
+    "lodash": "4.17.4",
     "materialize-autocomplete": "^1.0.7",
     "materialize-css": "^0.97.7",
     "stringify-object": "^3.1.0",
@@ -27,12 +30,9 @@
     "vue-router": "^0.7.13",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-merge": "^0.14.1"
-  },
-  "devDependencies": {
+    "webpack-merge": "^0.14.1",
     "jquery.animate-number": "0.0.14",
     "laravel-echo": "^1.2.3",
-    "lodash": "^4.11.2",
     "moment": "^2.17.1",
     "numeral": "^2.0.4",
     "papaparse": "^4.1.4",
