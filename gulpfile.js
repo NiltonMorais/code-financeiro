@@ -8,6 +8,7 @@ const mergeWebpack = require('webpack-merge');
 const env = require('gulp-env');
 const stringifyObject = require('stringify-object');
 const file = require('gulp-file');
+const argv = require('yargs').argv;
 const HOST = "localhost";
 
 /*require('laravel-elixir-vue');
@@ -30,10 +31,12 @@ Elixir.webpack.mergeConfig(webpackDevConfig);*/
  */
 
 gulp.task('spa-config',()=>{
-    env({
-        file: '.env',
-        type: 'ini'
-    });
+    if(argv._.includes('watch')){
+        env({
+            file: '.env',
+            type: 'ini'
+        });
+    }
     let spaConfig = require('./spa.config');
     let string = stringifyObject(spaConfig);
     return file('config.js', `module.exports = ${string};`, {src: true})
@@ -78,11 +81,18 @@ elixir(mix => {
         .sass('./resources/assets/site/sass/site.scss')
         .copy('./node_modules/materialize-css/fonts/roboto','./public/fonts/roboto');
 
-    gulp.start('spa-config','webpack-dev-server');
+    if(argv._.includes('watch')){
+        gulp.start('spa-config','webpack-dev-server');
 
-    mix.browserSync({
-        host: HOST,
-        proxy: `http://${HOST}:8080`
-    });
-       //.webpack('app.js');
+        mix.browserSync({
+            host: HOST,
+            proxy: `http://${HOST}:8080`
+        });
+    }else{
+        gulp.start('spa-config');
+        webpack(require('./webpack.config'),()=>{
+            console.log("Bundling project..");
+        });
+    }
+
 });

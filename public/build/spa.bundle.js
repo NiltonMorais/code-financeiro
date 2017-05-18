@@ -71881,7 +71881,7 @@
 	            _store2.default.dispatch('login', this.user).then(function () {
 	                _this.$router.go({ name: 'dashboard' });
 	            }).catch(function (responseError) {
-	                console.log(responseError.data);
+	                console.log(responseError.data.message);
 	                if (responseError.data && responseError.data.hasOwnProperty('error')) {
 	                    _this.error.message = responseError.data.message;
 	                } else {
