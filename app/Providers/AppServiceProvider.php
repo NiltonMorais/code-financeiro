@@ -3,6 +3,7 @@
 namespace CodeFin\Providers;
 
 use CodeFin\Jwt\Manager;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if(app()->environment('prod')){
+            URL::forceSchema('https');
+        }
     }
 
     /**
