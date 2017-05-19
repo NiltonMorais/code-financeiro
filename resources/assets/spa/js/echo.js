@@ -1,6 +1,8 @@
 import Echo from 'laravel-echo';
 import JwtToken from './services/jwt-token';
 
+window.Pusher = require('pusher-js');
+
 window.Echo = new Echo({
    broadcaster: 'pusher',
    key: '722fe87d08a56a1d5599'

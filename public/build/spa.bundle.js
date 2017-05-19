@@ -42548,6 +42548,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	window.Pusher = __webpack_require__(201);
+
 	window.Echo = new _laravelEcho2.default({
 	   broadcaster: 'pusher',
 	   key: '722fe87d08a56a1d5599'
