@@ -5,7 +5,7 @@ import {User} from '../services/resources';
 const USER = 'user';
 
 const state = {
-    user: LocalStorage.getObject(USER) || {name: ''},
+    user: LocalStorage.getObject(USER),
     check: JwtToken.token != null
 };
 
