@@ -208,13 +208,13 @@ trait CashFlowRepositoryTrait
             ->addSelect("$table.id")
             ->addSelect("$table.name")
             ->selectRaw("SUM(value) as total")
-            ->join("$table as childOrSelf", function ($join) use ($table, $lft, $rgt) {
-                $join->on("$table.$lft", '<=', "childOrSelf.$lft")
-                    ->whereRaw("$table.$rgt >= childOrSelf.$rgt");
+            ->join("$table as childorself", function ($join) use ($table, $lft, $rgt) {
+                $join->on("$table.$lft", '<=', "childorself.$lft")
+                    ->whereRaw("$table.$rgt >= childorself.$rgt");
             })
-            ->join($billTable, "$billTable.category_id", '=', "childOrSelf.id")
+            ->join($billTable, "$billTable.category_id", '=', "childorself.id")
             ->whereBetween('date_due', [$dateStart, $dateEnd])
-            ->whereRaw("({$this->getQueryWithDepth($model)}) = 0")
+            ->whereRaw("({$this->getQueryWithDepth($model)->toSql()}) = 0")
             ->groupBy("$table.id", "$table.name", 'period')
             ->orderBy("period")
             ->orderBy("$table.name");
