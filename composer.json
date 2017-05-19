@@ -16,7 +16,8 @@
         "kalnoy/nestedset": "4.2.0",
         "pusher/pusher-php-server": "2.6",
         "iugu/iugu": "1.0.6",
-        "fzaninotto/faker": "~1.4"
+        "fzaninotto/faker": "~1.4",
+        "ext-intl": "*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
