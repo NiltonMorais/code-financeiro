@@ -14,6 +14,9 @@ use CodeFin\Models\BillPay;
 use CodeFin\Models\BillReceive;
 use CodeFin\Models\CategoryExpense;
 use CodeFin\Models\CategoryRevenue;
+use Illuminate\Database\MySqlConnection;
+use Illuminate\Database\PostgresConnection;
+use Illuminate\Support\Facades\DB;
 
 trait CashFlowRepositoryTrait
 {
@@ -80,7 +83,7 @@ trait CashFlowRepositoryTrait
 
         $result = (new $modelClass)
             ->selectRaw("SUM(statements.balance) as total")
-            ->join(\DB::raw("({$subQuery->toSql()}) as s"), 'statements.id','=','s.maxid')
+            ->join(\DB::raw("({$subQuery->toSql()}) as s"), 'statements.id', '=', 's.maxid')
             ->mergeBindings($subQuery)
             ->get();
 
@@ -89,20 +92,20 @@ trait CashFlowRepositoryTrait
 
     protected function formatCategories($collection)
     {
-        $categories = $collection->unique('name')->pluck('name','id')->all();
+        $categories = $collection->unique('name')->pluck('name', 'id')->all();
         $arrayResult = [];
 
-        foreach($categories as $id => $name){
+        foreach ($categories as $id => $name) {
             $filtered = $collection->where('id', $id)->where('name', $name);
             $periods = [];
-            $filtered->each(function($category) use(&$periods){
+            $filtered->each(function ($category) use (&$periods) {
                 $periods[] = [
                     'total' => $category->total,
                     'period' => $category->period,
                 ];
             });
             $arrayResult[] = [
-                'id'  => $id,
+                'id' => $id,
                 'name' => $name,
                 'periods' => $periods,
             ];
@@ -116,20 +119,20 @@ trait CashFlowRepositoryTrait
         $periodRevenueCollection = $revenuesCollection->pluck('period');
         $periodsCollection = $periodExpenseCollection->merge($periodRevenueCollection)->unique()->sort();
         $periodList = [];
-        $periodsCollection->each(function($period) use(&$periodList){
+        $periodsCollection->each(function ($period) use (&$periodList) {
             $periodList[$period] = [
                 'period' => $period,
-                'revenues' => ['total'=>0],
-                'expenses' => ['total'=>0]
+                'revenues' => ['total' => 0],
+                'expenses' => ['total' => 0]
             ];
         });
 
-        foreach($periodRevenueCollection as $period){
-            $periodList[$period]['revenues']['total'] = $revenuesCollection->where('period',$period)->sum('total');
+        foreach ($periodRevenueCollection as $period) {
+            $periodList[$period]['revenues']['total'] = $revenuesCollection->where('period', $period)->sum('total');
         }
 
-        foreach($periodExpenseCollection as $period){
-            $periodList[$period]['expenses']['total'] = $expensesCollection->where('period',$period)->sum('total');
+        foreach ($periodExpenseCollection as $period) {
+            $periodList[$period]['expenses']['total'] = $expensesCollection->where('period', $period)->sum('total');
         }
 
         return array_values($periodList);
@@ -182,7 +185,7 @@ trait CashFlowRepositoryTrait
             $dateEndStr
         )->get();
 
-        $firstCollection->reverse()->each(function($value) use($mainCollection){
+        $firstCollection->reverse()->each(function ($value) use ($mainCollection) {
             $mainCollection->prepend($value);
         });
 
@@ -192,7 +195,7 @@ trait CashFlowRepositoryTrait
     protected function getQueryCategoriesValuesByPeriodAndDone($model, $billTable, $dateStart, $dateEnd)
     {
         return $this->getQueryCategoriesValuesByPeriod($model, $billTable, $dateStart, $dateEnd)
-            ->where('done',1);
+            ->whereRaw("done = true");
     }
 
     protected function getQueryCategoriesValuesByPeriod($model, $billTable, $dateStart, $dateEnd, $dateFormat = '%Y-%m')
@@ -200,22 +203,31 @@ trait CashFlowRepositoryTrait
         $table = $model->getTable();
         list($lft, $rgt) = [$model->getLftName(), $model->getRgtName()];
 
-        return $model
+        $subQuery = $this->getQueryWithDepth($model);
+        $query = $model
             ->addSelect("$table.id")
             ->addSelect("$table.name")
             ->selectRaw("SUM(value) as total")
-            ->selectRaw("DATE_FORMAT(date_due, '$dateFormat') as period")
-            ->selectSub($this->getQueryWithDepth($model), 'depth')
-            ->join("$table as childOrSelf", function($join) use($table, $lft, $rgt){
-                $join->on("$table.$lft",'<=',"childOrSelf.$lft")
+            ->join("$table as childOrSelf", function ($join) use ($table, $lft, $rgt) {
+                $join->on("$table.$lft", '<=', "childOrSelf.$lft")
                     ->whereRaw("$table.$rgt >= childOrSelf.$rgt");
             })
-            ->join($billTable, "$billTable.category_id",'=',"childOrSelf.id")
-            ->whereBetween('date_due',[$dateStart, $dateEnd])
-            ->groupBy("$table.id","$table.name",'period')
-            ->havingRaw("depth = 0")
+            ->join($billTable, "$billTable.category_id", '=', "childOrSelf.id")
+            ->whereBetween('date_due', [$dateStart, $dateEnd])
+            ->whereRaw("({$this->getQueryWithDepth($model)}) = 0")
+            ->groupBy("$table.id", "$table.name", 'period')
             ->orderBy("period")
             ->orderBy("$table.name");
+
+        $query->mergeBindings($subQuery);
+
+        if (DB::connection() instanceof PostgresConnection) {
+            $dateFormat = $this->getFormatDateByDatabase($dateFormat);
+            $query = $query->selectRaw("TO_CHAR(date_due, '$dateFormat') as period");
+        } elseif (DB::connection() instanceof MySqlConnection) {
+            $query = $query->selectRaw("DATE_FORMAT(date_due, '$dateFormat') as period");
+        }
+        return $query;
     }
 
     protected function getQueryWithDepth($model)
@@ -232,5 +244,17 @@ trait CashFlowRepositoryTrait
             ->selectRaw('count(1) - 1')
             ->from("{$table} as {$alias}")
             ->whereRaw("{$table}.{$lft} between {$alias}.{$lft} and {$alias}.{$rgt}");
+    }
+
+    protected function getFormatDateByDatabase($mySqlDateFormat)
+    {
+        $result = $mySqlDateFormat;
+        if (DB::connection() instanceof PostgresConnection) {
+            $result = str_replace('%', '', $mySqlDateFormat);
+            $result = str_replace('Y', 'YYYY', $result);
+            $result = str_replace('m', 'MM', $result);
+            $result = str_replace('d', 'DD', $result);
+        }
+        return $result;
     }
 }

@@ -5,6 +5,7 @@ namespace CodeFin\Repositories\Traits;
 use Carbon\Carbon;
 use CodeFin\Events\BillStoredEvent;
 use CodeFin\Serializer\BillSerializer;
+use Prettus\Repository\Criteria\RequestCriteria;
 
 trait BillRepositoryTrait
 {
@@ -79,6 +80,7 @@ trait BillRepositoryTrait
     protected function getQueryTotal()
     {
         $this->resetModel();
+        $this->popCriteria(RequestCriteria::class);
         $this->applyCriteria();
         return $this->model->selectRaw('SUM(value) as total');
     }
