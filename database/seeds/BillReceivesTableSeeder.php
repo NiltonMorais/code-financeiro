@@ -24,7 +24,7 @@ class BillReceivesTableSeeder extends Seeder
                 $client = $clients->random();
                 \Landlord::addTenant($client);
                 $bankAccount = $client->bankAccounts->random();
-                $category = $client->categoryExpenses->random();
+                $category = $client->categoryRevenues->random();
                 $model->client_id = $client->id;
                 $model->bank_account_id = $bankAccount->id;
                 $model->category_id = $category->id;
