@@ -7,6 +7,7 @@ use Closure;
 use CodeFin\Criteria\FindSubscriptionByUserClientCriteria;
 use CodeFin\Models\Subscription;
 use CodeFin\Repositories\Interfaces\SubscriptionRepository;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Auth;
 
 class CheckSubscription
@@ -24,20 +25,33 @@ class CheckSubscription
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next, $beforeOrAfter = 'before')
     {
-        if($beforeOrAfter == 'before'){
+
+        if ($beforeOrAfter == 'before') {
+            if(!$this->hasAuthenticated()){
+                return response()->json([
+                    'error' => 'invalid_credentials',
+                    'message' => 'Email ou senha inválido.'
+                ], 403);
+            }
             $responseExpired = $this->responseSubscriptionExpired();
-            if($responseExpired){
+            if ($responseExpired) {
                 return $responseExpired;
             }
             return $next($request);
-        }else{
-            $response =  $next($request);
+        } else {
+            $response = $next($request);
+            if(!$this->hasAuthenticated()){
+                return response()->json([
+                    'error' => 'invalid_credentials',
+                    'message' => 'Email ou senha inválido.'
+                ], 403);
+            }
             $responseExpired = $this->responseSubscriptionExpired();
             return !$responseExpired ? $response : $responseExpired;
         }
@@ -46,21 +60,24 @@ class CheckSubscription
     protected function responseSubscriptionExpired()
     {
         $subscription = $this->getSubscription();
-        if($subscription){
+
+        if ($subscription) {
             $result = $this->isExpired($subscription);
-            if($result){
+
+            if ($result) {
                 return response()->json([
                     'error' => 'subscription_expired',
                     'message' => 'Assinatura expirada.'
-                ],403);
-            }else{
-                return response()->json([
-                    'error' => 'subscription_not_found',
-                    'message' => 'Cliente sem assinatura contratada.'
-                ],400);
+                ], 403);
+            } else {
+                return false;
             }
         }
-        return false;
+
+        return response()->json([
+            'error' => 'subscription_not_found',
+            'message' => 'Cliente sem assinatura contratada.'
+        ], 400);
     }
 
     protected function getSubscription()
@@ -74,16 +91,21 @@ class CheckSubscription
 
     protected function isExpired($subscription)
     {
-        if(
+        if (
             !$subscription->expires_at
             || $subscription->status == Subscription::STATUS_INATIVE
-            || $subscription->canceled_at != null)
-        {
+            || $subscription->canceled_at != null
+        ) {
             return true;
         }
 
         $expiresAt = new Carbon($subscription->expires_at);
         return $expiresAt->lt(new Carbon()) ? true : false;
 
+    }
+
+    protected function hasAuthenticated()
+    {
+        return Auth::guard('api')->check() ? true : false;
     }
 }

@@ -61,7 +61,7 @@
                             this.$router.go({name: 'dashboard'});
                         })
                         .catch((responseError) => {
-                            console.log(responseError.data.message);
+                                this.error.error = true;
                             if(responseError.data && responseError.data.hasOwnProperty('error')){
                                 this.error.message = responseError.data.message;
                             }else{
