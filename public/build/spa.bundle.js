@@ -40192,7 +40192,7 @@
 	'use strict';
 
 	module.exports = {
-		api_url: undefined,
+		api_url: 'http://localhost:8000/api',
 		app_path: '/app',
 		login_path: '#!/login',
 		my_financial_path: '/my-financial'
@@ -71883,7 +71883,7 @@
 	            _store2.default.dispatch('login', this.user).then(function () {
 	                _this.$router.go({ name: 'dashboard' });
 	            }).catch(function (responseError) {
-	                console.log(responseError.data.message);
+	                _this.error.error = true;
 	                if (responseError.data && responseError.data.hasOwnProperty('error')) {
 	                    _this.error.message = responseError.data.message;
 	                } else {

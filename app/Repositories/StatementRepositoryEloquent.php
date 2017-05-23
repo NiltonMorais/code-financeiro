@@ -34,7 +34,9 @@ class StatementRepositoryEloquent extends BaseRepository implements StatementRep
         $this->resetModel();
         $this->applyCriteria();
         $collection = $this->model->selectRaw('COUNT(id) as count, SUM(value) as total')
-            ->where('statementable_type','=',$billType)->get();
+            ->where('statementable_type','=',$billType)
+            ->groupBy('id')
+            ->get();
         $result = $collection->first();
         return [
             'count' => (float)$result->count,
