@@ -72215,7 +72215,7 @@
 	            var _this2 = this;
 
 	            _resources.User.get().then(function (response) {
-	                Echo.private('client.' + response.data.clientId).listen('.CodeFin.Events.BankAccountBalanceUpdatedEvent', function (event) {
+	                Echo.private('client.' + response.data.client_id).listen('.CodeFin.Events.BankAccountBalanceUpdatedEvent', function (event) {
 	                    _this2.updateBalance(event.bankAccount);
 	                });
 	            });

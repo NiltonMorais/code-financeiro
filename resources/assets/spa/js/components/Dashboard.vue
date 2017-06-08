@@ -228,7 +228,7 @@
             },
             echo(){
                 User.get().then((response) => {
-                    Echo.private(`client.${response.data.clientId}`)
+                    Echo.private(`client.${response.data.client_id}`)
                         .listen('.CodeFin.Events.BankAccountBalanceUpdatedEvent', (event)=>{
                             this.updateBalance(event.bankAccount);
                         });
